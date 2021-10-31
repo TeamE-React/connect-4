@@ -1,31 +1,53 @@
-.container {
+.body_div {
   min-height: 100vh;
-  padding: 0 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  background-image: linear-gradient(
+    to top,
+    #93a5cf 0%,
+    rgb(228, 237, 239) 100%
+  );
 }
 
-.main {
-  padding: 5rem 0;
-  flex: 1;
+.btn {
+  font-size: 3rem;
+  padding: 10px;
+  border-radius: 10px;
+  filter: drop-shadow(6px 6px 5px #1b4583);
+}
+
+.btn_div {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+  top: 30vh;
 }
-.bgImage {
-  /* /* background-image: linear-gradient(
+
+.top_image {
+  min-height: 100vh;
+  background-image: linear-gradient(
       rgba(255, 255, 255, 1) 25%,
       rgba(255, 255, 255, 0) 90%
     ),
-    url(../public/images/title-image.png);
+    url(/images/title-image.png);
   background-repeat: repeat-x;
-  background-position: bottom; */
-  width: 100vw;
-  height: 100vh; 
+  background-position: bottom;
+}
+
+.title_image {
+  min-height: 20vh;
+  filter: drop-shadow(6px 6px 5px #1b4583);
+  position: relative;
+  top: 20vh;
+}
+
+@media screen and (min-width: 1023px) {
+  .title_image {
+    top: 10vh;
+  }
+
+  .btn_div {
+    top: 20vh;
+  }
 }
 
 .title a {
@@ -63,7 +85,6 @@
   font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
     Bitstream Vera Sans Mono, Courier New, monospace;
 }
-
 
 .card {
   margin: 1rem;

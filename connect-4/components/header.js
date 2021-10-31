@@ -33,13 +33,6 @@ const useStyles = makeStyles(() =>
       color: "inherit",
       margin: "20px",
     },
-    menuButton: {
-      color: "inherit",
-      padding: "8px",
-    },
-    avatar: {
-      margin: "8px",
-    },
     drawerList: {
       width: 200,
       height: "100%",

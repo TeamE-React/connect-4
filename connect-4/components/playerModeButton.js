@@ -14,9 +14,9 @@ export default function PlayerModeButton() {
       className={styles.btn}
       style={{ fontSize: "30px" }}
     >
-      <FontAwesomeIcon icon={faUser} className={styles.btn_icon} />
+      <FontAwesomeIcon icon={faUser} className={styles.btn_icon_user} />
       vs
-      <FontAwesomeIcon icon={faUser} className={styles.btn_icon} />
+      <FontAwesomeIcon icon={faUser} className={styles.btn_icon_user} />
     </Button>
   );
 }

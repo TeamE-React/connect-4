@@ -14,9 +14,9 @@ export default function AiModeButton() {
       className={styles.btn}
       style={{ fontSize: "30px" }}
     >
-      <FontAwesomeIcon icon={faUser} className={styles.btn_icon} />
+      <FontAwesomeIcon icon={faUser} className={styles.btn_icon_user} />
       vs
-      <FontAwesomeIcon icon={faRobot} className={styles.btn_icon} />
+      <FontAwesomeIcon icon={faRobot} className={styles.btn_icon_robot} />
     </Button>
   );
 }

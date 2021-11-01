@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+
 .body_div {
   min-height: 100vh;
   background-image: linear-gradient(
@@ -28,7 +30,6 @@
 
 /* Button */
 .btn {
-  font-size: 3rem;
   padding: 10px;
   margin: 10px;
   border-radius: 10px;
@@ -43,7 +44,23 @@
   top: 30vh;
 }
 
-.btn_icon {
+.btn_font {
+  font-family: "Varela Round", sans-serif;
+}
+
+.btn_icon_user {
+  display: inline-block;
+  font-family: "Font Awesome 5 Free" !important;
+  font-weight: 900 !important;
+  content: "\f007" !important;
+  margin: 10px;
+}
+
+.btn_icon_robot {
+  display: inline-block;
+  font-family: "Font Awesome 5 Free" !important;
+  font-weight: 900 !important;
+  content: "\f544" !important;
   margin: 10px;
 }
 

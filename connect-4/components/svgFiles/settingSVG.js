@@ -48,8 +48,8 @@ export default function SettingSVG() {
           </text>
           <defs>
             <linearGradient id="gradient100" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#0095ff" />
-              <stop offset="100%" stop-color="#ffffff" />
+              <stop offset="0%" stopColor="#0095ff" />
+              <stop offset="100%" stopColor="#ffffff" />
             </linearGradient>
           </defs>
         </svg>
@@ -98,8 +98,8 @@ export default function SettingSVG() {
           </text>
           <defs>
             <linearGradient id="gradient100" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#0030ff" />
-              <stop offset="100%" stop-color="#90e0ff" />
+              <stop offset="0%" stopColor="#0030ff" />
+              <stop offset="100%" stopColor="#90e0ff" />
             </linearGradient>
           </defs>
         </svg>

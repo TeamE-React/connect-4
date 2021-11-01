@@ -17,15 +17,6 @@ export default function Home() {
             <link rel="icon" href="/favicon.ico" />
           </Head>
           <Header />
-          {/* <div className={styles.top_image}>
-        <Image
-          src="/images/title-image.png"
-          width={200}
-          height={114}
-          layout={"responsive"}
-          objectFit={"fill"}
-        />
-      </div> */}
           <div className={styles.title_image}>
             <Image
               priority

@@ -9,7 +9,14 @@ const theme = createTheme({
   },
   typography: {
     button: {
+      fontFamily: ["Varela Round", "sans-serif"],
       textTransform: "none",
+    },
+    h5: {
+      fontFamily: ["Varela Round", "sans-serif"],
+    },
+    h6: {
+      fontFamily: ["Varela Round", "sans-serif"],
     },
     fontSize: 12,
   },

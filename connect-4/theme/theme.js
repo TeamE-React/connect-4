@@ -9,16 +9,19 @@ const theme = createTheme({
   },
   typography: {
     button: {
-      fontFamily: ["Varela Round", "sans-serif"],
       textTransform: "none",
     },
-    h5: {
-      fontFamily: ["Varela Round", "sans-serif"],
-    },
-    h6: {
-      fontFamily: ["Varela Round", "sans-serif"],
-    },
+    fontFamily: ["Varela Round", "sans-serif"],
     fontSize: 12,
+    h6: {
+      ["@media screen and (min-width: 415px)"]: {
+        display: "block",
+      },
+      ["@media screen and (max-width: 414px)"]: {
+        display: "none",
+      },
+      cursor: "pointer",
+    },
   },
 });
 

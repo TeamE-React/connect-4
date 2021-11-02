@@ -1,9 +1,9 @@
 import React from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import Header from "../components/header";
-import theme from "../theme/theme";
 import { ThemeProvider } from "@material-ui/core";
+import theme from "../theme/theme";
+import Header from "../components/header";
 import SettingSVG from "../components/svgFiles/settingSVG";
 import PlayerModeButton from "../components/playerModeButton";
 import AiModeButton from "../components/aiModeButton";

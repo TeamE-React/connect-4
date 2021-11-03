@@ -10,6 +10,7 @@ import BoadSize from "../components/boadSize";
 import PlayerSetting from "../components/playerSetting";
 import PlayersName from "../components/playersName";
 import PlayersColor from "../components/playersColor";
+import GameStartButton from "../components/gameStartButton";
 
 export default function PlayerModePage() {
   return (
@@ -27,6 +28,9 @@ export default function PlayerModePage() {
           <div className={styles.flex_row}>
             <PlayersName />
             <PlayersColor />
+          </div>
+          <div className={styles.btn_div}>
+            <GameStartButton />
           </div>
         </div>
       </div>

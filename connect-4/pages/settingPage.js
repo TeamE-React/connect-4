@@ -17,7 +17,9 @@ export default function settingPage() {
         </Head>
         <Header />
         <div className={styles.flex_column}>
-          <SettingSVG />
+          <div className={styles.setting_svg}>
+            <SettingSVG />
+          </div>
           <div className={styles.setting_btn_container}>
             <PlayerModeButton />
             <AiModeButton />

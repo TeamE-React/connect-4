@@ -4,16 +4,17 @@
   min-height: 100vh;
   background-image: linear-gradient(
     to top,
-    #93a5cf 0%,
+    #93afcf 0%,
     rgb(228, 237, 239) 100%
   );
+  overflow: scroll;
 }
 
 .flex_column {
   height: 80vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -31,7 +32,6 @@
 /* SVG */
 .svg_container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   filter: drop-shadow(5px 5px 5px #265db1);
@@ -98,6 +98,14 @@
 }
 
 /* Setting Page */
+.setting_svg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 7rem;
+}
+
 .setting_btn_container {
   display: flex;
   flex-direction: column;
@@ -110,6 +118,12 @@
 @media screen and (min-width: 415px) {
   .setting_btn_container {
     flex-direction: row;
+  }
+}
+
+@media screen and (max-height: 666px) {
+  .setting_svg {
+    margin-top: 4rem;
   }
 }
 

@@ -18,6 +18,13 @@ export default function PlayerModePage() {
       <div className={styles.body_div}>
         <Head>
           <title>Player Mode Settings</title>
+          <meta charset="UTF-8" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+          />
+          <meta name="description" content="Team Project" />
+          <link rel="icon" href="/favicon.ico" />
         </Head>
         <Header />
         <div className={styles.flex_column}>

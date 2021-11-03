@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { NumberOfP } from "../pages/playerModePage";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -16,13 +17,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NumberOfPlayer() {
+export default function NumberOfPlayers() {
   const classes = useStyles();
-  const [numberOfPlayer, setNumberOfPlayer] = React.useState("");
+
+  const {
+    numberOfPlayers,
+    setNumberOfPlayers,
+    playersList,
+    changeNumberOfPlayer,
+  } = useContext(NumberOfP);
 
   const handleChange = (e) => {
-    setNumberOfPlayer(e.target.value);
+    setNumberOfPlayers(e.target.value);
   };
+
+  // numberOfPlayersの値を更新するためにuseEffectを使う
+  useEffect(() => {
+    changeNumberOfPlayer(playersList, numberOfPlayers);
+  }, [numberOfPlayers]);
 
   return (
     <div className={styles.input_ui}>
@@ -33,7 +45,7 @@ export default function NumberOfPlayer() {
         <Select
           labelId="player-number-select-label"
           id="player-number-select"
-          value={numberOfPlayer}
+          value={numberOfPlayers}
           label="Number of Player"
           onChange={handleChange}
         >

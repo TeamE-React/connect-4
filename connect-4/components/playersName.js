@@ -19,8 +19,8 @@ export default function PlayersName() {
       <TextField
         required
         id="players-name"
-        label="Required"
-        defaultValue="Player's Name"
+        label="Player's Name"
+        defaultValue="Player1"
         variant="outlined"
       />
     </form>

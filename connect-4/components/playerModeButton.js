@@ -2,8 +2,7 @@ import React from "react";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import { Button } from "@material-ui/core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { GiTabletopPlayers } from "react-icons/gi";
 
 export default function AiModeButton() {
   return (
@@ -14,11 +13,9 @@ export default function AiModeButton() {
           color="primary"
           size="large"
           className={styles.btn}
-          style={{ fontSize: "30px" }}
+          style={{ fontSize: "40px" }}
         >
-          <FontAwesomeIcon icon={faUser} className={styles.btn_icon_user} />
-          vs
-          <FontAwesomeIcon icon={faUser} className={styles.btn_icon_user} />
+          <GiTabletopPlayers/>
         </Button>
       </Link>
     </>

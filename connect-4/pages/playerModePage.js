@@ -12,11 +12,16 @@ import PlayersName from "../components/playersName";
 import PlayersColor from "../components/playersColor";
 import GameStartButton from "../components/gameStartButton";
 import { Player } from "../model/index.js";
+import { Config } from "./config";
 
 export const NumberOfP = React.createContext();
 
 export default function PlayerModePage() {
-  const colorList = ["red", "blue", "yellow", "green", "pink", "cyan"];
+  const colorList = Object.keys(Config.ballColor).map((color) => {
+    return {
+      color: color,
+    };
+  });
 
   const [numberOfPlayers, setNumberOfPlayers] = useState(2);
 

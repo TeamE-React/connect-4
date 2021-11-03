@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
 import styles from "../styles/Home.module.css";
+import { Config } from "../pages/config";
 
 const useStyles = makeStyles({
   root: {
@@ -20,13 +21,16 @@ export default function BoadSize() {
           Boad Size
         </Typography>
         <Slider
-          defaultValue={7}
+          defaultValue={Math.floor(
+            ((Config.board.size.max - Config.board.size.min) / 2) +
+              Config.board.size.min
+          )}
           aria-labelledby="discrete-slider"
           valueLabelDisplay="on"
           step={1}
           marks
-          min={4}
-          max={10}
+          min={Config.board.size.min}
+          max={Config.board.size.max}
         />
       </div>
     </div>

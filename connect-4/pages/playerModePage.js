@@ -6,7 +6,7 @@ import theme from "../theme/theme";
 import { ThemeProvider } from "@material-ui/core";
 import PlayerModeSVG from "../components/svgFiles/playerModeSVG";
 import NumberOfPlayersInput from "../components/numberOfPlayersInput";
-import BoadSize from "../components/boadSize";
+import BoardSizeInput from "../components/boardSizeInput";
 import PlayerSetting from "../components/playerSetting";
 import PlayersName from "../components/playersName";
 import PlayersColor from "../components/playersColor";
@@ -87,7 +87,7 @@ export default function PlayerModePage() {
         <Header />
         <div className={styles.flex_column}>
           <PlayerModeSVG />
-          <BoadSize />
+          <BoardSizeInput />
           <NumberOfPlayers.Provider value={value}>
             <NumberOfPlayersInput />
           </NumberOfPlayers.Provider>

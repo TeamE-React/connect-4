@@ -11,18 +11,18 @@ const useStyles = makeStyles({
   },
 });
 
-export default function BoadSize() {
+export default function BoardSizeInput() {
   const classes = useStyles();
 
   return (
     <div className={styles.input_ui}>
       <div className={classes.root}>
         <Typography id="discrete-slider" gutterBottom>
-          Boad Size
+          Board Size
         </Typography>
         <Slider
           defaultValue={Math.floor(
-            ((Config.board.size.max - Config.board.size.min) / 2) +
+            (Config.board.size.max - Config.board.size.min) / 2 +
               Config.board.size.min
           )}
           aria-labelledby="discrete-slider"

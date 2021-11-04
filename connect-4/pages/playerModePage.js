@@ -5,7 +5,7 @@ import Header from "../components/header";
 import theme from "../theme/theme";
 import { ThemeProvider } from "@material-ui/core";
 import PlayerModeSVG from "../components/svgFiles/playerModeSVG";
-import NumberOfPlayers from "../components/numberOfPlayer";
+import NumberOfPlayersInput from "../components/numberOfPlayersInput";
 import BoadSize from "../components/boadSize";
 import PlayerSetting from "../components/playerSetting";
 import PlayersName from "../components/playersName";
@@ -14,7 +14,7 @@ import GameStartButton from "../components/gameStartButton";
 import { Player } from "../model/index.js";
 import { Config } from "./config";
 
-export const NumberOfP = React.createContext();
+export const NumberOfPlayers = React.createContext();
 
 export default function PlayerModePage() {
   const colorList = Object.keys(Config.ballColor).map((color) => {
@@ -88,9 +88,9 @@ export default function PlayerModePage() {
         <div className={styles.flex_column}>
           <PlayerModeSVG />
           <BoadSize />
-          <NumberOfP.Provider value={value}>
-            <NumberOfPlayers />
-          </NumberOfP.Provider>
+          <NumberOfPlayers.Provider value={value}>
+            <NumberOfPlayersInput />
+          </NumberOfPlayers.Provider>
           <PlayerSetting />
           {playersList.map((player) => (
             <div key={player.id} className={styles.flex_row}>

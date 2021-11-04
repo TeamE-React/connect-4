@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { NumberOfP } from "../pages/playerModePage";
+import { NumberOfPlayers } from "../pages/playerModePage";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
@@ -12,7 +12,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function NumberOfPlayers() {
+export default function NumberOfPlayersInput() {
   const classes = useStyles();
 
   const {
@@ -20,7 +20,7 @@ export default function NumberOfPlayers() {
     setNumberOfPlayers,
     playersList,
     changeNumberOfPlayers,
-  } = useContext(NumberOfP);
+  } = useContext(NumberOfPlayers);
 
   const handleChange = (event, value) => {
     setNumberOfPlayers(value);

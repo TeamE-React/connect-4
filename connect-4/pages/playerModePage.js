@@ -16,6 +16,7 @@ import { Config } from "./config";
 
 export const BoardSize = React.createContext();
 export const NumberOfPlayers = React.createContext();
+export const PlayersData = React.createContext();
 
 // ボードサイズの初期値は最大値と最小値の中間
 export const boardDefaultValue = Math.floor(
@@ -23,13 +24,6 @@ export const boardDefaultValue = Math.floor(
 );
 
 export default function PlayerModePage() {
-  // ボールカラーのリスト作成
-  const colorList = Object.keys(Config.ballColor).map((color) => {
-    return {
-      color: color,
-    };
-  });
-
   const [boardSize, setBoardSize] = useState(boardDefaultValue);
   const [numberOfPlayers, setNumberOfPlayers] = useState(
     Config.players.number.min
@@ -40,7 +34,7 @@ export default function PlayerModePage() {
     let playersList = [];
 
     for (let i = 0; i < numberOfPlayers; i++) {
-      playersList.push(new Player(i, "Player" + (i + 1), colorList[i]));
+      playersList.push(new Player(i, "Player" + (i + 1), ""));
     }
     return playersList;
   });
@@ -84,6 +78,12 @@ export default function PlayerModePage() {
     changeNumberOfPlayers,
   };
 
+  const playersData = {
+    boardSize,
+    numberOfPlayers,
+    playersList,
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <div className={styles.body_div}>
@@ -114,7 +114,9 @@ export default function PlayerModePage() {
             </div>
           ))}
           <div className={styles.btn_div}>
-            <GameStartButton />
+            <PlayersData.Provider value={playersData}>
+              <GameStartButton />
+            </PlayersData.Provider>
           </div>
         </div>
       </div>

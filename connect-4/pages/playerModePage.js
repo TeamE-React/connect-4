@@ -17,6 +17,7 @@ import { Config } from "./config";
 export const NumberOfPlayers = React.createContext();
 
 export default function PlayerModePage() {
+  // ボールカラーのリスト作成
   const colorList = Object.keys(Config.ballColor).map((color) => {
     return {
       color: color,

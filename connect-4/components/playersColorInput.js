@@ -5,6 +5,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import styles from "../styles/Home.module.css";
+import { Config } from "../pages/config";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -17,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PlayersColorInput() {
+  // ボールカラーのリスト作成
+  const colorList = Object.keys(Config.ballColor);
+
   const classes = useStyles();
   const [color, setColor] = React.useState("");
 
@@ -35,12 +39,11 @@ export default function PlayersColorInput() {
           label="Player's Color"
           onChange={handleChange}
         >
-          <MenuItem value={"red"}>Red</MenuItem>
-          <MenuItem value={"blue"}>Blue</MenuItem>
-          <MenuItem value={"yellow"}>Yellow</MenuItem>
-          <MenuItem value={"green"}>Green</MenuItem>
-          <MenuItem value={"pink"}>Pink</MenuItem>
-          <MenuItem value={"cyan"}>Cyan</MenuItem>
+          {colorList.map((colorOption, index) => (
+            <MenuItem key={index} value={colorOption}>
+              {colorOption}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
     </div>

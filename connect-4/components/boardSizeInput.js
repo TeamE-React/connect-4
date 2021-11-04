@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { BoardSize, boardDefaultValue } from "../pages/playerModePage";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
@@ -14,6 +15,17 @@ const useStyles = makeStyles({
 export default function BoardSizeInput() {
   const classes = useStyles();
 
+  const { boardSize, setBoardSize } = useContext(BoardSize);
+
+  const handleChange = (event, value) => {
+    setBoardSize(value);
+  };
+
+  // boardSizeの値を更新するためにuseEffectを使う
+  useEffect(() => {
+    console.log(boardSize);
+  }, [boardSize]);
+
   return (
     <div className={styles.input_ui}>
       <div className={classes.root}>
@@ -21,16 +33,14 @@ export default function BoardSizeInput() {
           Board Size
         </Typography>
         <Slider
-          defaultValue={Math.floor(
-            (Config.board.size.max - Config.board.size.min) / 2 +
-              Config.board.size.min
-          )}
+          defaultValue={boardDefaultValue}
           aria-labelledby="discrete-slider"
           valueLabelDisplay="on"
           step={1}
           marks
           min={Config.board.size.min}
           max={Config.board.size.max}
+          onChange={handleChange}
         />
       </div>
     </div>

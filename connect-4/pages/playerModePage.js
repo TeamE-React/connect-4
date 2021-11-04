@@ -14,7 +14,13 @@ import GameStartButton from "../components/gameStartButton";
 import { Player } from "../model/index.js";
 import { Config } from "./config";
 
+export const BoardSize = React.createContext();
 export const NumberOfPlayers = React.createContext();
+
+// ボードサイズの初期値は最大値と最小値の中間
+export const boardDefaultValue = Math.floor(
+  (Config.board.size.max - Config.board.size.min) / 2 + Config.board.size.min
+);
 
 export default function PlayerModePage() {
   // ボールカラーのリスト作成
@@ -24,6 +30,7 @@ export default function PlayerModePage() {
     };
   });
 
+  const [boardSize, setBoardSize] = useState(boardDefaultValue);
   const [numberOfPlayers, setNumberOfPlayers] = useState(
     Config.players.number.min
   );
@@ -65,7 +72,12 @@ export default function PlayerModePage() {
     console.log(playersList);
   }, [playersList]);
 
-  const value = {
+  const boardValue = {
+    boardSize,
+    setBoardSize,
+  };
+
+  const numberValue = {
     numberOfPlayers,
     setNumberOfPlayers,
     playersList,
@@ -88,8 +100,10 @@ export default function PlayerModePage() {
         <Header />
         <div className={styles.flex_column}>
           <PlayerModeSVG />
-          <BoardSizeInput />
-          <NumberOfPlayers.Provider value={value}>
+          <BoardSize.Provider value={boardValue}>
+            <BoardSizeInput />
+          </BoardSize.Provider>
+          <NumberOfPlayers.Provider value={numberValue}>
             <NumberOfPlayersInput />
           </NumberOfPlayers.Provider>
           <PlayerSetting />

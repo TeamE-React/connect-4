@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PlayersName() {
+export default function PlayersNameInput() {
   const classes = useStyles();
 
   return (

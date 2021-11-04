@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PlayersColor() {
+export default function PlayersColorInput() {
   const classes = useStyles();
   const [color, setColor] = React.useState("");
 

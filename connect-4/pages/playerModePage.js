@@ -8,8 +8,8 @@ import PlayerModeSVG from "../components/svgFiles/playerModeSVG";
 import NumberOfPlayersInput from "../components/numberOfPlayersInput";
 import BoardSizeInput from "../components/boardSizeInput";
 import PlayerSetting from "../components/playerSetting";
-import PlayersName from "../components/playersName";
-import PlayersColor from "../components/playersColor";
+import PlayersNameInput from "../components/playersNameInput";
+import PlayersColorInput from "../components/playersColorInput";
 import GameStartButton from "../components/gameStartButton";
 import { Player } from "../model/index.js";
 import { Config } from "./config";
@@ -94,8 +94,8 @@ export default function PlayerModePage() {
           <PlayerSetting />
           {playersList.map((player) => (
             <div key={player.id} className={styles.flex_row}>
-              <PlayersName />
-              <PlayersColor />
+              <PlayersNameInput />
+              <PlayersColorInput />
             </div>
           ))}
           <div className={styles.btn_div}>

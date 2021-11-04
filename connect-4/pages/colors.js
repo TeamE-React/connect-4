@@ -1,30 +1,4 @@
 export default {
-  blue: {
-    circle1: {
-      color: "#000092",
-      colorString: "blue",
-    },
-    circle2: {
-      id: "gradient13",
-      startColor: "#0000b1",
-      endColor: "#7e7efa",
-    },
-    circle3: {
-      color: "#202079",
-    },
-    circle4: {
-      id: "gradient14",
-      startColor: "#d3d3fe",
-      middleColor: "#0000cc",
-      endColor: "#0000b4",
-    },
-    circle5: {
-      id: "gradient15",
-      startColor: "#8c8cfa",
-      middleColor: "#0000ab",
-      endColor: "#0000db",
-    },
-  },
   red: {
     circle1: {
       color: "#920000",
@@ -49,6 +23,32 @@ export default {
       startColor: "#fa8c8c",
       middleColor: "#ab0000",
       endColor: "#db0000",
+    },
+  },
+  blue: {
+    circle1: {
+      color: "#000092",
+      colorString: "blue",
+    },
+    circle2: {
+      id: "gradient13",
+      startColor: "#0000b1",
+      endColor: "#7e7efa",
+    },
+    circle3: {
+      color: "#202079",
+    },
+    circle4: {
+      id: "gradient14",
+      startColor: "#d3d3fe",
+      middleColor: "#0000cc",
+      endColor: "#0000b4",
+    },
+    circle5: {
+      id: "gradient15",
+      startColor: "#8c8cfa",
+      middleColor: "#0000ab",
+      endColor: "#0000db",
     },
   },
   yellow: {

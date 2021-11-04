@@ -23,7 +23,9 @@ export default function PlayerModePage() {
     };
   });
 
-  const [numberOfPlayers, setNumberOfPlayers] = useState(2);
+  const [numberOfPlayers, setNumberOfPlayers] = useState(
+    Config.players.number.min
+  );
 
   const [playersList, setPlayersList] = useState(() => {
     // プレイヤーリストの初期値
@@ -35,7 +37,7 @@ export default function PlayerModePage() {
     return playersList;
   });
 
-  const changeNumberOfPlayer = (playersList, numberOfPlayers) => {
+  const changeNumberOfPlayers = (playersList, numberOfPlayers) => {
     let newPlayersList = [];
 
     for (let i = 0; i < numberOfPlayers; i++) {
@@ -43,6 +45,7 @@ export default function PlayerModePage() {
     }
 
     let len = playersList.length;
+
     // プレイヤーの人数を増やす場合の処理
     if (numberOfPlayers > len) {
       for (let i = 0; i < numberOfPlayers - len; i++) {
@@ -53,7 +56,6 @@ export default function PlayerModePage() {
         );
       }
     }
-
     setPlayersList(newPlayersList);
   };
 
@@ -66,7 +68,7 @@ export default function PlayerModePage() {
     numberOfPlayers,
     setNumberOfPlayers,
     playersList,
-    changeNumberOfPlayer,
+    changeNumberOfPlayers,
   };
 
   return (

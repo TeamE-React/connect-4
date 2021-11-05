@@ -8,15 +8,16 @@ import PlayerModeSVG from "../components/svgFiles/playerModeSVG";
 import NumberOfPlayersInput from "../components/numberOfPlayersInput";
 import BoardSizeInput from "../components/boardSizeInput";
 import PlayerSetting from "../components/playerSetting";
-import PlayersNameInput from "../components/playersNameInput";
-import PlayersColorInput from "../components/playersColorInput";
+import PlayersDataInput from "../components/playersDataInput";
 import GameStartButton from "../components/gameStartButton";
 import { Player } from "../model/index.js";
 import { Config } from "./config";
+import { getPlayersList } from "./utils";
 
 export const BoardSize = React.createContext();
 export const NumberOfPlayers = React.createContext();
-export const PlayersData = React.createContext();
+export const PlayerData = React.createContext();
+export const CompleteData = React.createContext();
 
 // ボードサイズの初期値は最大値と最小値の中間
 export const boardDefaultValue = Math.floor(
@@ -28,16 +29,9 @@ export default function PlayerModePage() {
   const [numberOfPlayers, setNumberOfPlayers] = useState(
     Config.players.number.min
   );
-
-  const [playersList, setPlayersList] = useState(() => {
-    // プレイヤーリストの初期値
-    let playersList = [];
-
-    for (let i = 0; i < numberOfPlayers; i++) {
-      playersList.push(new Player(i, "Player" + (i + 1), ""));
-    }
-    return playersList;
-  });
+  const [playersList, setPlayersList] = useState(
+    getPlayersList(Config.players.number.min)
+  );
 
   const changeNumberOfPlayers = (playersList, numberOfPlayers) => {
     let newPlayersList = [];
@@ -66,11 +60,13 @@ export default function PlayerModePage() {
     console.log(playersList);
   }, [playersList]);
 
+  // BoardSizeInputに渡す変数と関数
   const boardValue = {
     boardSize,
     setBoardSize,
   };
 
+  // NumberOfPlayersInputに渡す変数と関数
   const numberValue = {
     numberOfPlayers,
     setNumberOfPlayers,
@@ -78,7 +74,14 @@ export default function PlayerModePage() {
     changeNumberOfPlayers,
   };
 
-  const playersData = {
+  // PlayersDataInputに渡す変数と関数
+  const playerData = {
+    playersList,
+    setPlayersList,
+  };
+
+  // GameStartButtonに渡す変数と関数
+  const completeData = {
     boardSize,
     numberOfPlayers,
     playersList,
@@ -107,16 +110,13 @@ export default function PlayerModePage() {
             <NumberOfPlayersInput />
           </NumberOfPlayers.Provider>
           <PlayerSetting />
-          {playersList.map((player) => (
-            <div key={player.id} className={styles.flex_row}>
-              <PlayersNameInput />
-              <PlayersColorInput />
-            </div>
-          ))}
+          <PlayerData.Provider value={playerData}>
+            <PlayersDataInput />
+          </PlayerData.Provider>
           <div className={styles.btn_div}>
-            <PlayersData.Provider value={playersData}>
+            <CompleteData.Provider value={completeData}>
               <GameStartButton />
-            </PlayersData.Provider>
+            </CompleteData.Provider>
           </div>
         </div>
       </div>

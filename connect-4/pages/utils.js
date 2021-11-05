@@ -7,9 +7,11 @@ export function getArrayOfNumber(min, max) {
   return array;
 }
 
-export function getArrayOfPlayers(n) {
-  const array = [];
-  for (let i = 0; i < n; i++) array.push(new Player());
+export function getPlayersList(n) {
+  const playersList = [];
 
-  return array;
+  for (let i = 0; i < n; i++) {
+    playersList.push(new Player(i, "Player" + (i + 1), ""));
+  }
+  return playersList;
 }

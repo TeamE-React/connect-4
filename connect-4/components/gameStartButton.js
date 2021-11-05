@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { PlayersData } from "../pages/playerModePage";
+import { CompleteData } from "../pages/playerModePage";
 import { Button } from "@material-ui/core";
 import styles from "../styles/Home.module.css";
 
 export default function GameStartButton() {
-  const { boardSize, numberOfPlayers, playersList } = useContext(PlayersData);
+  const { boardSize, numberOfPlayers, playersList } = useContext(CompleteData);
 
   const handleClick = () => {
     console.log("Board Size: " + boardSize);

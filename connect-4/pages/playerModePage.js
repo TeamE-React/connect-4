@@ -19,6 +19,7 @@ export const NumberOfPlayers = createContext();
 export const PlayerData = createContext();
 export const CompleteData = createContext();
 
+// コメント
 // ボードサイズの初期値は最大値と最小値の中間
 export const boardDefaultValue = Math.floor(
   (Config.board.size.max - Config.board.size.min) / 2 + Config.board.size.min

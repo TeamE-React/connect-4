@@ -2,8 +2,9 @@ import React from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Header from "../components/header";
+import Link from "next/link";
 import theme from "../theme/theme";
-import { ThemeProvider } from "@material-ui/core";
+import { ThemeProvider, Button } from "@material-ui/core";
 import PlayerModeSVG from "../components/svgFiles/playerModeSVG";
 import NumberOfPlayer from "../components/numberOfPlayer";
 import BoadSize from "../components/boadSize";
@@ -27,6 +28,19 @@ export default function PlayerModePage() {
           <div className={styles.flex_row}>
             <PlayersName />
             <PlayersColor />
+          </div>
+          <div className={styles.btn_div}>
+            <Link href={`/gamePage`}>
+              <Button
+                variant="contained"
+                color="primary"
+                size="large"
+                className={styles.btn}
+                style={{ fontSize: "20px" }}
+              >
+                Game Start
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

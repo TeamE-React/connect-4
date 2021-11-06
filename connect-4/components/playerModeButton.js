@@ -13,7 +13,7 @@ export default function AiModeButton() {
           color="primary"
           size="large"
           className={styles.btn}
-          style={{ fontSize: "40px" }}
+          style={{ fontSize: "70px" }}
         >
           <GiTabletopPlayers />
         </Button>

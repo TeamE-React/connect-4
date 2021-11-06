@@ -84,7 +84,6 @@ export default function PlayerModePage() {
   // GameStartButtonに渡す変数と関数
   const completeData = {
     boardSize,
-    numberOfPlayers,
     playersList,
   };
 

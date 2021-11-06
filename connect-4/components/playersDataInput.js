@@ -33,7 +33,7 @@ export default function PlayersDataInput() {
   const { playersList, setPlayersList } = useContext(PlayerData);
 
   const handleChangeName = (event) => {
-    setPlayersName(playersList, event.target.value, event.target.id);
+    setPlayersName(playersList, event.target.value, Number(event.target.id));
   };
 
   const setPlayersName = (playersList, name, id) => {
@@ -47,7 +47,7 @@ export default function PlayersDataInput() {
   };
 
   const handleClick = (event) => {
-    setPlayersColor(playersList, event.target.value, event.target.name);
+    setPlayersColor(playersList, event.target.value, Number(event.target.name));
   };
 
   const setPlayersColor = (playersList, color, id) => {
@@ -72,22 +72,22 @@ export default function PlayersDataInput() {
           <form className={classes.root} noValidate autoComplete="off">
             <TextField
               required
-              id={player.id}
+              id={player.id.toString()}
               label="Player's Name"
-              defaultValue="Player"
+              defaultValue={player.name}
               variant="outlined"
               onChange={handleChangeName}
             />
           </form>
           <FormControl variant="outlined" className={classes.formControl}>
-            <InputLabel id="player-number-select-label">
+            <InputLabel id="player-color-select-label">
               Player's Color
             </InputLabel>
             <Select
-              labelId="player-number-select-label"
-              id={player.id}
+              labelId="player-color-select-label"
+              id={player.id.toString()}
               value={player.color}
-              name={player.id}
+              name={player.id.toString()}
               label="Player's Color"
               onClick={handleClick}
             >

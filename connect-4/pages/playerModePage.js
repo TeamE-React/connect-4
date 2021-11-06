@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createContext } from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Header from "../components/header";
@@ -14,10 +14,10 @@ import { Player } from "../model/index.js";
 import { Config } from "./config";
 import { getPlayersList } from "./utils";
 
-export const BoardSize = React.createContext();
-export const NumberOfPlayers = React.createContext();
-export const PlayerData = React.createContext();
-export const CompleteData = React.createContext();
+export const BoardSize = createContext();
+export const NumberOfPlayers = createContext();
+export const PlayerData = createContext();
+export const CompleteData = createContext();
 
 // ボードサイズの初期値は最大値と最小値の中間
 export const boardDefaultValue = Math.floor(
@@ -33,7 +33,7 @@ export default function PlayerModePage() {
     getPlayersList(Config.players.number.min)
   );
 
-  const changeNumberOfPlayers = (playersList, numberOfPlayers) => {
+  const changePlayersList = (playersList, numberOfPlayers) => {
     let newPlayersList = [];
 
     for (let i = 0; i < numberOfPlayers; i++) {
@@ -71,7 +71,7 @@ export default function PlayerModePage() {
     numberOfPlayers,
     setNumberOfPlayers,
     playersList,
-    changeNumberOfPlayers,
+    changePlayersList,
   };
 
   // PlayersDataInputに渡す変数と関数

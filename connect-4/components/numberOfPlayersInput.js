@@ -19,7 +19,7 @@ export default function NumberOfPlayersInput() {
     numberOfPlayers,
     setNumberOfPlayers,
     playersList,
-    changeNumberOfPlayers,
+    changePlayersList,
   } = useContext(NumberOfPlayers);
 
   const handleChange = (event, value) => {
@@ -28,7 +28,7 @@ export default function NumberOfPlayersInput() {
 
   // numberOfPlayersの値を更新するためにuseEffectを使う
   useEffect(() => {
-    changeNumberOfPlayers(playersList, numberOfPlayers);
+    changePlayersList(playersList, numberOfPlayers);
   }, [numberOfPlayers]);
 
   return (

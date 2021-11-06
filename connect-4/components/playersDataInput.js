@@ -47,19 +47,15 @@ export default function PlayersDataInput() {
   };
 
   const handleClick = (event) => {
-    console.log(event);
     setPlayersColor(playersList, event.target.value, event.target.name);
   };
 
   const setPlayersColor = (playersList, color, id) => {
     let newPlayersList = [];
 
-    console.log(color);
-    console.log(id);
     for (let i = 0; i < playersList.length; i++) {
       newPlayersList.push(playersList[i]);
     }
-    console.log(newPlayersList[id]);
     newPlayersList[id].color = color;
     setPlayersList(newPlayersList);
   };

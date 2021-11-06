@@ -4,6 +4,8 @@ import theme from "../theme/theme";
 import styles from "../styles/Home.module.css";
 import Head from "next/head";
 import Header from "../components/header";
+import BallRedSVG from "../components/svgFiles/ballRedSVG";
+import BallYellowSVG from "../components/svgFiles/ballYellowSVG";
 
 export default function () {
   return (
@@ -14,6 +16,8 @@ export default function () {
         </Head>
         <Header />
         <h1>Game Page!</h1>
+        <BallRedSVG />
+        <BallYellowSVG />
       </div>
     </ThemeProvider>
   );

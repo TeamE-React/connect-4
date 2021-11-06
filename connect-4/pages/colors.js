@@ -5,24 +5,16 @@ export default {
       colorString: "red",
     },
     circle2: {
-      id: "gradient04",
-      startColor: "#b10000",
-      endColor: "#fa7e7e",
+      color: "#b10000",
     },
     circle3: {
-      color: "#792020",
+      color: "#cc0000",
     },
     circle4: {
-      id: "gradient05",
-      startColor: "#fed3d3",
-      middleColor: "#cc0000",
-      endColor: "#b40000",
+      color: "#ea2525",
     },
     circle5: {
-      id: "gradient06",
-      startColor: "#fa8c8c",
-      middleColor: "#ab0000",
-      endColor: "#db0000",
+      color: "#ff3535",
     },
   },
   blue: {
@@ -31,24 +23,16 @@ export default {
       colorString: "blue",
     },
     circle2: {
-      id: "gradient13",
-      startColor: "#0000b1",
-      endColor: "#7e7efa",
+      color: "#0000b1",
     },
     circle3: {
-      color: "#202079",
+      color: "#0000cc",
     },
     circle4: {
-      id: "gradient14",
-      startColor: "#d3d3fe",
-      middleColor: "#0000cc",
-      endColor: "#0000b4",
+      color: "#2525ea",
     },
     circle5: {
-      id: "gradient15",
-      startColor: "#8c8cfa",
-      middleColor: "#0000ab",
-      endColor: "#0000db",
+      color: "#3535ff",
     },
   },
   yellow: {
@@ -57,24 +41,16 @@ export default {
       colorString: "yellow",
     },
     circle2: {
-      id: "gradient07",
-      startColor: "#ffb904",
-      endColor: "#ffe66d",
+      color: "#eeb900",
     },
     circle3: {
-      color: "#e2ac00",
+      color: "#ffca00",
     },
     circle4: {
-      id: "gradient08",
-      startColor: "#fff9cf",
-      middleColor: "#fab408",
-      endColor: "#e5af00",
+      color: "#ffdb00",
     },
     circle5: {
-      id: "gradient09",
-      startColor: "#fee885",
-      middleColor: "#e9b318",
-      endColor: "#e7a100",
+      color: "#ffec00",
     },
   },
   green: {
@@ -83,76 +59,52 @@ export default {
       colorString: "green",
     },
     circle2: {
-      id: "gradient10",
-      startColor: "#00a000",
-      endColor: "#7efa7e",
+      color: "#00b100",
     },
     circle3: {
-      color: "#207920",
+      color: "#00cc00",
     },
     circle4: {
-      id: "gradient11",
-      startColor: "#d3fed3",
-      middleColor: "#00bb00",
-      endColor: "#00a300",
+      color: "#25ea25",
     },
     circle5: {
-      id: "gradient12",
-      startColor: "#8cfa8c",
-      middleColor: "#009a00",
-      endColor: "#00ca00",
+      color: "#35ff35",
     },
   },
   pink: {
     circle1: {
-      color: "#a00097",
+      color: "#d81aa2",
       colorString: "pink",
     },
     circle2: {
-      id: "gradient10",
-      startColor: "#c000ad",
-      endColor: "#d617ca",
+      color: "#ee2bb9",
     },
     circle3: {
-      color: "#c215a9",
+      color: "#ff3cca",
     },
     circle4: {
-      id: "gradient11",
-      startColor: "#ffd7ff",
-      middleColor: "#df00cc",
-      endColor: "#c500aa",
+      color: "#ff4ddb",
     },
     circle5: {
-      id: "gradient12",
-      startColor: "#ff8eff",
-      middleColor: "#ba00a6",
-      endColor: "#f200d9",
+      color: "#ff5eec",
     },
   },
   cyan: {
     circle1: {
-      color: "#009593",
+      color: "#1aa2d8",
       colorString: "cyan",
     },
     circle2: {
-      id: "gradient13",
-      startColor: "#00a9b2",
-      endColor: "#00c8c6",
+      color: "#2bb9ee",
     },
     circle3: {
-      color: "#00a9b4",
+      color: "#3ccaff",
     },
     circle4: {
-      id: "gradient14",
-      startColor: "#cfffff",
-      middleColor: "#00c7ce",
-      endColor: "#00a8b7",
+      color: "#4ddbff",
     },
     circle5: {
-      id: "gradient15",
-      startColor: "#6dfdff",
-      middleColor: "#00a3ac",
-      endColor: "#00d5e0",
+      color: "#5eecff",
     },
   },
 };

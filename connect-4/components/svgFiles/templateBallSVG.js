@@ -1,0 +1,64 @@
+import React from "react";
+import { Config } from "../../pages/config";
+
+export default function TemplateBallSVG() {
+  return (
+    <>
+      <svg
+        viewBox="0 0 200 200"
+        width="200"
+        height="200"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          cx="100"
+          cy="100"
+          r="100"
+          fill={Config.ballColor[color].circle1}
+        />
+        <circle
+          cx="100"
+          cy="100"
+          r="95"
+          fill={Config.ballColor[color].circle2}
+        />
+        <circle
+          cx="100"
+          cy="96"
+          r="90"
+          fill={Config.ballColor[color].circle3}
+        />
+        <circle
+          cx="100"
+          cy="100"
+          r="86"
+          fill={Config.ballColor[color].circle1}
+        />
+        <circle
+          cx="100"
+          cy="100"
+          r="80"
+          fill={Config.ballColor[color].circle2}
+        />
+        <circle
+          cx="100"
+          cy="97"
+          r="75"
+          fill={Config.ballColor[color].circle3}
+        />
+        <circle
+          cx="100"
+          cy="95"
+          r="70"
+          fill={Config.ballColor[color].circle4}
+        />
+        <circle
+          cx="100"
+          cy="90"
+          r="60"
+          fill={Config.ballColor[color].circle5}
+        />
+      </svg>
+    </>
+  );
+}

@@ -23,7 +23,11 @@ const useStyles = makeStyles((theme) => ({
       width: "14ch",
     },
   },
-  formControl: {
+  formControl1: {
+    margin: theme.spacing(1),
+    minWidth: 300,
+  },
+  formControl2: {
     margin: theme.spacing(1),
     minWidth: 130,
   },
@@ -35,33 +39,36 @@ const useStyles = makeStyles((theme) => ({
 const PlayerSettings = () => {
   // ボールカラーのリスト作成
   const colorList = Object.keys(Config.ballColor);
-
   const classes = useStyles();
   const { playersList, setPlayersList, numberOfPlayers, setNumberOfPlayers } =
     useContext(AppContext);
 
   const handleNumberOfPlayers = (e) => {
-    console.log(numberOfPlayers, e.target.value);
     setNumberOfPlayers(e.target.value);
-    // let newList = [];
-    // for (let i = 0; i < numberOfPlayers; i++) {
-    //   newList.push(playersList[i]);
-    // }
-    // while (numberOfPlayers > playersList.length) {
-    //   newList.push(new Player());
-    //   setPlayersList(newList);
-    // }
-    // setNumberOfPlayers(e.target.value);
-    while (
-      numberOfPlayers > playersList.length ||
-      numberOfPlayers < playersList.length
-    ) {
-      if (numberOfPlayers > playersList.length) {
-        setPlayersList([...playersList, new Player()]);
-      // } else if (numberOfPlayers < playersList.length) {
-      //   setPlayersList([...playersList]);
+  };
+
+  const updatePlayersList = (numberOfPlayers) => {
+    let newList = [];
+    for (let i = 0; i < numberOfPlayers; i++) {
+      if (i <= playersList.length - 1) {
+        newList.push(playersList[i]);
+      } else {
+        newList.push(new Player());
       }
     }
+
+    setPlayersList(newList);
+    // setNumberOfPlayers(e.target.value);
+    // while (
+    //   numberOfPlayers > playersList.length ||
+    //   numberOfPlayers < playersList.length
+    // ) {
+    //   if (numberOfPlayers > playersList.length) {
+    //     setPlayersList([...playersList, new Player()]);
+    // } else if (numberOfPlayers < playersList.length) {
+    //   setPlayersList([...playersList]);
+    // }
+    // }
   };
 
   const handlePlayerName = (event) => {
@@ -88,7 +95,9 @@ const PlayerSettings = () => {
     console.log(playersList);
   }, [playersList]);
 
+  // numberOfPlayersの値を更新するためにuseEffectを使う
   useEffect(() => {
+    updatePlayersList(numberOfPlayers);
     // let newList = [];
     // for (let i = 0; i < numberOfPlayers; i++) {
     //   newList.push(playersList[i]);
@@ -98,31 +107,31 @@ const PlayerSettings = () => {
     //   newList.push(new Player());
     // }
     // setPlayersList(newList);
-    while (
-      numberOfPlayers > playersList.length ||
-      numberOfPlayers < playersList.length
-    ) {
-      if (numberOfPlayers > playersList.length) {
-        setPlayersList([...playersList, new Player()]);
-      // } else if (numberOfPlayers < playersList.length) {
-      //   setPlayersList([...playersList]);
-      }
-    }
+    // while (
+    //   numberOfPlayers > playersList.length ||
+    //   numberOfPlayers < playersList.length
+    // ) {
+    //   if (numberOfPlayers > playersList.length) {
+    //     setPlayersList([...playersList, new Player()]);
+    // } else if (numberOfPlayers < playersList.length) {
+    //   setPlayersList([...playersList]);
+    //     }
+    //   }
   }, [numberOfPlayers]);
 
   return (
     <>
       <div className={styles.input_ui}>
-        <FormControl variant="outlined" className={classes.formControl}>
+        <FormControl variant="outlined" className={classes.formControl1}>
           <InputLabel id="number-of-players-select-label">
             Number of Players
           </InputLabel>
           <Select
             labelId="number-of-players-select-label"
             id="number-of-players-select"
-            // value={numberOfPlayers}
+            value={numberOfPlayers}
             label="Number of Players"
-            // onClick={handleNumberOfPlayers}
+            onClick={handleNumberOfPlayers}
             label="numberOfPlayers"
           >
             <MenuItem value={2}>2</MenuItem>
@@ -139,7 +148,7 @@ const PlayerSettings = () => {
           <form className={classes.root} noValidate autoComplete="off">
             <TextField
               required
-              id={index}
+              id={index.toString()}
               label="Player's Name"
               defaultValue="Player"
               variant="outlined"
@@ -147,16 +156,16 @@ const PlayerSettings = () => {
             />
           </form>
 
-          <FormControl variant="outlined" className={classes.formControl}>
+          <FormControl variant="outlined" className={classes.formControl2}>
             <InputLabel id="player-color-select-label">
               Player's Color
             </InputLabel>
             <Select
               labelId="player-color-select-label"
               label="Player's Color"
-              defaultValue="Color"
+              defaultValue="red"
               onClick={handlePlayerColor}
-              name={index}
+              name={index.toString()}
             >
               {colorList.map((color, index) => (
                 <MenuItem key={index} value={color}>

@@ -1,12 +1,16 @@
 import React from "react";
 import Head from "next/head";
+
+// Styling
 import styles from "../styles/Home.module.css";
 import { ThemeProvider } from "@material-ui/core";
 import theme from "../theme/theme";
+
+// Components
 import Header from "../components/header";
 import SettingSVG from "../components/svgFiles/settingSVG";
-import PlayerModeButton from "../components/playerModeButton";
-import AiModeButton from "../components/aiModeButton";
+import PlayerModeButton from "../components/buttons/playerModeButton";
+import AiModeButton from "../components/buttons/aiModeButton";
 
 export default function settingPage() {
   return (

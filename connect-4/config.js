@@ -6,6 +6,7 @@ export const Config = {
     size: {
       min: 4,
       max: 10,
+      default: 7,
     },
   },
 

@@ -1,9 +1,13 @@
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import Link from "next/link";
+
+// Styling
+import styles from "../styles/Home.module.css";
 import { ThemeProvider, Button } from "@material-ui/core";
 import theme from "../theme/theme";
+
+// Component
 import Header from "../components/header";
 
 export default function Home() {

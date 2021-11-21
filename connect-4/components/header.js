@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { makeStyles, createStyles } from "@material-ui/core/styles";
 import Link from "next/link";
+
+import { makeStyles, createStyles } from "@material-ui/core/styles";
 
 import {
   AppBar,
@@ -17,7 +18,6 @@ import {
 
 // Material-UIアイコン取得
 import SettingsIcon from "@material-ui/icons/Settings";
-import InfoIcon from "@material-ui/icons/Info";
 import HomeIcon from "@material-ui/icons/Home";
 import MenuIcon from "@material-ui/icons/Menu";
 

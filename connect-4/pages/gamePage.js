@@ -1,8 +1,12 @@
 import React from "react";
+import Head from "next/head";
+
+// Styling
 import { ThemeProvider } from "@material-ui/styles";
 import theme from "../theme/theme";
 import styles from "../styles/Home.module.css";
-import Head from "next/head";
+
+// Components
 import Header from "../components/header";
 import BallRedSVG from "../components/svgFiles/ballRedSVG";
 import BallYellowSVG from "../components/svgFiles/ballYellowSVG";

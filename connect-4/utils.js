@@ -1,4 +1,4 @@
-import { Player } from "../model/index";
+import { Player } from "./model/index";
 
 export function getArrayOfNumber(min, max) {
   const array = [];

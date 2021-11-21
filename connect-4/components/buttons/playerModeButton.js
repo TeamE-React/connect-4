@@ -1,12 +1,14 @@
 import React from "react";
-import styles from "../styles/Home.module.css";
 import Link from "next/link";
-import { Button } from "@material-ui/core";
+
+// Styling
+import styles from "../../styles/Home.module.css";
+import { Button, Box } from "@material-ui/core";
 import { GiTabletopPlayers } from "react-icons/gi";
 
 export default function AiModeButton() {
   return (
-    <>
+    <Box display="flex" flexDirection="column" textAlign="center">
       <Link href={`/playerModePage`}>
         <Button
           variant="contained"
@@ -15,9 +17,10 @@ export default function AiModeButton() {
           className={styles.btn}
           style={{ fontSize: "70px" }}
         >
-          <GiTabletopPlayers />
+          <GiTabletopPlayers />          
         </Button>
       </Link>
-    </>
+      <p>Player1 vs Player2</p>
+    </Box>
   );
 }

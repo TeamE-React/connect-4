@@ -4,13 +4,8 @@ import React, { useContext } from "react";
 import styles from "../../styles/Home.module.css";
 import { makeStyles } from "@material-ui/core/styles";
 
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select
-} from "@material-ui/core";
-
+import { FormControl, InputLabel, MenuItem, Select } from "@material-ui/core";
+import { Player } from "../../model";
 
 // Components
 import { AppContext } from "../../contexts/AppContext";
@@ -24,10 +19,26 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
 }));
+
 const NumberOfPlayers = () => {
   const classes = useStyles();
 
-  const { numberOfPlayers, setNumberOfPlayers } = useContext(AppContext);
+  const { playersList, setPlayersList, numberOfPlayers, setNumberOfPlayers } =
+    useContext(AppContext);
+
+  const handleNumberOfPlayers = (e) => {
+    setNumberOfPlayers(e.target.value);
+    let numberOfPlayersList = [];
+    for (let i = 0; i < numberOfPlayers; i++) {
+      numberOfPlayersList.push(playersList[i]);
+    }
+    while (numberOfPlayers > playersList.length) {
+      for (let i = 0; i < numberOfPlayers; i++) {
+        numberOfPlayersList.push(new Player());
+      }
+    }
+    setPlayersList(numberOfPlayersList);
+  };
 
   return (
     <div className={styles.input_ui}>
@@ -38,9 +49,9 @@ const NumberOfPlayers = () => {
         <Select
           labelId="number-of-players-select-label"
           id="number-of-players-select"
-          value={numberOfPlayers}
+          // value={numberOfPlayers}
           label="Number of Players"
-          onClick={(e) => setNumberOfPlayers(e.target.value)}
+          onClick={handleNumberOfPlayers}
           label="numberOfPlayers"
         >
           <MenuItem value={2}>2</MenuItem>
@@ -50,6 +61,6 @@ const NumberOfPlayers = () => {
       </FormControl>
     </div>
   );
-}
+};
 
 export default NumberOfPlayers;

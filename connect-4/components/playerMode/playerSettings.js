@@ -37,25 +37,50 @@ const PlayerSettings = () => {
   const colorList = Object.keys(Config.ballColor);
 
   const classes = useStyles();
-  const { playersList, setPlayersList, numberOfPlayers, setNumberOfPlayers } = useContext(AppContext);
+  const { playersList, setPlayersList, numberOfPlayers, setNumberOfPlayers } =
+    useContext(AppContext);
+
+  const handleNumberOfPlayers = (e) => {
+    console.log(numberOfPlayers, e.target.value);
+    setNumberOfPlayers(e.target.value);
+    // let newList = [];
+    // for (let i = 0; i < numberOfPlayers; i++) {
+    //   newList.push(playersList[i]);
+    // }
+    // while (numberOfPlayers > playersList.length) {
+    //   newList.push(new Player());
+    //   setPlayersList(newList);
+    // }
+    // setNumberOfPlayers(e.target.value);
+    while (
+      numberOfPlayers > playersList.length ||
+      numberOfPlayers < playersList.length
+    ) {
+      if (numberOfPlayers > playersList.length) {
+        setPlayersList([...playersList, new Player()]);
+      // } else if (numberOfPlayers < playersList.length) {
+      //   setPlayersList([...playersList]);
+      }
+    }
+  };
 
   const handlePlayerName = (event) => {
     playersList.forEach((player, index) => {
-      if(index == event.target.id){
+      if (index == event.target.id) {
         player.name = event.target.value;
-        setPlayersList([...playersList])
+        setPlayersList([...playersList]);
       }
-    })
+    });
   };
 
   const handlePlayerColor = (event) => {
     playersList.forEach((player, index) => {
-      if(index == event.target.name){
+      if (index == event.target.name) {
         console.log(player.color);
         player.color = event.target.value;
-        setPlayersList([...playersList])
+        setPlayersList([...playersList]);
       }
-    })
+    });
   };
 
   // newPlayersListの値を更新するためにuseEffectを使う
@@ -64,21 +89,48 @@ const PlayerSettings = () => {
   }, [playersList]);
 
   useEffect(() => {
-    let numberOfPlayersList = [];
-    for(let i = 0; i < numberOfPlayers; i++){
-      numberOfPlayersList.push(playersList[i]);
-    }
-    console.log(numberOfPlayers, playersList.length);
-    while(numberOfPlayers > playersList.length){
-      for(let i = 0; i < numberOfPlayers; i++){
-        numberOfPlayersList.push(new Player());
+    // let newList = [];
+    // for (let i = 0; i < numberOfPlayers; i++) {
+    //   newList.push(playersList[i]);
+    // }
+    // console.log(numberOfPlayers, playersList.length);
+    // if (numberOfPlayers > playersList.length) {
+    //   newList.push(new Player());
+    // }
+    // setPlayersList(newList);
+    while (
+      numberOfPlayers > playersList.length ||
+      numberOfPlayers < playersList.length
+    ) {
+      if (numberOfPlayers > playersList.length) {
+        setPlayersList([...playersList, new Player()]);
+      // } else if (numberOfPlayers < playersList.length) {
+      //   setPlayersList([...playersList]);
       }
     }
-    setPlayersList(numberOfPlayersList);
-  }, [numberOfPlayers])
+  }, [numberOfPlayers]);
 
   return (
     <>
+      <div className={styles.input_ui}>
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel id="number-of-players-select-label">
+            Number of Players
+          </InputLabel>
+          <Select
+            labelId="number-of-players-select-label"
+            id="number-of-players-select"
+            // value={numberOfPlayers}
+            label="Number of Players"
+            // onClick={handleNumberOfPlayers}
+            label="numberOfPlayers"
+          >
+            <MenuItem value={2}>2</MenuItem>
+            <MenuItem value={3}>3</MenuItem>
+            <MenuItem value={4}>4</MenuItem>
+          </Select>
+        </FormControl>
+      </div>
       <div className="my-3">
         <h2>Player Setting</h2>
       </div>
@@ -89,7 +141,7 @@ const PlayerSettings = () => {
               required
               id={index}
               label="Player's Name"
-              defaultValue={player.name}
+              defaultValue="Player"
               variant="outlined"
               onChange={handlePlayerName}
             />
@@ -102,7 +154,7 @@ const PlayerSettings = () => {
             <Select
               labelId="player-color-select-label"
               label="Player's Color"
-              defaultValue={player.color}
+              defaultValue="Color"
               onClick={handlePlayerColor}
               name={index}
             >
@@ -117,6 +169,6 @@ const PlayerSettings = () => {
       ))}
     </>
   );
-}
+};
 
 export default PlayerSettings;

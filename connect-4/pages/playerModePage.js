@@ -8,7 +8,7 @@ import { ThemeProvider } from "@material-ui/core";
 
 // Components
 import Header from "../components/header";
-import PlayerMode from "../components/playerMode";
+import PlayerMode from "../components/playerModeComp/playerMode";
 
 export default function PlayerModePage() {
   return (

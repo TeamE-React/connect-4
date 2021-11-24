@@ -8,8 +8,7 @@ import styles from "../styles/Home.module.css";
 
 // Components
 import Header from "../components/header";
-import BallRedSVG from "../components/svgFiles/ballRedSVG";
-import BallYellowSVG from "../components/svgFiles/ballYellowSVG";
+import GamePage from "../components/gamePageComp/gamePage";
 
 export default function () {
   return (
@@ -18,10 +17,8 @@ export default function () {
         <Head>
           <title>Game Page</title>
         </Head>
-        <Header />
-        <h1>Game Page!</h1>
-        <BallRedSVG />
-        <BallYellowSVG />
+        <Header styles={{ height: "10vh" }}/>
+        <GamePage styles={{ height: "90vh" }}/>
       </div>
     </ThemeProvider>
   );

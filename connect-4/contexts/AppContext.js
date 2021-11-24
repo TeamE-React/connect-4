@@ -15,7 +15,10 @@ const AppContextProvider = (props) => {
 
   useEffect(() => {
     const array = [];
-    for(let i = 0; i < Config.players.number.min; i++) array.push(new Player());
+    for(let i = 0; i < Config.players.number.min; i++) {
+      const player = "Player" + (i+1);
+      array.push(new Player(player, "red"));
+    }
     setPlayersList(array);
   }, [])
 

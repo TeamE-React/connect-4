@@ -58,17 +58,6 @@ const PlayerSettings = () => {
     }
 
     setPlayersList(newList);
-    // setNumberOfPlayers(e.target.value);
-    // while (
-    //   numberOfPlayers > playersList.length ||
-    //   numberOfPlayers < playersList.length
-    // ) {
-    //   if (numberOfPlayers > playersList.length) {
-    //     setPlayersList([...playersList, new Player()]);
-    // } else if (numberOfPlayers < playersList.length) {
-    //   setPlayersList([...playersList]);
-    // }
-    // }
   };
 
   const handlePlayerName = (event) => {
@@ -98,25 +87,6 @@ const PlayerSettings = () => {
   // numberOfPlayersの値を更新するためにuseEffectを使う
   useEffect(() => {
     updatePlayersList(numberOfPlayers);
-    // let newList = [];
-    // for (let i = 0; i < numberOfPlayers; i++) {
-    //   newList.push(playersList[i]);
-    // }
-    // console.log(numberOfPlayers, playersList.length);
-    // if (numberOfPlayers > playersList.length) {
-    //   newList.push(new Player());
-    // }
-    // setPlayersList(newList);
-    // while (
-    //   numberOfPlayers > playersList.length ||
-    //   numberOfPlayers < playersList.length
-    // ) {
-    //   if (numberOfPlayers > playersList.length) {
-    //     setPlayersList([...playersList, new Player()]);
-    // } else if (numberOfPlayers < playersList.length) {
-    //   setPlayersList([...playersList]);
-    //     }
-    //   }
   }, [numberOfPlayers]);
 
   return (
@@ -150,7 +120,7 @@ const PlayerSettings = () => {
               required
               id={index.toString()}
               label="Player's Name"
-              defaultValue="Player"
+              defaultValue={player.name}
               variant="outlined"
               onChange={handlePlayerName}
             />
@@ -163,7 +133,7 @@ const PlayerSettings = () => {
             <Select
               labelId="player-color-select-label"
               label="Player's Color"
-              defaultValue="red"
+              defaultValue={player.color}
               onClick={handlePlayerColor}
               name={index.toString()}
             >

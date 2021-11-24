@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 // Styling
 import styles from "../../styles/Home.module.css";
@@ -10,7 +10,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
 // Components
-import { AppContext } from "../../contexts/AppContext";
+import AppContext from "../../contexts/AppContext";
 
 // config
 import { Config } from "../../config";
@@ -40,8 +40,8 @@ const PlayerSettings = () => {
   // ボールカラーのリスト作成
   const colorList = Object.keys(Config.ballColor);
   const classes = useStyles();
-  const { playersList, setPlayersList, numberOfPlayers, setNumberOfPlayers } =
-    useContext(AppContext);
+  const {playersList, setPlayersList} = useContext(AppContext);
+  const [numberOfPlayers, setNumberOfPlayers] = useState(Config.players.number.min);
 
   const handleNumberOfPlayers = (e) => {
     setNumberOfPlayers(e.target.value);

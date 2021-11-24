@@ -7,7 +7,7 @@ import Slider from "@material-ui/core/Slider";
 import styles from "../styles/Home.module.css";
 
 // Components
-import { AppContext } from "../contexts/AppContext";
+import AppContext from "../contexts/AppContext";
 
 // config
 import { Config } from "../config";
@@ -24,13 +24,13 @@ export default function BoardSizeInput() {
   const { boardSize, setBoardSize } = useContext(AppContext);
 
   const handleChange = (event, value) => {
+    event.preventDefault();
     setBoardSize(value);
   };
 
-  // boardSizeの値を更新するためにuseEffectを使う
   useEffect(() => {
     console.log(boardSize);
-  }, [boardSize]);
+  }, [boardSize])
 
   return (
     <div className={styles.input_ui}>

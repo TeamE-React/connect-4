@@ -15,7 +15,7 @@ export default function playerMode() {
       <PlayerModeSVG />
       <BoardSizeInput />
       <PlayerSettings />
-      <StartBtn />
+      <StartBtn/>
     </div>
   );
 }

@@ -1,11 +1,20 @@
-import AppContextProvider from "../contexts/AppContext";
-import "../styles/globals.css";
+import React, {useReducer, useState} from 'react';
+import AppContext from "../contexts/AppContext";
 
-function MyApp({ Component, pageProps }) {
+import reducer from '../reducers';
+import { Config } from '../config';
+
+const MyApp = ({ Component, pageProps }) => {
+  const initialState = {board: [], currentPlayer: []};
+  const [boardSize, setBoardSize] = useState(Config.board.size.default);
+  const [playersList, setPlayersList] = useState([]);
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   return (
-    <AppContextProvider>
+    <AppContext.Provider value={{state, dispatch, boardSize, setBoardSize, playersList, setPlayersList}}>
       <Component {...pageProps} />
-    </AppContextProvider>
+    </AppContext.Provider>
   );
 }
 

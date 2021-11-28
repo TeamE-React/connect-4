@@ -1,6 +1,8 @@
-import ballColors from "./colors";
+import ballColor from "./colors"
+
 export const Config = {
-  ballColor: ballColors,
+
+  ballColor: ballColor,
 
   board: {
     size: {

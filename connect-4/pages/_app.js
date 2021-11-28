@@ -4,10 +4,14 @@ import AppContext from "../contexts/AppContext";
 import reducer from '../reducers';
 import { Config } from '../config';
 
+import '../styles/globals.css';
+
 const MyApp = ({ Component, pageProps }) => {
   const initialState = {board: [], currentPlayer: []};
+
   const [boardSize, setBoardSize] = useState(Config.board.size.default);
   const [playersList, setPlayersList] = useState([]);
+
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -20,4 +24,3 @@ const MyApp = ({ Component, pageProps }) => {
 
 export default MyApp;
 
-// By wrapping it like this, we could access the value inside of the Context object (AppContext.js) in every component and page.

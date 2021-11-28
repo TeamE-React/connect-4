@@ -6,6 +6,10 @@ const theme = createTheme({
       main: "#0075c0",
       contrastText: "#ffffff",
     },
+    secondary: {
+      main: "#0055b0",
+      contrastText: "#ffffff",
+    },
   },
   typography: {
     button: {

@@ -10,7 +10,7 @@ import theme from "../theme/theme";
 // Component
 import Header from "../components/header";
 
-export default function Home() {
+const Home = () => {
   return (
     <ThemeProvider theme={theme}>
       <div className={styles.body_div}>
@@ -53,3 +53,5 @@ export default function Home() {
     </ThemeProvider>
   );
 }
+
+export default Home;

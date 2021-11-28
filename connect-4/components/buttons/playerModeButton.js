@@ -20,7 +20,7 @@ export default function AiModeButton() {
           <GiTabletopPlayers />          
         </Button>
       </Link>
-      <p>Player1 vs Player2</p>
+      <p>Player vs Player</p>
     </Box>
   );
 }

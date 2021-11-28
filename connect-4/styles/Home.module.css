@@ -8,6 +8,8 @@
     rgb(228, 237, 239) 100%
   );
   overflow: scroll;
+  margin: 0;
+  padding: 0;
 }
 
 .flex_column {
@@ -155,4 +157,25 @@
 .description {
   line-height: 1.5;
   font-size: 1.5rem;
+}
+
+/* Boad */
+
+.ball {
+  margin: 0.5rem;
+  background-color: white;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  box-shadow: 5px 5px 8px 3px #1b4583 inset;
+}
+
+.bgColor {
+  background-color: rgb(43, 142, 255);
+}
+
+.ballSize {
+  margin: 0.5rem;
+  width: 5rem;
+  height: 5rem;
 }

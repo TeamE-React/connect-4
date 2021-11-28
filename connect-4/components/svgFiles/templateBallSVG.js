@@ -1,9 +1,9 @@
 import React from "react";
-import { Config } from "../../pages/config";
+import { Config } from "../../config";
 
-export default function TemplateBallSVG() {
+const TemplateBallSVG = () => {
+
   return (
-    <>
       <svg
         viewBox="0 0 200 200"
         width="200"
@@ -14,9 +14,9 @@ export default function TemplateBallSVG() {
           cx="100"
           cy="100"
           r="100"
-          fill={Config.ballColor[color].circle1}
+          fill="#920000"
         />
-        <circle
+        {/* <circle
           cx="100"
           cy="100"
           r="95"
@@ -57,8 +57,8 @@ export default function TemplateBallSVG() {
           cy="90"
           r="60"
           fill={Config.ballColor[color].circle5}
-        />
+        /> */}
       </svg>
-    </>
   );
 }
+export default TemplateBallSVG;

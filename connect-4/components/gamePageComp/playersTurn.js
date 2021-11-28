@@ -1,14 +1,16 @@
 import React, {useContext} from 'react'
 
 import AppContext from '../../contexts/AppContext';
+import { Box } from '@material-ui/core'
+
 
 const PlayersTurn = () => {
   const {state} = useContext(AppContext);
 
   return (
-    <div>
+    <Box display="flex" justifyContent="center">
       <h2>{state.currentPlayer.name}'s turn</h2>
-    </div>
+    </Box>
   )
 }
 

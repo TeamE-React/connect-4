@@ -1,22 +1,26 @@
-import React, {useContext, useEffect} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import { Box } from "@material-ui/core";
 import AppContext from '../../contexts/AppContext';
 
 const PlayersInfo = () => {
   const {playersList} = useContext(AppContext);
+  const [oddPlayer, setOddPlayer] = useState([]);
 
   useEffect(() => {
-    console.log(playersList);
-    // console.log(playersList[0]);
-    {playersList.map((player, index) => {
-      console.log(player);
-    })}
+    let array = [];
+    for(let i = 0; i < playersList.length; i++){
+      if((i+1) % 2 !== 0){
+        array.push(playersList[i]);
+      }
+    }
+    setOddPlayer(array);
   }, [])
+
   return (
     <Box display="flex" alignItems="center" flexDirection="column">
-      {playersList.map((player,index) => {
+      {oddPlayer.map((player) => {
         return(
-          <p>Player {index+1}: {player.name}</p>
+          <p>Player {playersList.indexOf(player)+1}: {player.name}</p>
         )
       })}
     </Box>

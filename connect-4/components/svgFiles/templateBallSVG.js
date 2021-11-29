@@ -1,7 +1,7 @@
 import React from "react";
 import { Config } from "../../config";
 
-const TemplateBallSVG = () => {
+const TemplateBallSVG = ({ color }) => {
 
   return (
       <svg
@@ -16,7 +16,7 @@ const TemplateBallSVG = () => {
           r="100"
           fill="#920000"
         />
-        {/* <circle
+        <circle
           cx="100"
           cy="100"
           r="95"
@@ -57,8 +57,65 @@ const TemplateBallSVG = () => {
           cy="90"
           r="60"
           fill={Config.ballColor[color].circle5}
-        /> */}
+        />
       </svg>
   );
 }
 export default TemplateBallSVG;
+
+
+{/* <svg
+        viewBox="0 0 200 200"
+        width="200"
+        height="200"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle
+          cx="100"
+          cy="100"
+          r="100"
+          fill="#920000"
+        />
+        <circle
+          cx="100"
+          cy="100"
+          r="95"
+          fill="#920000"
+        />
+        <circle
+          cx="100"
+          cy="96"
+          r="90"
+          fill="#920000"
+        />
+        <circle
+          cx="100"
+          cy="100"
+          r="86"
+          fill="#920000"
+        />
+        <circle
+          cx="100"
+          cy="100"
+          r="80"
+          fill="#920000"
+        />
+        <circle
+          cx="100"
+          cy="97"
+          r="75"
+          fill="#920000"
+        />
+        <circle
+          cx="100"
+          cy="95"
+          r="70"
+          fill="#920000"
+        />
+        <circle
+          cx="100"
+          cy="90"
+          r="60"
+          fill="#920000"
+        />
+      </svg> */}

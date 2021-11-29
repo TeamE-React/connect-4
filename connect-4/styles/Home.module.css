@@ -172,6 +172,7 @@
 
 .bgColor {
   background-color: rgb(43, 142, 255);
+  box-shadow: 3px 3px 5px 2px rgb(21, 83, 155);
 }
 
 .ballSize {

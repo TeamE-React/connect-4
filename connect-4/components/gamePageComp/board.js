@@ -10,14 +10,15 @@ const Board = () => {
   const { state } = useContext(AppContext);
 
   return (
-    <div className={styles.bgColor}>
+    <div className={styles.bgColor} style={{marginBottom: "2rem"}}>
       {state.board.map((row, rowIndex) => {
         return(
           <div style={{display: "flex"}}>
             {row.map((col, colIndex) => {
               return(
                 <div className={styles.ball}>
-                  {col.color !== null && <BallRedMinSVG />}
+                  {/* {col.color !== null && <BallRedMinSVG />} */}
+                  {/* {col.color !== null && <TemplateBallSVG color={col.color} />} */}
                 </div>
               )
             })}

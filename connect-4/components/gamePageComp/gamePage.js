@@ -37,10 +37,10 @@ const GamePage = () => {
         <Grid item xs={12}>
           <PlayersTurn />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={3}>
           <PlayersInfo />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
           <Box display="flex" justifyContent="center">
             <RiTimerLine />{minutes}:{seconds}
           </Box>
@@ -48,19 +48,18 @@ const GamePage = () => {
             <Button 
               variant="contained"
               color="primary"
-              size="large"
-              className={styles.btn}
-              style={{ fontSize: "20px", margin: "1.3rem"}}
+              style={{ fontSize: "1rem", margin: "1rem"}}
               onClick={resetBoard}
             >
-              <GrPowerReset />
+              {/* <GrPowerReset /> */}
+              Reset
             </Button>
           </Box>
           <Box display="flex" justifyContent="center">
             <p><span style={{ color: "gray"  }}>Click buttons to play</span></p>
           </Box>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={3}>
           <PlayersInfo2 />
         </Grid>
         <CreateBoard />

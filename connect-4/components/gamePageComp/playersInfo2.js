@@ -20,7 +20,7 @@ const PlayersInfo = () => {
     <Box display="flex" alignItems="center" flexDirection="column">
       {evenPlayer.map((player) => {
         return(
-          <p>Player {playersList.indexOf(player)+1}: {player.name}</p>
+          <p style={{paddingRight: "1rem"}}>Player {playersList.indexOf(player)+1}: {player.name}</p>
         )
       })}
     </Box>

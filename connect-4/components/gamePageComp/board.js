@@ -17,7 +17,7 @@ const Board = () => {
             {row.map((col, colIndex) => {
               return(
                 <div className={styles.ball}>
-                  {/* <BallRedMinSVG /> */}
+                  {col.color !== null && <BallRedMinSVG />}
                 </div>
               )
             })}

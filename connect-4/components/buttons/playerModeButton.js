@@ -14,13 +14,13 @@ export default function AiModeButton() {
           variant="contained"
           color="primary"
           size="large"
-          className={styles.btn}
+          className={styles.setting_btn}
           style={{ fontSize: "70px" }}
         >
-          <GiTabletopPlayers />          
+          <GiTabletopPlayers />
         </Button>
       </Link>
-      <p>Player vs Player</p>
+      <p className={styles.text_align_center}>Player vs Player</p>
     </Box>
   );
 }

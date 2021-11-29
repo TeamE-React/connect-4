@@ -52,6 +52,6 @@ const Home = () => {
       </div>
     </ThemeProvider>
   );
-}
+};
 
 export default Home;

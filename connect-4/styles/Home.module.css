@@ -52,20 +52,8 @@
   margin-top: 3rem;
 }
 
-.btn_icon_user {
-  display: inline-block;
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  content: "\f007";
-  margin: 10px;
-}
-
-.btn_icon_robot {
-  display: inline-block;
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  content: "\f544";
-  margin: 10px;
+.text_align_center {
+  text-align: center;
 }
 
 /* Top Page */
@@ -106,6 +94,11 @@
   justify-content: center;
   align-items: center;
   margin-top: 7rem;
+}
+
+.setting_btn {
+  width: 140px;
+  filter: drop-shadow(6px 6px 5px #1b4583);
 }
 
 .setting_btn_container {
@@ -159,7 +152,11 @@
   font-size: 1.5rem;
 }
 
-/* Boad */
+/* Game Page */
+.reset_btn {
+  width: 100px;
+  filter: drop-shadow(6px 6px 5px #1b4583);
+}
 
 .ball {
   margin: 0.5rem;
@@ -170,12 +167,17 @@
   box-shadow: 5px 5px 8px 3px #1b4583 inset;
 }
 
-.bgColor {
+.bg_color {
   background-color: rgb(43, 142, 255);
 }
 
-.ballSize {
-  margin: 0.5rem;
-  width: 5rem;
-  height: 5rem;
+.players_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.players_info_table {
+  margin-right: 1rem;
 }

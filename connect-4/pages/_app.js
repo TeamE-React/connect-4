@@ -16,12 +16,13 @@ const MyApp = ({ Component, pageProps }) => {
   const [totalSeconds, setTotalSeconds] = useState(0);
   const interval = useRef(null); // returns an object { current: 0 }
   const [isDropping, setIsDropping] = useState(false);
+  const [errors, setErrors] = useState([]);
 
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <AppContext.Provider value={{state, dispatch, boardSize, setBoardSize, playersList, setPlayersList, minutes, setMinutes, seconds, setSeconds, totalSeconds, setTotalSeconds, interval, isDropping, setIsDropping}}>
+    <AppContext.Provider value={{state, dispatch, boardSize, setBoardSize, playersList, setPlayersList, minutes, setMinutes, seconds, setSeconds, totalSeconds, setTotalSeconds, interval, isDropping, setIsDropping, errors, setErrors}}>
       <Component {...pageProps} />
     </AppContext.Provider>
   );

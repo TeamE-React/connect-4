@@ -52,22 +52,6 @@
   margin-top: 3rem;
 }
 
-.btn_icon_user {
-  display: inline-block;
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  content: "\f007";
-  margin: 10px;
-}
-
-.btn_icon_robot {
-  display: inline-block;
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  content: "\f544";
-  margin: 10px;
-}
-
 /* Top Page */
 .top_image {
   min-height: 100vh;
@@ -106,6 +90,11 @@
   justify-content: center;
   align-items: center;
   margin-top: 7rem;
+}
+
+.setting_btn {
+  width: 120px;
+  filter: drop-shadow(6px 6px 5px #1b4583);
 }
 
 .setting_btn_container {

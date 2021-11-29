@@ -1,8 +1,9 @@
-import React, {useContext, useState, useEffect} from 'react'
+import React, {useContext, useState, useRef} from 'react'
 import { Grid, Button, Box } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import PlayersTurn from './playersTurn'
 import PlayersInfo from './playersInfo'
+import PlayersInfo2 from './playersInfo2'
 import { GrPowerReset } from 'react-icons/gr'
 import { RiTimerLine } from 'react-icons/ri'
 import styles from '../../styles/Home.module.css'
@@ -21,12 +22,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const GamePage = () => {
-  const {dispatch, boardSize} = useContext(AppContext);
-  const [minutes, setMinutes] = useState("00");
-  const [seconds, setSeconds] = useState("00");
-  const [totalSeconds, setTotalSeconds] = useState(0);
-  const [interval] = useState(null);
-
+  const {dispatch, boardSize, minutes, seconds} = useContext(AppContext);
   const classes = useStyles();
 
 
@@ -34,24 +30,6 @@ const GamePage = () => {
     console.log("reset!");
     dispatch({type: 'BUILD_BOARD', boardSize});
   }
-  
-  const toggleTimer = () => {
-    console.log("timer start!");
-    const pad = (val) => {
-      let valString = val + "";
-      if(valString.length < 2) return "0" + valString;
-      else return valString;
-    }
-
-    const incrementTime = () => {
-      setTotalSeconds(++totalSeconds);
-      setMinutes(pad(parseInt(totalSeconds / 60)).toString());
-      setSeconds(pad(parseInt(totalSeconds % 60)).toString());
-    }
-
-    clearInterval(interval);
-    interval = setInterval(incrementTime, 1000);
-  };
 
   return (
     <div className={classes.root}>
@@ -64,7 +42,6 @@ const GamePage = () => {
         </Grid>
         <Grid item xs={4}>
           <Box display="flex" justifyContent="center">
-            <Button onClick={toggleTimer}>click</Button>
             <RiTimerLine />{minutes}:{seconds}
           </Box>
           <Box display="flex" justifyContent="center">
@@ -84,7 +61,7 @@ const GamePage = () => {
           </Box>
         </Grid>
         <Grid item xs={4}>
-          {/* Player2: ee */}
+          <PlayersInfo2 />
         </Grid>
         <CreateBoard />
       </Grid>

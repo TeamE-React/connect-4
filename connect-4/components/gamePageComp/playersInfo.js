@@ -1,8 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
-import AppContext from "../../contexts/AppContext";
 
 // Styling
 import styles from "../../styles/Home.module.css";
+
+// Components
+import AppContext from "../../contexts/AppContext";
 
 const PlayersInfo = () => {
   const { playersList } = useContext(AppContext);

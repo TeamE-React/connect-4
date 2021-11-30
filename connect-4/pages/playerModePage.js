@@ -25,9 +25,7 @@ export default function PlayerModePage() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Header />
-        <div>
-          <PlayerMode />
-        </div>
+        <PlayerMode />
       </div>
     </ThemeProvider>
   );

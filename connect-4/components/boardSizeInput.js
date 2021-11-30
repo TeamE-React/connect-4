@@ -8,8 +8,6 @@ import styles from "../styles/Home.module.css";
 
 // Components
 import AppContext from "../contexts/AppContext";
-
-// config
 import { Config } from "../config";
 
 const useStyles = makeStyles({
@@ -20,14 +18,12 @@ const useStyles = makeStyles({
 
 export default function BoardSizeInput() {
   const classes = useStyles();
-
-  const { boardSize, setBoardSize } = useContext(AppContext);
+  const { setBoardSize } = useContext(AppContext);
 
   const handleChange = (event, value) => {
     event.preventDefault();
     setBoardSize(value);
   };
-
 
   return (
     <div className={styles.input_ui}>

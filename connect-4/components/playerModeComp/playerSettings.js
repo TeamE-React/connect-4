@@ -11,8 +11,6 @@ import Select from "@material-ui/core/Select";
 
 // Components
 import AppContext from "../../contexts/AppContext";
-
-// config
 import { Config } from "../../config";
 import { Player } from "../../model";
 
@@ -44,6 +42,7 @@ const PlayerSettings = () => {
   const [numberOfPlayers, setNumberOfPlayers] = useState(Config.players.number.min);
 
   const handleNumberOfPlayers = (e) => {
+    e.preventDefault();
     setNumberOfPlayers(e.target.value);
   };
 
@@ -72,7 +71,6 @@ const PlayerSettings = () => {
   const handlePlayerColor = (event) => {
     playersList.forEach((player, index) => {
       if (index == event.target.name) {
-        console.log(player.color);
         player.color = event.target.value;
         setPlayersList([...playersList]);
       }

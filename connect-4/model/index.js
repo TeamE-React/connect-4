@@ -6,15 +6,17 @@ export class Player {
 }
 
 export class Ball {
-  constructor(color = null) {
+  constructor(color = null, rowIndex, colIndex) {
     this.color = color;
+    this.rowIndex = rowIndex;
+    this.colIndex - colIndex;
   }
 }
 
-// export class lastBallPosition {
-//   constructor(rowIndex, colIndex, color) {
-//     this.rowIndex = rowIndex;
-//     this.colIndex = colIndex;
-//     this.color = color;
-//   }
-// }
+export class lastBallPosition {
+  constructor(rowIndex, colIndex, color) {
+    this.rowIndex = rowIndex;
+    this.colIndex = colIndex;
+    this.color = color;
+  }
+}

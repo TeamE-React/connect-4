@@ -1,12 +1,14 @@
-import React, {useContext, useState, useRef} from 'react'
+import React, {useContext} from 'react'
+
+// Styles
 import { Grid, Button, Box } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
+import { RiTimerLine } from 'react-icons/ri'
+
+// Components
 import PlayersTurn from './playersTurn'
 import PlayersInfo from './playersInfo'
 import PlayersInfo2 from './playersInfo2'
-import { GrPowerReset } from 'react-icons/gr'
-import { RiTimerLine } from 'react-icons/ri'
-import styles from '../../styles/Home.module.css'
 import CreateBoard from './createBoard'
 import AppContext from '../../contexts/AppContext';
 
@@ -27,7 +29,6 @@ const GamePage = () => {
 
 
   const resetBoard = () => {
-    console.log("reset!");
     dispatch({type: 'BUILD_BOARD', boardSize});
   }
 
@@ -51,7 +52,6 @@ const GamePage = () => {
               style={{ fontSize: "1rem", margin: "1rem"}}
               onClick={resetBoard}
             >
-              {/* <GrPowerReset /> */}
               Reset
             </Button>
           </Box>

@@ -1,7 +1,6 @@
 import React, {useContext} from "react";
 import { useRouter } from "next/router";
 
-
 // Styling
 import styles from "../../styles/Home.module.css";
 import { Button, Box } from "@material-ui/core";
@@ -14,7 +13,7 @@ import PlayerSettings from "./playerSettings";
 import AppContext from "../../contexts/AppContext";
 
 const playerMode = () => {
-  const { dispatch, boardSize, playersList, errors, setErrors } = useContext(AppContext);
+  const { dispatch, boardSize, playersList, errors, setErrors, currPlayerIndex } = useContext(AppContext);
   const router = useRouter();
 
   const gameStart = (e) => {
@@ -22,7 +21,7 @@ const playerMode = () => {
     if(validationCheck()){
       router.push('/gamePage');
       dispatch({type: 'BUILD_BOARD', boardSize});
-      dispatch({type: 'SET_CURR_PLAYER', playersList});
+      dispatch({type: 'SET_CURR_PLAYER', playersList, currPlayerIndex});
     }
   }
 

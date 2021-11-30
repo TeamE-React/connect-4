@@ -1,15 +1,9 @@
-import React, { useContext, useState } from "react";
-import Image from "next/image";
-import AppContext from "../../contexts/AppContext";
+import React, { useContext } from "react";
 import styles from "../../styles/Home.module.css";
-import BallRedSVG from "../svgFiles/ballRedSVG";
-import TemplateBallSVG from "../svgFiles/templateBallSVG";
-import BallRedMinSVG from "../../public/images/ball-red.min.svg";
+import AppContext from "../../contexts/AppContext";
 
-// ball-red.min.svg
 const Board = () => {
   const { state } = useContext(AppContext);
-  const [color, setColor] = useState("red");
 
   return (
     <div className={styles.bg_color} style={{ marginBottom: "2rem" }}>
@@ -21,7 +15,7 @@ const Board = () => {
                 <div className={styles.ball}>
                   {col.color !== null && 
                     <img
-                      src={`/images/ball-${color}.min.svg`}
+                      src={`/images/ball-${col.color}.min.svg`}
                     />
                   }
                 </div>

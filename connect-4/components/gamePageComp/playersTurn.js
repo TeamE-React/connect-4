@@ -1,7 +1,6 @@
 import React, {useContext} from 'react'
-
-import AppContext from '../../contexts/AppContext';
 import { Box } from '@material-ui/core'
+import AppContext from '../../contexts/AppContext';
 
 
 const PlayersTurn = () => {

@@ -1,5 +1,4 @@
 import { Ball } from "../model";
-
 const board = (state = [], action) => {
   switch(action.type){
     case 'BUILD_BOARD':

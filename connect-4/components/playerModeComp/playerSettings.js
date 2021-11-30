@@ -79,11 +79,6 @@ const PlayerSettings = () => {
     });
   };
 
-  // newPlayersListの値を更新するためにuseEffectを使う
-  useEffect(() => {
-    console.log(playersList);
-  }, [playersList]);
-
   // numberOfPlayersの値を更新するためにuseEffectを使う
   useEffect(() => {
     updatePlayersList(numberOfPlayers);

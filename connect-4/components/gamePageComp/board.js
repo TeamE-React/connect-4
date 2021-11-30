@@ -19,15 +19,11 @@ const Board = () => {
             {row.map((col, colIndex) => {
               return (
                 <div className={styles.ball}>
-                  {/* {col.color !== null && 
-                    <Image
-                      src="/images/ball-{col.color}.min.svg"
-                      width="20px" height="20px"
+                  {col.color !== null && 
+                    <img
+                      src={`/images/ball-${color}.min.svg`}
                     />
-                  } */}
-                  <img
-                    src={`/images/ball-${color}.min.svg`}
-                  />
+                  }
                 </div>
               );
             })}

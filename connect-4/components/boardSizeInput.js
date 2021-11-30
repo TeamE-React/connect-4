@@ -28,9 +28,6 @@ export default function BoardSizeInput() {
     setBoardSize(value);
   };
 
-  useEffect(() => {
-    console.log(boardSize);
-  }, [boardSize])
 
   return (
     <div className={styles.input_ui}>

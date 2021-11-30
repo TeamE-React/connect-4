@@ -1,60 +1,78 @@
-import React, {useContext, useState} from "react";
+import React, { useContext, useState } from "react";
 
 import { Button, Box } from "@material-ui/core";
 import { GoTriangleDown } from "react-icons/go";
 import styles from "../styles/Home.module.css";
 import AppContext from "../contexts/AppContext";
 
-const BallSetters = ({ colIndex }) => {  
-  const { state, dispatch, setMinutes, setSeconds, totalSeconds, setTotalSeconds, interval, isDropping, setIsDropping} = useContext(AppContext);
+const BallSetters = ({ colIndex }) => {
+  const {
+    state,
+    setMinutes,
+    setSeconds,
+    totalSeconds,
+    setTotalSeconds,
+    interval,
+    isDropping,
+    setIsDropping,
+  } = useContext(AppContext);
   const [isFirst, setIsFirst] = useState(true);
 
-  const setBall = (rowId, colId, color) => {
-    // if(isDropping){
-    //   return;
-    // }
-    // if(isFirst){
-    //   toggleTimer();
-      
-    // }
-    console.log(rowId, colId, color);
-    return;
-    // const len = state.board.length;
-    // const getBall = () => state.board[rowId][colId];
+  const setBall = (e) => {
+    e.preventDefault();
+    if (isDropping) {
+      return;
+    }
+    if (isFirst) {
+      toggleTimer();
+    }
+    setBallHelper(0, colIndex, state.currentPlayer.color);
+  };
 
-    // if(rowId >= len || getBall.color !== null){
-    //   setIsDropping(false);
-    //   return;
-    // }
+  const setBallHelper = (rowId, colId, playerColor) => {
+    
+    console.log(rowId, colId, playerColor);
 
-    // if(rowId !== 0){
-    //   const ballAbove = state.board[rowId-1][colId];
-    //   ballAbove.color = null;
-    // }
+    const len = state.board.length;
+    const ballObj = getBall(rowId, colId);
 
-    // const ball = getBall();
-    // ball.color = color;
-    // setTimeout(function () {
-    //   setBall(rowId+1, colId, color);
-    // }, 300);
-    // const color = state.currentPlayer.color;
-    // const colId = colId;
-    // dispatch({type: 'SET_BALL', color, colId, rowId: 0, board: state.board});
-  }
+    if (rowId > len || ballObj.color !== null) {
+      setIsDropping(false);
+      rowId--;
+      return;
+    }
+
+    // Animation
+    if (rowId !== 0) {
+      const ballAbove = state.board[rowId - 1][colId];
+      ballAbove.color = null;
+    }
+    
+    const ball = getBall(rowId, colId);
+    ball.color = playerColor;
+    setTimeout(function () {
+      setBallHelper(rowId + 1, colId, playerColor);
+    }, 300);
+  };
+
+  const getBall = (rowId, colId) => {
+    let ballObj = state.board[rowId][colId];
+    return ballObj;
+  };
 
   const toggleTimer = () => {
     console.log("timer start!");
     const pad = (val) => {
       let valString = val + "";
-      if(valString.length < 2) return "0" + valString;
+      if (valString.length < 2) return "0" + valString;
       else return valString;
-    }
+    };
 
     const incrementTime = () => {
       setTotalSeconds(++totalSeconds);
       setMinutes(pad(parseInt(totalSeconds / 60)).toString());
       setSeconds(pad(parseInt(totalSeconds % 60)).toString());
-    }
+    };
 
     clearInterval(interval.current);
     interval.current = setInterval(incrementTime, 1000);
@@ -69,9 +87,9 @@ const BallSetters = ({ colIndex }) => {
       size="large"
       className={styles.btn}
       style={{ fontSize: "20px", margin: "16px" }}
-      onClick={setBall(0, colIndex, state.currentPlayer.color)}
-      >
-      < GoTriangleDown />
+      onClick={setBall}
+    >
+      <GoTriangleDown />
     </Button>
   );
 };

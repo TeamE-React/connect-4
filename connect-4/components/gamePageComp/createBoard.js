@@ -1,24 +1,18 @@
 import React, { useContext } from "react";
 
+// Components
 import AppContext from "../../contexts/AppContext";
-import { Button, Box } from "@material-ui/core";
-import BallSetters from "../ballSetters";
+import BallSetters from "./ballSetters";
 import Board from '../gamePageComp/board';
 
 const CreateBoard = () => {
-  const getBoard = () => {
-    console.log(state.board);
-    console.log(state.currentPlayer);
-  };
-
-  const { state } = useContext(AppContext);
+  const { state, isDropping } = useContext(AppContext);
 
   return (
     <div>
-      {/* <Button onClick={getBoard}>Click</Button> */}
       {state.board.map((col, colIndex) => {
         return(
-          <BallSetters key={colIndex} colIndex={colIndex}/>
+          <BallSetters key={colIndex} colIndex={colIndex} disabled={isDropping}/>
         )
         })}
       <Board />

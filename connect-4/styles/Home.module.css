@@ -148,7 +148,7 @@
   font-size: 1.5rem;
 }
 
-/* Boad */
+/* Game Page */
 
 .ball {
   margin: 0.5rem;
@@ -159,13 +159,14 @@
   box-shadow: 5px 5px 8px 3px #1b4583 inset;
 }
 
-.bgColor {
+.bg_color {
   background-color: rgb(43, 142, 255);
   box-shadow: 3px 3px 5px 2px rgb(21, 83, 155);
 }
 
-.ballSize {
-  margin: 0.5rem;
-  width: 5rem;
-  height: 5rem;
+.players_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

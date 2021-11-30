@@ -9,34 +9,37 @@ const BallSetters = ({ colIndex }) => {
   const { state, dispatch, setMinutes, setSeconds, totalSeconds, setTotalSeconds, interval, isDropping, setIsDropping} = useContext(AppContext);
   const [isFirst, setIsFirst] = useState(true);
 
-  const setBall = (rowIndex, colIndex, color) => {
-    if(isDropping){
-      return;
-    }
-    if(isFirst){
-      toggleTimer();
-    }
-    // console.log(rowIndex, colIndex, color);
+  const setBall = (rowId, colId, color) => {
+    // if(isDropping){
+    //   return;
+    // }
+    // if(isFirst){
+    //   toggleTimer();
+      
+    // }
+    console.log(rowId, colId, color);
+    return;
     // const len = state.board.length;
-    // const getBall = () => state.board[rowIndex][colIndex];
+    // const getBall = () => state.board[rowId][colId];
 
-    // if(rowIndex >= len || getBall.color !== null){
+    // if(rowId >= len || getBall.color !== null){
     //   setIsDropping(false);
     //   return;
     // }
 
-    // if(rowIndex !== 0){
-    //   const ballAbove = state.board[rowIndex-1][colIndex];
+    // if(rowId !== 0){
+    //   const ballAbove = state.board[rowId-1][colId];
     //   ballAbove.color = null;
     // }
 
     // const ball = getBall();
     // ball.color = color;
-    // console.log(state.board[rowIndex][colIndex]);
     // setTimeout(function () {
-    //   setBall(rowIndex+1, colIndex, color);
+    //   setBall(rowId+1, colId, color);
     // }, 300);
-    // dispatch({type: 'SET_BALL', color, colIndex, rowIndex: 0, board: state.board});
+    // const color = state.currentPlayer.color;
+    // const colId = colId;
+    // dispatch({type: 'SET_BALL', color, colId, rowId: 0, board: state.board});
   }
 
   const toggleTimer = () => {

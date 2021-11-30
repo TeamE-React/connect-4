@@ -32,21 +32,15 @@ const PlayersInfo = () => {
 const createMarkup = (player, playersList) => {
   return {
     __html: `
-              <table>
-                <tr>
-                  <td>
-                    <p style="width: 70px">
-                      Player ${playersList.indexOf(player) + 1}: ${player.name}
-                    </p>
-                  </td>
-                  <td>
-                    <Image
-                    src="/images/ball-${player.color}.min.svg"
-                    width="20px" height="20px"
-                  />
-                  </td>
-                </tr>
-              </table>
+              <div>
+                <span style="width: 70px">
+                  Player ${playersList.indexOf(player) + 1}: ${player.name}
+                </span>
+                <Image
+                  src="/images/ball-${player.color}.min.svg"
+                  width="20px" height="20px"
+                />
+              </div>
             `,
   };
 };

@@ -17,7 +17,8 @@ const playerMode = () => {
   const { dispatch, boardSize, playersList, errors, setErrors } = useContext(AppContext);
   const router = useRouter();
 
-  const gameStart = () => {
+  const gameStart = (e) => {
+    e.preventDefault();
     if(validationCheck()){
       router.push('/gamePage');
       dispatch({type: 'BUILD_BOARD', boardSize});

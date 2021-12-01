@@ -8,6 +8,7 @@ import styles from "../../styles/Home.module.css";
 // Components
 import AppContext from "../../contexts/AppContext";
 import { Judge } from "../../model/judge";
+import next from "next";
 
 const BallSetters = ({ colIndex }) => {
   const {
@@ -44,7 +45,12 @@ const BallSetters = ({ colIndex }) => {
     }
     setIsDropping(true);
     setBallHelper(0, colIndex, state.currentPlayer.color);
+    nextStep();
   };
+
+  const nextStep = () => {
+    checkWinner();
+  }
 
   // Recursive function
   const setBallHelper = (rowId, colId, playerColor) => {
@@ -54,7 +60,7 @@ const BallSetters = ({ colIndex }) => {
     // Base Case
     if (rowId >= len || ballObj.color != null) {
       setIsDropping(false);
-      nextStep(rowId, colId);
+      setWinner(rowId, colId);
       return;
     }
 
@@ -76,13 +82,21 @@ const BallSetters = ({ colIndex }) => {
     return state.board[rowId][colId];
   };
   
-  const nextStep = (rowId, colId) => {
+  const setWinner = (rowId, colId) => {
     rowId--;
-    // setWinnerExist(new Judge(state.board, rowId, colId).checkWinner());
-    // if(winnerExist || isDraw) {
-    //   console.log("winner is: " + state.currentPlayer);
-    //   return;
-    // };
+    const judgeObj = new Judge(state.board, rowId, colId);
+    if(judgeObj.checkWinner()){
+      console.log("set to true")
+      setWinnerExist(true);
+    }
+  }
+
+  const checkWinner = () => {
+    console.log(winnerExist, isDraw);
+    if(winnerExist || isDraw) {
+      console.log("winner is: " + state.currentPlayer.name + "! (Open Modal Window)");
+      return;
+    };
     turnChange();
   }
 

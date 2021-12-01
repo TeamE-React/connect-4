@@ -19,6 +19,7 @@ export class Judge{
 
   check(n){
     if(n >= Config.board.size.min){ // 4
+      console.log("win");
       return true;
     }
     else{
@@ -45,7 +46,7 @@ export class Judge{
     }
     lowerCheck();
 
-    return this.checkWinner(this.stack);
+    return this.check(this.stack);
   }
 
   horizontalCheck(rowIndex, colIndex){

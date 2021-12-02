@@ -13,7 +13,7 @@ export default function AiModeButton() {
         color="primary"
         size="large"
         className={styles.setting_btn}
-        style={{ fontSize: "70px" }}
+        style={{ fontSize: "70px", width: "2em", height: "1.5em"}}
       >
         <GiVintageRobot />
       </Button>

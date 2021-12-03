@@ -8,7 +8,6 @@ import styles from "../../styles/Home.module.css";
 // Components
 import AppContext from "../../contexts/AppContext";
 import { Judge } from "../../model/judge";
-import next from "next";
 
 const BallSetters = ({ colIndex }) => {
   const {
@@ -23,13 +22,13 @@ const BallSetters = ({ colIndex }) => {
     winnerExist,
     setWinnerExist,
     isDraw,
+    setIsDraw,
     isDropping,
     setIsDropping,
     currPlayerIndex,
-    setCurrPlayerIndex
+    setCurrPlayerIndex,
   } = useContext(AppContext);
   const [isFirstClick, setIsFirstClick] = useState(true);
-
 
   //**************
   // Functions
@@ -45,21 +44,30 @@ const BallSetters = ({ colIndex }) => {
     }
     setIsDropping(true);
     setBallHelper(0, colIndex, state.currentPlayer.color);
-    nextStep();
   };
-
-  const nextStep = () => {
-    checkWinner();
-  }
 
   // Recursive function
   const setBallHelper = (rowId, colId, playerColor) => {
     const len = state.board.length;
     const ballObj = getBall(rowId, colId);
 
+    if(isColumnFull(colId) && rowId == 0) {
+      console.log("you can't press this button!");
+      console.log(rowId, colId);
+      setIsDropping(false);
+      return;
+    }
+
     // Base Case
     if (rowId >= len || ballObj.color != null) {
+      // if(isTopFull()) return;
       setIsDropping(false);
+      // Check if draw
+      if(isAllTopFull() && winnerExist == undefined){
+        setIsDraw(true);
+        clearInterval(interval.current);
+        return;
+      }
       setWinner(rowId, colId);
       return;
     }
@@ -74,39 +82,58 @@ const BallSetters = ({ colIndex }) => {
     ball.color = playerColor;
     setTimeout(function () {
       setBallHelper(rowId + 1, colId, playerColor);
-    }, 300);
+    }, 100);
   };
 
   const getBall = (rowId, colId) => {
-    if(rowId >= state.board.length) return;
+    if (rowId >= state.board.length) return;
     return state.board[rowId][colId];
   };
-  
+
   const setWinner = (rowId, colId) => {
     rowId--;
+    console.log(rowId, colId);
     const judgeObj = new Judge(state.board, rowId, colId);
-    if(judgeObj.checkWinner()){
-      console.log("set to true")
+
+    // Check if winner exist
+    if (judgeObj.checkWinner()) {
+      console.log(
+        "winner is: " + state.currentPlayer.name + "! (Open Modal Window)"
+      );
       setWinnerExist(true);
+      clearInterval(interval.current);
+      return;
     }
+    turnChange();
+  };
+
+  // IF COLUMN IS FULL -> CANNOT PRESS ANYMORE
+  const isColumnFull = (colId) => {
+    for(let i = 0; i < state.board.length; i++){
+      if(getBall(i, colId).color == null){
+        return false;
+      }
+    }
+    return true;
   }
 
-  const checkWinner = () => {
-    console.log(winnerExist, isDraw);
-    if(winnerExist || isDraw) {
-      console.log("winner is: " + state.currentPlayer.name + "! (Open Modal Window)");
-      return;
-    };
-    turnChange();
+  // IF TOP ROW IS FULL AND WINNER DOESN'T EXIST -> DRAW
+  const isAllTopFull = () => {
+    for(let i = 0;  i < state.board.length; i++){
+      if(getBall(0, i).color == null){
+        return false;
+      }
+    }
+    return true;
   }
 
   const turnChange = () => {
     setCurrPlayerIndex(++currPlayerIndex);
-    if(currPlayerIndex >= playersList.length){
+    if (currPlayerIndex >= playersList.length) {
       setCurrPlayerIndex(currPlayerIndex - playersList.length);
     }
-    dispatch({type: 'SET_CURR_PLAYER', playersList, currPlayerIndex});
-  }
+    dispatch({ type: "SET_CURR_PLAYER", playersList, currPlayerIndex });
+  };
 
   const toggleTimer = () => {
     const pad = (val) => {

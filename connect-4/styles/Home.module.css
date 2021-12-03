@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
 .body_div {
   min-height: 100vh;
@@ -7,7 +7,7 @@
     #93afcf 0%,
     rgb(228, 237, 239) 100%
   );
-  overflow: scroll;
+  overflow: auto;
   margin: 0;
   padding: 0;
 }
@@ -161,7 +161,7 @@
 
 .bg_color {
   background-color: rgb(43, 142, 255);
-  box-shadow: 3px 3px 5px 2px rgb(21, 83, 155);
+  box-shadow: 3px 3px 10px 2px #1b4583;
 }
 
 .players_info {
@@ -169,4 +169,52 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+/* Shining Balls */
+
+.bg_dark {
+  background-color: rgb(99, 130, 172);
+  box-shadow: 3px 3px 10px 2px #1b4583;
+}
+
+.shining_ball {
+  margin: 0.5rem;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  filter: drop-shadow(0 0 10px #ffffff);
+}
+
+.shining {
+  height: 100%;
+  width: 30px;
+  position: absolute;
+  top: -180px;
+  left: 0;
+  background-color: #ffffff;
+  opacity: 0;
+  transform: rotate(45deg);
+  animation: shining 2s ease-in-out infinite;
+}
+
+@keyframes shining {
+  0% {
+    transform: scale(0) rotate(45deg);
+    opacity: 0;
+  }
+  80% {
+    transform: scale(0) rotate(45deg);
+    opacity: 0.5;
+  }
+  81% {
+    transform: scale(4) rotate(45deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(50) rotate(45deg);
+    opacity: 0;
+  }
 }

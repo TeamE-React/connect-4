@@ -18,8 +18,8 @@ export class Judge{
   }
 
   check(n){
+    // console.log(n);
     if(n >= Config.board.size.min){ // 4
-      console.log("win");
       return true;
     }
     else{
@@ -42,6 +42,7 @@ export class Judge{
       for(let row = rowIndex+1; row < limit; row++){
         const ball = this.board[row][colIndex];
         if(this.isBothSameColor(ball, this.currentBall)) this.stack++;
+        else break;
       }
     }
     lowerCheck();
@@ -54,19 +55,21 @@ export class Judge{
 
     const leftCheck = () => {
       // left limit
-      const limit = 0; // rowIndex - 3
+      const limit = 0;
       for(let col = colIndex-1; col >= limit; col--){
         const ball = this.board[rowIndex][col];
         if(this.isBothSameColor(ball, this.currentBall)) this.stack++;
+        else break;
       }
     }
 
     const rightCheck = () => {
       // right limit
-      const limit = this.board.length; // rowIndex + 3
+      const limit = this.board.length;
       for(let col = colIndex+1; col < limit; col++){
         const ball = this.board[rowIndex][col];
         if(this.isBothSameColor(ball, this.currentBall)) this.stack++;
+        else break;
       }
     }
 
@@ -89,6 +92,7 @@ export class Judge{
       while(col < horizontalLimit && row >= verticalLimit){
         const ball = this.board[row][col];
         if(this.isBothSameColor(ball, this.currentBall)) this.stack++;
+        else break;
         row--;
         col++;
       }
@@ -104,6 +108,7 @@ export class Judge{
       while(col >= horizontalLimit && row < verticalLimit){
         const ball = this.board[row][col];
         if(this.isBothSameColor(ball, this.currentBall)) this.stack++;
+        else break;
         row++;
         col--;
       }
@@ -128,6 +133,7 @@ export class Judge{
       while(col >= horizontalLimit && row >= verticalLimit){
         const ball = this.board[row][col];
         if(this.isBothSameColor(ball, this.currentBall)) this.stack++;
+        else break;
         row--;
         col--;
       }
@@ -143,6 +149,7 @@ export class Judge{
       while(col < horizontalLimit && row < verticalLimit){
         const ball = this.board[row][col];
         if(this.isBothSameColor(ball, this.currentBall)) this.stack++;
+        else break;
         row++;
         col++;
       }

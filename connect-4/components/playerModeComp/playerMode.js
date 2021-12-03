@@ -41,7 +41,7 @@ const playerMode = () => {
     <div className={styles.flex_column}>
       {errors.length !== 0 && 
         <Box bgcolor="error.main" color="error.contrastText" p={2}>
-          <h3>Please correct the following error(s):</h3>
+          <h4>Please correct the following error(s):</h4>
           {errors.map(error => {
             return(
               <div>{error}</div>

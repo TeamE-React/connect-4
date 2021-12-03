@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import AppContext from "../../contexts/AppContext";
+
+// Styles
 import styles from "../../styles/Home.module.css";
 
-export default function WinnerSVG() {
+const WinnerSVG = () => {
+  const { state } = useContext(AppContext);
+
   return (
     <>
       <div className={styles.svg_container}>
@@ -22,7 +27,7 @@ export default function WinnerSVG() {
             strokeWidth="0.6rem"
             strokeLinejoin="round"
           >
-            Player 1
+            {state.currentPlayer.name}
           </text>
           <text
             x="50%"
@@ -34,7 +39,7 @@ export default function WinnerSVG() {
             strokeWidth="0.3rem"
             strokeLinejoin="round"
           >
-            Player 1
+            {state.currentPlayer.name}
           </text>
           <text
             fill="url(#gradient100)"
@@ -44,7 +49,7 @@ export default function WinnerSVG() {
             textAnchor="middle"
             dominantBaseline="central"
           >
-            Player 1
+            {state.currentPlayer.name}
           </text>
           <defs>
             <linearGradient id="gradient100" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -144,4 +149,6 @@ export default function WinnerSVG() {
       </div>
     </>
   );
-}
+};
+
+export default WinnerSVG;

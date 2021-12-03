@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import { useContext, useEffect } from "react";
 
 // Styling
 import styles from "../styles/Home.module.css";
@@ -9,8 +10,41 @@ import theme from "../theme/theme";
 
 // Component
 import Header from "../components/header";
+import AppContext from "../contexts/AppContext";
+import { Config } from "../config";
 
 const Home = () => {
+  const {
+    setBoardSize,
+    setPlayersList,
+    setMinutes,
+    setSeconds,
+    setTotalSeconds,
+    interval,
+    setWinnerExist,
+    setIsDraw,
+    setIsDropping,
+  } = useContext(AppContext);
+
+  const setNewGame = () => {
+    setBoardSize(Config.board.size.default);
+    setPlayersList([]);
+
+    setTotalSeconds(0);
+    setMinutes("00");
+    setSeconds("00");
+    clearInterval(interval.current);
+
+    setWinnerExist(false);
+    setIsDraw(false);
+
+    setIsDropping(false);
+  };
+
+  useEffect(() => {
+    setNewGame();
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <div className={styles.body_div}>
@@ -52,6 +86,6 @@ const Home = () => {
       </div>
     </ThemeProvider>
   );
-}
+};
 
 export default Home;

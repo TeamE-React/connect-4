@@ -18,7 +18,7 @@ The purpose of this project is mainly to implement the algorithm and test its pe
 
 ![Screen_Shot_2021-11-28_at_18 37 17](https://user-images.githubusercontent.com/66197642/144708572-30865c7d-7729-42ce-8ac9-b4f158bcd5d0.png)
 
-
+We added an error handler so that each player will have a unique name and a different color ball than their opponent.
 
 ## Built With
 

@@ -1,6 +1,6 @@
 # Connect 4
 
-[日本語版 README はこちら](https://github.com/tkwonn/computer-builder/blob/main/README-ja.md)
+[日本語版 README はこちら](https://github.com/TeamE-React/connect-4/blob/main/README-ja.md)
 
 ## Description
 

@@ -30,11 +30,14 @@ const DrawWindow = () => {
     totalSeconds,
     setTotalSeconds,
     interval,
+    playersList,
+    setCurrPlayerIndex
   } = useContext(AppContext);
 
   const handleClickRetry = () => {
     setWinnerExist(false);
     setIsDraw(false);
+    dispatch({ type: 'SET_CURR_PLAYER', playersList, currPlayerIndex: 0 });
     dispatch({ type: "BUILD_BOARD", boardSize });
     setTotalSeconds((totalSeconds = 0));
     setMinutes("00");

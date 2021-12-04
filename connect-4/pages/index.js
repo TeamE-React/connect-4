@@ -1,17 +1,17 @@
-import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
-import { useContext, useEffect } from "react";
+import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useContext, useEffect } from 'react';
 
 // Styling
-import styles from "../styles/Home.module.css";
-import { ThemeProvider, Button } from "@material-ui/core";
-import theme from "../theme/theme";
+import styles from '../styles/Home.module.css';
+import { ThemeProvider, Button } from '@material-ui/core';
+import theme from '../theme/theme';
 
 // Component
-import Header from "../components/header";
-import AppContext from "../contexts/AppContext";
-import { Config } from "../config";
+import Header from '../components/header';
+import AppContext from '../contexts/AppContext';
+import { Config } from '../config';
 
 const Home = () => {
   const {
@@ -23,16 +23,22 @@ const Home = () => {
     interval,
     setWinnerExist,
     setIsDraw,
+    setShowWindow,
     setIsDropping,
+    setCurrPlayerIndex,
   } = useContext(AppContext);
 
   const setNewGame = () => {
+    setWinnerExist(false);
+    setShowWindow(false);
+    setIsDraw(false);
     setBoardSize(Config.board.size.default);
     setPlayersList([]);
+    setCurrPlayerIndex(0);
 
     setTotalSeconds(0);
-    setMinutes("00");
-    setSeconds("00");
+    setMinutes('00');
+    setSeconds('00');
     clearInterval(interval.current);
 
     setWinnerExist(false);
@@ -66,7 +72,7 @@ const Home = () => {
               src="/images/title.min.svg"
               width={200}
               height={50}
-              layout={"responsive"}
+              layout={'responsive'}
             />
           </div>
           <div className={styles.btn_div}>
@@ -76,7 +82,7 @@ const Home = () => {
                 color="primary"
                 size="large"
                 className={styles.btn}
-                style={{ fontSize: "20px" }}
+                style={{ fontSize: '20px' }}
               >
                 Game Start
               </Button>

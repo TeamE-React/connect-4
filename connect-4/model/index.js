@@ -1,7 +1,8 @@
 export class Player {
-  constructor(name = "", color = "") {
+  constructor(name = '', color = '', isAI = false) {
     this.name = name;
     this.color = color;
+    this.isAI = isAI; 
   }
 }
 

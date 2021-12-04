@@ -1,18 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 
 // Styles
-import { Grid, Button, Box } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import { RiTimerLine } from "react-icons/ri";
+import { Grid, Button, Box } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import { RiTimerLine } from 'react-icons/ri';
 
 // Components
-import PlayersTurn from "./playersTurn";
-import PlayersInfo from "./playersInfo";
-import PlayersInfo2 from "./playersInfo2";
-import CreateBoard from "./createBoard";
-import AppContext from "../../contexts/AppContext";
-import WinnerWindow from "../winnerWindow";
-import DrawWindow from "../drawWindow";
+import PlayersTurn from './playersTurn';
+import PlayersInfo from './playersInfo';
+import PlayersInfo2 from './playersInfo2';
+import CreateBoard from './createBoard';
+import AppContext from '../../contexts/AppContext';
+import WinnerWindow from '../winnerWindow';
+import DrawWindow from '../drawWindow';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: "center",
+    textAlign: 'center',
     color: theme.palette.text.secondary,
   },
 }));
@@ -36,18 +36,24 @@ const GamePage = () => {
     totalSeconds,
     setTotalSeconds,
     interval,
+    setWinnerExist,
+    setShowWindow,
+    setIsDraw,
   } = useContext(AppContext);
   const classes = useStyles();
 
   const reset = () => {
-    dispatch({ type: "BUILD_BOARD", boardSize });
+    setWinnerExist(false);
+    setShowWindow(false);
+    setIsDraw(false);
+    dispatch({ type: 'BUILD_BOARD', boardSize });
     setTotalSeconds((totalSeconds = 0));
-    setMinutes("00");
-    setSeconds("00");
+    setMinutes('00');
+    setSeconds('00');
 
     const pad = (val) => {
-      let valString = val + "";
-      if (valString.length < 2) return "0" + valString;
+      let valString = val + '';
+      if (valString.length < 2) return '0' + valString;
       else return valString;
     };
 
@@ -73,14 +79,14 @@ const GamePage = () => {
         </Grid>
         <Grid item xs={2}>
           <Box display="flex" justifyContent="center">
-            <RiTimerLine style={{ marginRight: "0.5rem" }} />
+            <RiTimerLine style={{ marginRight: '0.5rem' }} />
             {minutes}:{seconds}
           </Box>
           <Box display="flex" justifyContent="center">
             <Button
               variant="contained"
               color="primary"
-              style={{ fontSize: "1rem", margin: "1rem" }}
+              style={{ fontSize: '1rem', margin: '1rem' }}
               onClick={reset}
             >
               Reset
@@ -94,7 +100,7 @@ const GamePage = () => {
         <Grid item xs={12}>
           <Box display="flex" justifyContent="center">
             <p>
-              <span style={{ color: "gray" }}>Click buttons to play</span>
+              <span style={{ color: 'gray' }}>Click buttons to play</span>
             </p>
           </Box>
         </Grid>

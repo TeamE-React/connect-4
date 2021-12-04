@@ -1,9 +1,4 @@
-import ballColor from "./colors"
-
 export const Config = {
-
-  ballColor: ballColor,
-
   board: {
     size: {
       min: 4,

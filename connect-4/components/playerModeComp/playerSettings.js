@@ -3,11 +3,7 @@ import React, { useEffect, useState, useContext } from "react";
 // Styling
 import styles from "../../styles/Home.module.css";
 import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
+import { TextField, InputLabel, MenuItem, FormControl, Select } from "@material-ui/core";
 
 // Components
 import AppContext from "../../contexts/AppContext";
@@ -36,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 const PlayerSettings = () => {
   // ボールカラーのリスト作成
-  const colorList = Object.keys(Config.ballColor);
+  const colorList = ["red", "yellow", "green", "pink", "cyan"];
   const classes = useStyles();
   const {playersList, setPlayersList} = useContext(AppContext);
   const [numberOfPlayers, setNumberOfPlayers] = useState(Config.players.number.min);

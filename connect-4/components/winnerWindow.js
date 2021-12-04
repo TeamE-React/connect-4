@@ -21,9 +21,6 @@ const style = {
 
 const WinnerWindow = () => {
   const {
-    winnerExist,
-    setWinnerExist,
-    setIsDraw,
     dispatch,
     boardSize,
     setMinutes,
@@ -31,11 +28,19 @@ const WinnerWindow = () => {
     totalSeconds,
     setTotalSeconds,
     interval,
+    setWinnerExist,
+    setIsDraw,
+    showWindow,
+    setShowWindow,
+    playersList,
+    setCurrPlayerIndex
   } = useContext(AppContext);
 
   const handleClickRetry = () => {
     setWinnerExist(false);
+    setShowWindow(false);
     setIsDraw(false);
+    dispatch({ type: 'SET_CURR_PLAYER', playersList, currPlayerIndex: 0 });
     dispatch({ type: 'BUILD_BOARD', boardSize });
     setTotalSeconds((totalSeconds = 0));
     setMinutes('00');
@@ -59,7 +64,7 @@ const WinnerWindow = () => {
 
   return (
     <>
-      <Modal open={winnerExist}>
+      <Modal open={showWindow}>
         <Box sx={style}>
           <WinnerSVG />
           <Box display="flex" justifyContent="center">

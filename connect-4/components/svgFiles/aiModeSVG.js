@@ -1,9 +1,9 @@
-import React from "react";
-import styles from "../../styles/Home.module.css";
+import React from 'react';
+import styles from '../../styles/Home.module.css';
 
 export default function AIModeSVG() {
   return (
-    <>
+    <div className={styles.margin_y}>
       <div className={styles.svg_container}>
         <svg
           viewBox="0 0 300 70"
@@ -54,6 +54,6 @@ export default function AIModeSVG() {
           </defs>
         </svg>
       </div>
-    </>
+    </div>
   );
 }

@@ -4,7 +4,7 @@ const currentPlayer = (state = [], action) => {
       if(action.currPlayerIndex >= action.playersList.length){
         return action.playersList[0];
       }
-      return action.playersList[action.currPlayerIndex];
+      else return action.playersList[action.currPlayerIndex];
     default:
       return state;
   }

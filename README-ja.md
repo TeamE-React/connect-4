@@ -1,6 +1,6 @@
 # Connect 4
 
-[English README is here](https://github.com/tkwonn/computer-builder/blob/main/README.md)
+[English README is here](https://github.com/TeamE-React/connect-4/blob/main/README.md)
 
 ## Description
 

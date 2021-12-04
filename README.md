@@ -6,6 +6,13 @@
 
 ![Screen Shot 2021-12-03 at 23 37 46](https://user-images.githubusercontent.com/66197642/144702122-7a08068a-4d84-4951-a0ae-25f3db30ee88.png)
 
+Connect 4 is a two-player game in which the players take turns dropping colored balls from the top into a column. The pieces fall straight down, occupying the next available space within the column. The objective of the game is to be the first to form a vertical, horizontal, or diagonal line of four of one's own balls.
+  
+The purpose of this project is mainly to implement the algorithm and test its performance in a simple game.
+
+## Algorithm
+
+
 
 ## Features
 

@@ -22,15 +22,18 @@ const aiMode = () => {
     errors,
     setErrors,
     setIsAiMode,
-    currPlayerIndex
+    currPlayerIndex,
+    value,
   } = useContext(AppContext);
   const router = useRouter();
 
   const gameStart = (e) => {
     e.preventDefault();
     if (validationCheck()) {
-      router.push('/gamePage');
-      setPlayersList([...playersList, new Player('AI', 'blue', true)]);
+      if (value == 'hard') {
+        router.push('/aiGamePage');
+      } else router.push('/gamePage');
+      setPlayersList([...playersList, new Player('AI', 'blue')]);
       setIsAiMode(true);
       dispatch({ type: 'BUILD_BOARD', boardSize });
       dispatch({ type: 'SET_CURR_PLAYER', playersList, currPlayerIndex });

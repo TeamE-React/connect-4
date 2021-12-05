@@ -18,8 +18,8 @@ export class Judge{
   }
 
   check(n){
-    // console.log(n);
-    if(n >= Config.board.size.min){ // 4
+    console.log(n);
+    if(n >= 4){ // 4
       return true;
     }
     else{

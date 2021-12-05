@@ -33,12 +33,12 @@ const WinnerWindow = () => {
     showWindow,
     setShowWindow,
     playersList,
-    setCurrPlayerIndex
+    setCurrPlayerIndex,
   } = useContext(AppContext);
 
-  const handleClickRetry = () => {
+  const handleClickRetry = (e) => {
+    e.preventDefault();
     setWinnerExist(false);
-    setShowWindow(false);
     setIsDraw(false);
     dispatch({ type: 'SET_CURR_PLAYER', playersList, currPlayerIndex: 0 });
     dispatch({ type: 'BUILD_BOARD', boardSize });

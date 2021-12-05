@@ -25,6 +25,7 @@ const MyApp = ({ Component, pageProps }) => {
   const [isDraw, setIsDraw] = useState(false);
   // AI Mode
   const [isAiMode, setIsAiMode] = useState(false);
+  const [value, setValue] = useState('easy');
   // Others
   const [isDropping, setIsDropping] = useState(false);
   const [errors, setErrors] = useState([]);
@@ -54,6 +55,8 @@ const MyApp = ({ Component, pageProps }) => {
         setIsDraw,
         isAiMode,
         setIsAiMode,
+        value,
+        setValue,
         isDropping,
         setIsDropping,
         errors,

@@ -34,7 +34,8 @@ const DrawWindow = () => {
     setCurrPlayerIndex
   } = useContext(AppContext);
 
-  const handleClickRetry = () => {
+  const handleClickRetry = (e) => {
+    e.preventDefault();
     setWinnerExist(false);
     setIsDraw(false);
     dispatch({ type: 'SET_CURR_PLAYER', playersList, currPlayerIndex: 0 });

@@ -44,7 +44,8 @@ const AiSettings = () => {
   // ボールカラーのリスト作成
   const colorList = ['red', 'yellow', 'green', 'pink', 'cyan'];
   const classes = useStyles();
-  const { playersList, setPlayersList } = useContext(AppContext);
+  const { playersList, setPlayersList, value, setValue } =
+    useContext(AppContext);
 
   const handlePlayerName = (event) => {
     playersList.forEach((player, index) => {
@@ -62,6 +63,10 @@ const AiSettings = () => {
         setPlayersList([...playersList]);
       }
     });
+  };
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
   };
 
   useEffect(() => {
@@ -111,16 +116,23 @@ const AiSettings = () => {
             </div>
           </div>
         ))}
-        <Box display="flex" justifyContent="center" flexDirection="row" style={{ marginTop: "1.2rem" }}>
+        <Box
+          display="flex"
+          justifyContent="center"
+          flexDirection="row"
+          style={{ marginTop: '1.2rem' }}
+        >
           <FormControl component="fieldset">
             <FormLabel component="legend">CPU Mode</FormLabel>
             <RadioGroup
               aria-label="mode"
               defaultValue="easy"
               name="radio-buttons-group"
+              value={value}
+              onChange={handleChange}
             >
               <FormControlLabel value="easy" control={<Radio />} label="Easy" />
-              <FormControlLabel value="Hard" control={<Radio />} label="Hard" />
+              <FormControlLabel value="hard" control={<Radio />} label="Hard" />
             </RadioGroup>
           </FormControl>
         </Box>

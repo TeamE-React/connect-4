@@ -3,7 +3,7 @@ import styles from '../../styles/Home.module.css';
 import AppContext from '../../contexts/AppContext';
 
 const ShiningBalls = () => {
-  const { state, winnerExist, setShowWindow } = useContext(AppContext);
+  const { state, winnerExist, setShowWindow, setWinnerExist } = useContext(AppContext);
 
   if (winnerExist) {
     setTimeout(function () {

@@ -23,14 +23,12 @@ const Home = () => {
     interval,
     setWinnerExist,
     setIsDraw,
-    setShowWindow,
     setIsDropping,
     setCurrPlayerIndex,
   } = useContext(AppContext);
 
   const setNewGame = () => {
     setWinnerExist(false);
-    setShowWindow(false);
     setIsDraw(false);
     setBoardSize(Config.board.size.default);
     setPlayersList([]);

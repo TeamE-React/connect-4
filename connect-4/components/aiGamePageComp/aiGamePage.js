@@ -4,6 +4,7 @@ import React, { useContext } from 'react';
 import { Grid, Button, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { RiTimerLine } from 'react-icons/ri';
+import styles from '../../styles/Home.module.css';
 
 // Components
 import PlayersTurn from '../gamePageComp/playersTurn';
@@ -68,9 +69,9 @@ const AIGamePage = () => {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root, styles.ai_mode_image}>
       <Grid container justifyContent="center">
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <PlayersTurn />
         </Grid>
         <Grid item xs={2}></Grid>
@@ -103,7 +104,7 @@ const AIGamePage = () => {
               <span style={{ color: 'gray' }}>Click buttons to play</span>
             </p>
           </Box>
-        </Grid>
+        </Grid> */}
         <AICreateBoard />
       </Grid>
     </div>

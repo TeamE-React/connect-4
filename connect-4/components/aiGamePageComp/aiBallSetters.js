@@ -1,110 +1,47 @@
-import React, { useContext, useState } from 'react';
+import React from "react";
 
 // styles
-import { Button } from '@material-ui/core';
-import { GoTriangleDown } from 'react-icons/go';
-import styles from '../../styles/Home.module.css';
+import { Button } from "@material-ui/core";
+import { GoTriangleDown } from "react-icons/go";
+import styles from "../../styles/Home.module.css";
 
 // Components
-import AppContext from '../../contexts/AppContext';
-import { Judge } from '../../model/judge';
-import { Game } from '../../model/aiModel/game';
+import { Game } from "../../model/aiHard/game";
+import { MonteCarlo } from "../../model/aiHard/monte-carlo";
 
-const AIBallSetters = ({ colIndex }) => {
-  const {
-    state,
-    dispatch,
-    playersList,
-    setMinutes,
-    setSeconds,
-    totalSeconds,
-    setTotalSeconds,
-    interval,
-    winnerExist,
-    setWinnerExist,
-    setIsDraw,
-    isAiMode,
-    isDropping,
-    setIsDropping,
-    currPlayerIndex,
-    setCurrPlayerIndex,
-    value,
-  } = useContext(AppContext);
-  const [isFirstClick, setIsFirstClick] = useState(true);
-
+const AIBallSetters = () => {
   //**************
   // Functions
   // *************
+  const setBall = (e) => {
+    e.preventDefault();
 
-  // const setBall = (e) => {
-  //   e.preventDefault();
-  //   if (isDropping) {
-  //     return;
-  //   }
-  //   if (isFirstClick) {
-  //     toggleTimer();
-  //   }
-  //   setBallHelper()
-  // };
+    let game = new Game();
+    let mcts = new MonteCarlo(game);
 
-  // // Recursive function
-  // const setBallHelper = (rowId, colId, playerColor) => {
-  //   const len = state.board.length;
-  //   const ballObj = getBall(rowId, colId);
+    let state = game.start();
+    let winner = game.winner(state);
 
-  //   const ball = getBall(rowId, colId);
-  //   ball.color = playerColor;
+    while (winner === null) {
+      console.log();
+      console.log("player: " + (state.player === 1 ? 1 : 2));
+      console.log(
+        state.board.map((row) => row.map((cell) => (cell === -1 ? 2 : cell)))
+      );
 
-  // };
+      mcts.runSearch(state, 1);
 
-  // const getBall = (rowId, colId) => {
-  //   if (rowId >= state.board.length) return;
-  //   return state.board[rowId][colId];
-  // };
+      let play = mcts.bestPlay(state, "winRate");
 
-  // const setWinner = (rowId, colId) => {
-  //   rowId--;
-  //   console.log(rowId, colId);
-  //   const judgeObj = new Judge(state.board, rowId, colId);
+      state = game.updateState(state, play);
+      winner = game.winner(state);
+    }
 
-  //   // Check if winner exist
-  //   if (judgeObj.checkWinner()) {
-  //     console.log(
-  //       'winner is: ' + state.currentPlayer.name + '! (Open Modal Window)'
-  //     );
-  //     setWinnerExist(true);
-  //     clearInterval(interval.current);
-  //     return;
-  //   } else turnChange();
-  // };
-
-  // const turnChange = () => {
-  //   setCurrPlayerIndex(++currPlayerIndex);
-  //   if (currPlayerIndex >= playersList.length) {
-  //     setCurrPlayerIndex(currPlayerIndex - playersList.length);
-  //   }
-
-  //   dispatch({ type: 'SET_CURR_PLAYER', playersList, currPlayerIndex });
-  //   console.log('Current Player: ' + state.currentPlayer.name);
-  // };
-
-  const toggleTimer = () => {
-    const pad = (val) => {
-      let valString = val + '';
-      if (valString.length < 2) return '0' + valString;
-      else return valString;
-    };
-
-    const incrementTime = () => {
-      setTotalSeconds(++totalSeconds);
-      setMinutes(pad(parseInt(totalSeconds / 60)).toString());
-      setSeconds(pad(parseInt(totalSeconds % 60)).toString());
-    };
-
-    clearInterval(interval.current);
-    interval.current = setInterval(incrementTime, 1000);
-
-    setIsFirstClick(false);
+    console.log();
+    console.log("winner: " + (winner === 1 ? 1 : 2));
+    console.log(
+      state.board.map((row) => row.map((cell) => (cell === -1 ? 2 : cell)))
+    );
   };
   // **************
   // Functions End
@@ -116,7 +53,8 @@ const AIBallSetters = ({ colIndex }) => {
       color="secondary"
       size="large"
       className={styles.btn}
-      style={{ fontSize: '20px', margin: '16px' }}
+      style={{ fontSize: "20px", margin: "16px" }}
+      onClick={setBall}
     >
       <GoTriangleDown />
     </Button>

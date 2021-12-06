@@ -3,12 +3,9 @@ import styles from '../../styles/Home.module.css';
 import AppContext from '../../contexts/AppContext';
 
 const ShiningBalls = () => {
-  const { state, winnerExist, setShowWindow, setWinnerExist } = useContext(AppContext);
+  const { state, winnerExist } = useContext(AppContext);
 
   if (winnerExist) {
-    setTimeout(function () {
-      setShowWindow(true);
-    }, 3000);
 
     return (
       <div className={styles.bg_dark} style={{ marginBottom: '2rem' }}>

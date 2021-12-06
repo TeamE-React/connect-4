@@ -9,7 +9,7 @@ export class Ball {
   constructor(color = null, rowIndex, colIndex) {
     this.color = color;
     this.rowIndex = rowIndex;
-    this.colIndex - colIndex;
+    this.colIndex = colIndex;
   }
 }
 

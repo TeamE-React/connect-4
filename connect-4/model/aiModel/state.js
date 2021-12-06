@@ -9,6 +9,7 @@ export class State {
     return player == this.player;
   }
 
+  
   hash() {
     return JSON.stringify(this.playHistory);
   }

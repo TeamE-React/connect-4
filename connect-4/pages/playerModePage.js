@@ -10,7 +10,7 @@ import { ThemeProvider } from "@material-ui/core";
 import Header from "../components/header";
 import PlayerMode from "../components/playerModeComp/playerMode";
 
-export default function PlayerModePage() {
+const PlayerModePage = () => {
   return (
     <ThemeProvider theme={theme}>
       <div className={styles.body_div}>
@@ -30,3 +30,5 @@ export default function PlayerModePage() {
     </ThemeProvider>
   );
 }
+
+export default PlayerModePage;

@@ -23,6 +23,7 @@ export class Game {
   /** Generate and return the initial game state */
   start() {
     let newBoard = boardPrototype.map((row) => row.slice());
+    console.log("haha");
     return new State([], newBoard, 1);
     // return newBoard;
   }

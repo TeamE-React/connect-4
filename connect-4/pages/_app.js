@@ -29,7 +29,6 @@ const MyApp = ({ Component, pageProps }) => {
   // Others
   const [isDropping, setIsDropping] = useState(false);
   const [errors, setErrors] = useState([]);
-  const [showWindow, setShowWindow] = useState(false);
 
   return (
     <AppContext.Provider
@@ -61,8 +60,6 @@ const MyApp = ({ Component, pageProps }) => {
         setIsDropping,
         errors,
         setErrors,
-        showWindow,
-        setShowWindow,
       }}
     >
       <Component {...pageProps} />

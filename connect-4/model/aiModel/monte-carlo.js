@@ -84,6 +84,7 @@ export class MonteCarlo {
 
     return bestPlay
   }
+  
 
   select(state) {
     let node = this.nodes.get(state.hash())

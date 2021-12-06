@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
 
 .body_div {
   min-height: 100vh;
@@ -178,6 +178,29 @@
   align-items: center;
 }
 
+.ai_mode_image {
+  /* min-height: 100vh; */
+  background-image: url(/images/aiMode.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.ai_bg_color {
+  background-color: rgba(91, 100, 110, 0.671);
+  box-shadow: 3px 3px 10px 2px #7854fd;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.ai_ball {
+  margin: 0.5rem;
+  background-color: red;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  box-shadow: 5px 5px 8px 3px #7854fd inset;
+}
 
 /* Shining Balls */
 

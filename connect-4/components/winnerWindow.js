@@ -14,8 +14,9 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   height: 350,
-  bgcolor: 'background.paper',
+  bgcolor: 'rgba(255, 255, 255, 0.5)',
   boxShadow: 24,
+  borderRadius: '20px',
   p: 4,
 };
 
@@ -28,12 +29,10 @@ const WinnerWindow = () => {
     totalSeconds,
     setTotalSeconds,
     interval,
+    winnerExist,
     setWinnerExist,
     setIsDraw,
-    showWindow,
-    setShowWindow,
     playersList,
-    setCurrPlayerIndex,
   } = useContext(AppContext);
 
   const handleClickRetry = (e) => {
@@ -64,7 +63,7 @@ const WinnerWindow = () => {
 
   return (
     <>
-      <Modal open={showWindow}>
+      <Modal open={winnerExist}>
         <Box sx={style}>
           <WinnerSVG />
           <Box display="flex" justifyContent="center">

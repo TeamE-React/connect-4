@@ -17,7 +17,7 @@ export default function () {
         <Head>
           <title>Game Page</title>
         </Head>
-        <Header styles={{ height: "10vh" }}/>
+        {/* <Header styles={{ height: "10vh" }}/> */}
         <AiGamePage styles={{ height: "100vh" }}/>
       </div>
     </ThemeProvider>

@@ -87,7 +87,7 @@ const BallSetters = ({ colIndex }) => {
     let play = mcts.bestPlay(boardState, "winRate");
 
     const ball = getBall(play.row, play.col);
-    ball.color = (boardState.player == 1) ? 'blue' : 'red';
+    if(ball.color == null) ball.color = (boardState.player == 1) ? 'blue' : 'blue';
     let newState = game.updateState(boardState, play);
     setBoardState(newState);
     

@@ -5,30 +5,25 @@ import AppContext from "../../contexts/AppContext";
 const AIBoard = () => {
   const { state } = useContext(AppContext);
 
-  if(!winnerExist){
-    return (
-      <div className={styles.bg_color} style={{ marginBottom: "2rem" }}>
-        {state.board.map((row, rowIndex) => {
-          return (
-            <div style={{ display: "flex" }}>
-              {row.map((col, colIndex) => {
-                return (
-                  <div className={styles.ball}>
-                    {col.color !== null && (
-                      <img src={`/images/ball-${col.color}.min.svg`} />
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          );
-        })}
-      </div>
-    );
-  }
-  else{
-    return null;
-  }
+  return (
+    <div className={styles.bg_color} style={{ marginBottom: '2rem' }}>
+      {state.board.map((row, rowIndex) => {
+        return (
+          <div style={{ display: 'flex' }}>
+            {row.map((col, colIndex) => {
+              return (
+                <div className={styles.ball}>
+                  {col.color !== null && (
+                    <img src={`/images/ball-${col.color}.min.svg`} />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        );
+      })}
+    </div>
+  );
 };
 
 export default AIBoard;

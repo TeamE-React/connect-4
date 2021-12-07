@@ -38,6 +38,7 @@ const GamePage = () => {
     interval,
     setWinnerExist,
     setIsDraw,
+    simulations
   } = useContext(AppContext);
   const classes = useStyles();
 

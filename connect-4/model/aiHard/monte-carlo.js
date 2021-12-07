@@ -25,7 +25,7 @@ export class MonteCarlo {
     let totalSimulations = 0;
 
     // Date.now() returns the number of milliseconds elapsed since 1970
-    let end = Date.now() + timeout * 100;
+    let end = Date.now() + timeout * 70;
 
     while (Date.now() < end) {
       //　choose child node
@@ -44,11 +44,7 @@ export class MonteCarlo {
       totalSimulations++;
     }
 
-    return {
-      runtime: timeout,
-      simulations: totalSimulations,
-      draws: drawCount,
-    };
+    return totalSimulations;
   }
 
   /**
@@ -73,11 +69,6 @@ export class MonteCarlo {
       if (child.node === null) ret.push(child.play);
     }
     return ret;
-  }
-
-  userPlay(state){
-    this.makeNode(state);
-    return;
   }
 
   // visitRate -> シミュレーション回数の多さで最善の手を決める

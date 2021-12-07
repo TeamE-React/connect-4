@@ -30,6 +30,7 @@ const MyApp = ({ Component, pageProps }) => {
   // Others
   const [isDropping, setIsDropping] = useState(false);
   const [errors, setErrors] = useState([]);
+  const [simulations, setSimulations] = useState(0);
 
   return (
     <AppContext.Provider
@@ -63,6 +64,8 @@ const MyApp = ({ Component, pageProps }) => {
         setErrors,
         isHard,
         setIsHard,
+        simulations,
+        setSimulations
       }}
     >
       <Component {...pageProps} />

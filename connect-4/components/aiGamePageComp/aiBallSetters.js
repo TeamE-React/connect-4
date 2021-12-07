@@ -19,44 +19,30 @@ const AIBallSetters = () => {
   const setBall = (e) => {
     e.preventDefault();
 
+    aiHard();
+  };
+
+  const aiHard = () => {
     let game = new Game();
     let mcts = new MonteCarlo(game);
 
     let state = game.start();
     let winner = game.winner(state);
 
-    const ball = getBall(2,2);
-    ball.color = 'red';
-
-    while (winner === null) {
-      console.log();
-      console.log("player: " + (state.player === 1 ? 1 : 2));
-      console.log(
-        state.board.map((row) => row.map((cell) => (cell === -1 ? 2 : cell)))
-      );
-
+    while(winner == null){
       mcts.runSearch(state, 1);
 
       let play = mcts.bestPlay(state, "winRate");
-      console.log("coordinates" + play.row, play.col);
 
       const ball = getBall(play.row, play.col);
-      console.log(ball);
-      ball.color = "red";
-
+      ball.color = (state.player == 1) ? 'blue' : 'red';
       state = game.updateState(state, play);
-      winner = game.winner(state);
+      winner = game.winner(state)
     }
-
-    console.log();
-    console.log("winner: " + (winner === 1 ? 1 : 2));
-    console.log(
-      state.board.map((row) => row.map((cell) => (cell === -1 ? 2 : cell)))
-    );
   };
 
   const getBall = (rowId, colId) => {
-    if(rowId >= state.board.length) return;
+    if (rowId >= state.board.length) return;
     return state.board[rowId][colId];
   };
   // **************

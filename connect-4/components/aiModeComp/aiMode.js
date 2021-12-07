@@ -8,7 +8,6 @@ import { Validation } from '../../model/validation';
 
 // Components
 import AIModeSVG from '../svgFiles/aiModeSVG';
-import BoardSizeInput from '../boardSizeInput';
 import AiSettings from './aiSettings';
 import AppContext from '../../contexts/AppContext';
 import { Player } from '../../model';
@@ -30,23 +29,17 @@ const aiMode = () => {
   const gameStart = (e) => {
     e.preventDefault();
     if (validationCheck()) {
-      // if (value == 'hard') {
-      //   router.push('/aiGamePage');
-      //   setPlayersList([...playersList, new Player('AI', 'blue')]);
-      // } else {
-      //   router.push('/gamePage');
-      //   setPlayersList([...playersList, new Player('CPU', 'blue')]);
-      // }
       router.push('/gamePage');
       if(value == 'hard') {
+        // router.push('/aiGamePage');
         setIsHard(true);
         setPlayersList([...playersList, new Player('AI', 'blue')]);
-        dispatch({ type: 'BUILD_BOARD', boardSize: 7, isHard: true });
       }
       else {
+        // router.push('/gamePage');
         setPlayersList([...playersList, new Player('CPU', 'blue')]);
-        dispatch({ type: 'BUILD_BOARD', boardSize: 7, isHard: false });
       } 
+      dispatch({ type: 'BUILD_BOARD', boardSize: 7, isAi: true });
       setIsAiMode(true);
       dispatch({ type: 'SET_CURR_PLAYER', playersList, currPlayerIndex });
     }
@@ -65,14 +58,6 @@ const aiMode = () => {
 
   return (
     <div className={styles.flex_column}>
-      {errors.length !== 0 && (
-        <Box bgcolor="error.main" color="error.contrastText" p={2}>
-          <h4>Please correct the following error(s):</h4>
-          {errors.map((error) => {
-            return <div>{error}</div>;
-          })}
-        </Box>
-      )}
       <AIModeSVG />
       <AiSettings />
       <Button

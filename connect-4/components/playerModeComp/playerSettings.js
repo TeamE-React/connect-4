@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 
 const PlayerSettings = () => {
   // ボールカラーのリスト作成
-  const colorList = ["red", "yellow", "green", "pink", "cyan"];
+  const colorList = ["red", "blue", "yellow", "green", "pink", "cyan"];
   const classes = useStyles();
   const {playersList, setPlayersList} = useContext(AppContext);
   const [numberOfPlayers, setNumberOfPlayers] = useState(Config.players.number.min);

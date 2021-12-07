@@ -4,7 +4,7 @@ const board = (state = [], action) => {
     case "BUILD_BOARD":
       const array = [];
       const len = action.boardSize;
-      if (action.isHard) {
+      if (action.isAi) {
         for (let i = 0; i < len - 1; i++) {
           const row = [];
           for (let j = 0; j < len; j++) {

@@ -1,6 +1,9 @@
 // import { Game } from "./game";
 // import { MonteCarlo } from "./monte-carlo";
 
+import { Game } from "./game";
+import { MonteCarlo } from "./monte-carlo";
+
 // let game = new Game();
 // let mcts = new MonteCarlo(game);
 
@@ -24,3 +27,18 @@
 // console.log()
 // console.log("winner: " + (winner === 1 ? 1 : 2))
 // console.log(state.board.map((row) => row.map((cell) => cell === -1 ? 2 : cell)))
+
+export class GameStart{
+  constructor(){
+    this.game = new Game();
+    this.mcts = new MonteCarlo(game);
+  }
+
+  state(){
+    return this.game.start();
+  }
+
+  winner(){
+    return this.game.winner(this.state());
+  }
+}

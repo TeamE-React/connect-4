@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 // styles
 import { Button } from "@material-ui/core";
@@ -12,6 +12,7 @@ import { Judge } from "../../model/judge";
 import { Game } from "../../model/aiHard/game";
 import { MonteCarlo } from "../../model/aiHard/monte-carlo";
 import { Play } from "../../model/aiHard/play";
+import { GameStart } from "../../model/aiHard";
 
 const BallSetters = ({ colIndex }) => {
   const {
@@ -32,9 +33,21 @@ const BallSetters = ({ colIndex }) => {
     currPlayerIndex,
     setCurrPlayerIndex,
     value,
+    setSimulations
   } = useContext(AppContext);
   const [isFirstClick, setIsFirstClick] = useState(true);
+  const [boardState, setBoardState] = useState(null);
+  const [mcts, setMCTS] = useState(null);
+  const [game, setGame] = useState(null);
+  const [winner, setWinner] = useState(null);
 
+  useEffect(() => { 
+    let game = new Game();
+    let mcts = new MonteCarlo(game);   
+    setGame(game);
+    setMCTS(mcts);
+    setBoardState(game.start());
+  }, []);
   //**************
   // Functions
   // *************
@@ -46,49 +59,45 @@ const BallSetters = ({ colIndex }) => {
     if (isFirstClick) {
       toggleTimer();
     }
-    if (value !== "hard" && state.currentPlayer.name == "CPU") {
-      return;
-    }
+    // if (value !== "hard" && state.currentPlayer.name == "CPU") {
+    //   return;
+    // }
     setIsDropping(true);
 
     if (value == "hard") {
-      aiHard();
+      // console.log("This is playHistory " + typeof boardState.playHistory);
+      // console.log("This is board " + boardState.board);
+      // console.log("This is player " + boardState.player);
+      // console.log("This is mcts game " + mcts.game);
+      // console.log("This is mcts nodes " + mcts.nodes);
+      // console.log("This is mcts runSearch " + mcts.runSearch(boardState, 1));
+      // console.log("This is game winner " + game.winner(boardState));
+      let count = 0;
+      setIsDropping(false);
+      while(count < 10){
+        aiHard();
+        setBallHelper2(0, colIndex);
+        
+        count++;
+      }
     } else {
       setBallHelper(0, colIndex, state.currentPlayer.color);
     }
   };
 
   const aiHard = () => {
-    let game = new Game();
-    let mcts = new MonteCarlo(game);
+    mcts.runSearch(boardState, 1);
 
-    let state = game.start();
-    let winner = game.winner(state);
+    let play = mcts.bestPlay(boardState, "winRate");
 
-    while (winner === null) {
-      // console.log();
-      // console.log("player: " + (state.player === 1 ? 1 : 2));
-      // console.log(
-      //   state.board.map((row) => row.map((cell) => (cell === -1 ? 2 : cell)))
-      // );
+    const ball = getBall(play.row, play.col);
+    ball.color = (boardState.player == 1) ? 'blue' : 'red';
+    let newState = game.updateState(boardState, play);
+    setBoardState(newState);
+    
+    console.log(boardState.player);
 
-      mcts.runSearch(state, 1);
-
-      let play = mcts.bestPlay(state, "winRate");
-
-      const ball = getBall(play.row, play.col);
-      ball.color = (state.player == 1) ? 'red' : 'blue';
-
-      state = game.updateState(state, play);
-      
-      winner = game.winner(state);
-    }
-
-    console.log();
-    console.log("winner: " + (winner === 1 ? "USER" : "AI"));
-    console.log(
-      state.board.map((row) => row.map((cell) => (cell === -1 ? 2 : cell)))
-    );
+    
   };
 
   const checkWinner = (rowId, colId) => {
@@ -119,6 +128,10 @@ const BallSetters = ({ colIndex }) => {
       aiMove();
       changeIsDropping();
     }
+    else if(value == 'hard'){
+      aiHard();
+      setIsDropping(false);
+    }
   };
 
   const aiMove = () => {
@@ -139,7 +152,9 @@ const BallSetters = ({ colIndex }) => {
 
     // Base Case
     if (rowId >= 6 || ballObj.color != null) {
-      return new Play(rowId - 1, colId);
+      const ball = getBall(rowId, colId);
+      ball.color = 'red';
+      return;
     }
     
     setBallHelper2(rowId + 1, colId);

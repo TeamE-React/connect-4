@@ -72,14 +72,10 @@ const BallSetters = ({ colIndex }) => {
       // console.log("This is mcts nodes " + mcts.nodes);
       // console.log("This is mcts runSearch " + mcts.runSearch(boardState, 1));
       // console.log("This is game winner " + game.winner(boardState));
-      let count = 0;
       setIsDropping(false);
-      while(count < 10){
-        aiHard();
-        setBallHelper2(0, colIndex);
-        
-        count++;
-      }
+      
+      aiHard();
+      setBallHelper(0, colIndex, 'red');
     } else {
       setBallHelper(0, colIndex, state.currentPlayer.color);
     }
@@ -152,7 +148,7 @@ const BallSetters = ({ colIndex }) => {
 
     // Base Case
     if (rowId >= 6 || ballObj.color != null) {
-      const ball = getBall(rowId, colId);
+      const ball = getBall(rowId-1, colId);
       ball.color = 'red';
       return;
     }

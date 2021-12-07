@@ -74,8 +74,8 @@ const BallSetters = ({ colIndex }) => {
       // console.log("This is game winner " + game.winner(boardState));
       setIsDropping(false);
       
+      setBallHelper2(0, colIndex, 'red');
       aiHard();
-      setBallHelper(0, colIndex, 'red');
     } else {
       setBallHelper(0, colIndex, state.currentPlayer.color);
     }
@@ -87,18 +87,14 @@ const BallSetters = ({ colIndex }) => {
     let play = mcts.bestPlay(boardState, "winRate");
 
     const ball = getBall(play.row, play.col);
-    if(ball.color == null) ball.color = (boardState.player == 1) ? 'blue' : 'blue';
+    ball.color =  'blue';
     let newState = game.updateState(boardState, play);
     setBoardState(newState);
-    
-    console.log(boardState.player);
-
-    
   };
 
   const checkWinner = (rowId, colId) => {
     rowId--;
-    console.log(rowId, colId);
+    console.log("User chose row: " + rowId + " col: " + colId);
     const judgeObj = new Judge(state.board, rowId, colId);
 
     if (judgeObj.checkWinner()) {
@@ -114,7 +110,7 @@ const BallSetters = ({ colIndex }) => {
     turnChange();
 
     let ballObj = getBall(rowId, colId);
-    console.log("ballObject color is " + ballObj.color);
+    // console.log("ballObject color is " + ballObj.color);
     if (
       !judgeObj.checkWinner() &&
       ballObj.color == "red" &&
@@ -143,17 +139,32 @@ const BallSetters = ({ colIndex }) => {
     }, 2000);
   };
 
-  const setBallHelper2 = (rowId, colId) => {
+  const setBallHelper2 = (rowId, colId, playerColor) => {
+    const len = state.board.length;
     const ballObj = getBall(rowId, colId);
 
     // Base Case
-    if (rowId >= 6 || ballObj.color != null) {
-      const ball = getBall(rowId-1, colId);
-      ball.color = 'red';
+    if (rowId >= len || ballObj.color != null) {
+      mcts.runSearch(boardState, 1);
+      let play = new Play(rowId, colId);
+      let newState = game.updateState(boardState, play);
+      setBoardState(newState);
       return;
     }
     
-    setBallHelper2(rowId + 1, colId);
+    // Animation
+    if (rowId !== 0) {
+      const ballAbove = state.board[rowId - 1][colId];
+      ballAbove.color = null;
+    }
+
+    // COLOR THE CELL WITH PLAYER'S COLOR
+    const ball = getBall(rowId, colId);
+    ball.color = playerColor;
+
+    setTimeout(function () {
+      setBallHelper(rowId + 1, colId, playerColor);
+    }, 300);
   };
 
   // Recursive function

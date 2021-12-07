@@ -108,7 +108,7 @@ export class MonteCarlo {
         }
       }
     }
-    console.log("Best play is " + bestPlay.row + bestPlay.col, typeof bestPlay);
+    console.log("Ai chose row: " + bestPlay.row + " col: " + bestPlay.col + " (best play)");
     return bestPlay;
   }
 

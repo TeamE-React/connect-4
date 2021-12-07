@@ -38,7 +38,7 @@ export class MonteCarlo {
         node = this.expand(node);
         winner = this.simulate(node);
       }
-      this.backpropagate(node, winner);
+      this.backpropagate(node, winner)
 
       if (winner === 0) drawCount++;
       totalSimulations++;
@@ -73,6 +73,11 @@ export class MonteCarlo {
       if (child.node === null) ret.push(child.play);
     }
     return ret;
+  }
+
+  userPlay(state){
+    this.makeNode(state);
+    return;
   }
 
   // visitRate -> シミュレーション回数の多さで最善の手を決める
@@ -112,12 +117,13 @@ export class MonteCarlo {
         }
       }
     }
-
+    console.log("Best play is " + bestPlay.row + bestPlay.col, typeof bestPlay);
     return bestPlay;
   }
 
   // フェーズ１
   // 子ノードの中でも総勝利数 / 総プレイ数の値が大きいノード（具体的にはUCB1の値が最大の値）へと進む関数
+  // Select until not fully expanded OR leaf node
   select(state) {
     // node = { play: play, node: null }
     let node = this.nodes.get(state.hash());
@@ -140,6 +146,7 @@ export class MonteCarlo {
   }
 
   // フェーズ２
+  // 未開拓の子ノードをランダムに選択し、拡張する
   expand(node) {
     let plays = node.unexpandedPlays();
     // ランダムに選択
@@ -154,8 +161,10 @@ export class MonteCarlo {
   }
 
   /*
+   * フェーズ３
    * ここでは新しいノードは作らない
    * シミュレーション後にはすべてのVisited Nodesの統計は更新される
+   * Play game to terminal state, return winner
    */
   simulate(node) {
     let state = node.state;
@@ -164,7 +173,6 @@ export class MonteCarlo {
     while (winner === null) {
       let plays = this.game.legalPlays(state);
       let play = plays[Math.floor(Math.random() * plays.length)];
-      console.log("play in simulate: " + play.row);
       state = this.game.updateState(state, play);
       winner = this.game.winner(state);
     }
@@ -172,6 +180,10 @@ export class MonteCarlo {
     return winner;
   }
 
+  /*
+  * フェーズ４
+  * 親ノードの統計に変更を反映していく
+  */
   backpropagate(node, winner) {
     while (node !== null) {
       node.n_plays += 1;

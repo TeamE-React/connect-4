@@ -1,12 +1,12 @@
-import React, { useReducer, useState, useRef } from 'react';
+import React, { useReducer, useState, useRef } from "react";
 
 // styles
-import '../styles/globals.css';
+import "../styles/globals.css";
 
 // Components
-import AppContext from '../contexts/AppContext';
-import reducer from '../reducers';
-import { Config } from '../config';
+import AppContext from "../contexts/AppContext";
+import reducer from "../reducers";
+import { Config } from "../config";
 
 const MyApp = ({ Component, pageProps }) => {
   const initialState = { board: [], currentPlayer: [] };
@@ -16,8 +16,8 @@ const MyApp = ({ Component, pageProps }) => {
   const [playersList, setPlayersList] = useState([]);
   const [currPlayerIndex, setCurrPlayerIndex] = useState(0);
   // For Timer
-  const [minutes, setMinutes] = useState('00');
-  const [seconds, setSeconds] = useState('00');
+  const [minutes, setMinutes] = useState("00");
+  const [seconds, setSeconds] = useState("00");
   const [totalSeconds, setTotalSeconds] = useState(0);
   const interval = useRef(null); // returns an object { current: 0 }
   // For judge
@@ -25,7 +25,8 @@ const MyApp = ({ Component, pageProps }) => {
   const [isDraw, setIsDraw] = useState(false);
   // AI Mode
   const [isAiMode, setIsAiMode] = useState(false);
-  const [value, setValue] = useState('easy');
+  const [value, setValue] = useState("easy");
+  const [isHard, setIsHard] = useState(false);
   // Others
   const [isDropping, setIsDropping] = useState(false);
   const [errors, setErrors] = useState([]);
@@ -60,6 +61,8 @@ const MyApp = ({ Component, pageProps }) => {
         setIsDropping,
         errors,
         setErrors,
+        isHard,
+        setIsHard,
       }}
     >
       <Component {...pageProps} />

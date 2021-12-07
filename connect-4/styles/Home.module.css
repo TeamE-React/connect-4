@@ -178,8 +178,7 @@
   align-items: center;
 }
 
-.ai_mode_image {
-  /* min-height: 100vh; */
+/* .ai_mode_image {
   background-image: url(/images/aiMode.jpg);
   background-repeat: no-repeat;
   background-position: center;
@@ -200,7 +199,7 @@
   height: 5rem;
   border-radius: 50%;
   box-shadow: 5px 5px 8px 3px #7854fd inset;
-}
+} */
 
 /* Shining Balls */
 

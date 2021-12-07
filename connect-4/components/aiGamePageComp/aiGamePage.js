@@ -71,7 +71,7 @@ const AIGamePage = () => {
   return (
     <div className={classes.root, styles.ai_mode_image}>
       <Grid container justifyContent="center">
-        {/* <Grid item xs={12}>
+        <Grid item xs={12}>
           <PlayersTurn />
         </Grid>
         <Grid item xs={2}></Grid>
@@ -104,7 +104,7 @@ const AIGamePage = () => {
               <span style={{ color: 'gray' }}>Click buttons to play</span>
             </p>
           </Box>
-        </Grid> */}
+        </Grid>
         <AICreateBoard />
       </Grid>
     </div>

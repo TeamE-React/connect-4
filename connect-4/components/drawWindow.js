@@ -13,8 +13,9 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   height: 300,
-  bgcolor: "background.paper",
+  bgcolor: "rgba(255, 255, 255, 0.7)",
   boxShadow: 24,
+  borderRadius: '20px',
   p: 4,
 };
 
@@ -31,7 +32,6 @@ const DrawWindow = () => {
     setTotalSeconds,
     interval,
     playersList,
-    setCurrPlayerIndex
   } = useContext(AppContext);
 
   const handleClickRetry = (e) => {

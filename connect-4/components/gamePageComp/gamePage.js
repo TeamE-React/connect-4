@@ -37,14 +37,12 @@ const GamePage = () => {
     setTotalSeconds,
     interval,
     setWinnerExist,
-    setShowWindow,
     setIsDraw,
   } = useContext(AppContext);
   const classes = useStyles();
 
   const reset = () => {
     setWinnerExist(false);
-    setShowWindow(false);
     setIsDraw(false);
     dispatch({ type: 'BUILD_BOARD', boardSize });
     setTotalSeconds((totalSeconds = 0));

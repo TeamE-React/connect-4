@@ -120,10 +120,10 @@ const AiSettings = () => {
           display="flex"
           justifyContent="center"
           flexDirection="row"
-          style={{ marginTop: '1.2rem' }}
+          style={{ marginTop: '1.5rem' }}
         >
           <FormControl component="fieldset">
-            <FormLabel component="legend">CPU Mode</FormLabel>
+            <FormLabel component="legend" style={{ margin: "20px"}}>CHOOSE AI LEVEL</FormLabel>
             <RadioGroup
               aria-label="mode"
               defaultValue="easy"

@@ -16,7 +16,6 @@ import { Player } from '../../model';
 const aiMode = () => {
   const {
     dispatch,
-    boardSize,
     playersList,
     setPlayersList,
     errors,
@@ -24,18 +23,31 @@ const aiMode = () => {
     setIsAiMode,
     currPlayerIndex,
     value,
+    setIsHard
   } = useContext(AppContext);
   const router = useRouter();
 
   const gameStart = (e) => {
     e.preventDefault();
     if (validationCheck()) {
-      if (value == 'hard') {
-        router.push('/aiGamePage');
-      } else router.push('/gamePage');
-      setPlayersList([...playersList, new Player('AI', 'blue')]);
+      // if (value == 'hard') {
+      //   router.push('/aiGamePage');
+      //   setPlayersList([...playersList, new Player('AI', 'blue')]);
+      // } else {
+      //   router.push('/gamePage');
+      //   setPlayersList([...playersList, new Player('CPU', 'blue')]);
+      // }
+      router.push('/gamePage');
+      if(value == 'hard') {
+        setIsHard(true);
+        setPlayersList([...playersList, new Player('AI', 'blue')]);
+        dispatch({ type: 'BUILD_BOARD', boardSize: 7, isHard: true });
+      }
+      else {
+        setPlayersList([...playersList, new Player('CPU', 'blue')]);
+        dispatch({ type: 'BUILD_BOARD', boardSize: 7, isHard: false });
+      } 
       setIsAiMode(true);
-      dispatch({ type: 'BUILD_BOARD', boardSize });
       dispatch({ type: 'SET_CURR_PLAYER', playersList, currPlayerIndex });
     }
   };
@@ -62,7 +74,6 @@ const aiMode = () => {
         </Box>
       )}
       <AIModeSVG />
-      <BoardSizeInput />
       <AiSettings />
       <Button
         variant="contained"

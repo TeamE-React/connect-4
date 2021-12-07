@@ -21,7 +21,6 @@ const checkPrototype = [ [0,0,0,0,0,0,0,0,0],
 
 /** Class representing the game. */
 export class Game {
-
   /** Generate and return the initial game state. */
   start() {
     let newBoard = boardPrototype.map((row) => row.slice())
@@ -44,10 +43,9 @@ export class Game {
 
   /** Advance the given state and return it. */
   updateState(state, play) {
-    let newHistory = state.playHistory.slice() // 1-deep copy
+    let newHistory = state.playHistory.slice() // shallow copy
     newHistory.push(play)
     let newBoard = state.board.map((row) => row.slice())
-    console.log("newBoard is " + newBoard[0][0]);
     newBoard[play.row][play.col] = state.player
     let newPlayer = -state.player
 

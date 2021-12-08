@@ -31,12 +31,10 @@ const aiMode = () => {
     if (validationCheck()) {
       router.push('/gamePage');
       if(value == 'hard') {
-        // router.push('/aiGamePage');
         setIsHard(true);
         setPlayersList([...playersList, new Player('AI', 'blue')]);
       }
       else {
-        // router.push('/gamePage');
         setPlayersList([...playersList, new Player('CPU', 'blue')]);
       } 
       dispatch({ type: 'BUILD_BOARD', boardSize: 7, isAi: true });

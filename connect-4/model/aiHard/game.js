@@ -47,7 +47,8 @@ export class Game {
     newHistory.push(play)
     let newBoard = state.board.map((row) => row.slice())
     newBoard[play.row][play.col] = state.player
-    let newPlayer = -state.player
+    state.player = state.player == 1 ? -1 : 1;
+    let newPlayer = state.player
 
     return new State(newHistory, newBoard, newPlayer)
   }

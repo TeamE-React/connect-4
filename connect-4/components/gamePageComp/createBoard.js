@@ -4,11 +4,12 @@ import { Ball } from "../../model";
 // Components
 import AppContext from "../../contexts/AppContext";
 import BallSetters from "./ballSetters";
+import AiBallSetters from "./aiBallSetter";
 import Board from "../gamePageComp/board";
 import ShiningBalls from "./shiningBalls";
 
 const CreateBoard = () => {
-  const { isDropping } = useContext(AppContext);
+  const { isDropping, isHard } = useContext(AppContext);
   const [dummyArr, setDummyArr] = useState([]);
 
   useEffect(() => {
@@ -23,16 +24,33 @@ const CreateBoard = () => {
     setDummyArr(array);
   }, [])
 
+
+  const GetBallSetters = (props) => {
+    const isHard = props.level;
+    if(isHard){
+      return (
+        <AiBallSetters
+          key={props.colIndex}
+          colIndex={props.colIndex}
+          disabled={isDropping}
+        />
+      );
+    }
+    else{
+      return (
+        <BallSetters
+          key={props.colIndex}
+          colIndex={props.colIndex}
+          disabled={isDropping}
+        />
+      );
+    }
+  }
+
   return (
     <div>
       {dummyArr.map((col, colIndex) => {
-        return (
-          <BallSetters
-            key={colIndex}
-            colIndex={colIndex}
-            disabled={isDropping}
-          />
-        );
+        return <GetBallSetters level={isHard} colIndex={colIndex} />
       })}
       <Board />
       <ShiningBalls />

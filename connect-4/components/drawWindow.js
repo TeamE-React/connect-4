@@ -32,6 +32,7 @@ const DrawWindow = () => {
     setTotalSeconds,
     interval,
     playersList,
+    isAiMode
   } = useContext(AppContext);
 
   const handleClickRetry = (e) => {
@@ -39,7 +40,8 @@ const DrawWindow = () => {
     setWinnerExist(false);
     setIsDraw(false);
     dispatch({ type: 'SET_CURR_PLAYER', playersList, currPlayerIndex: 0 });
-    dispatch({ type: "BUILD_BOARD", boardSize });
+    if(isAiMode) dispatch({ type: "BUILD_BOARD", boardSize, isAi: true });
+    else dispatch({ type: "BUILD_BOARD", boardSize, isAi: false });
     setTotalSeconds((totalSeconds = 0));
     setMinutes("00");
     setSeconds("00");

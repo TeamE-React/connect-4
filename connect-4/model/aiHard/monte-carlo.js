@@ -1,10 +1,10 @@
 import { Node } from "./node";
-
-const UCBPARAM = 2; // 探索パラメータのデフォルト値
+import { Play } from "./play";
 
 export class MonteCarlo {
-  constructor(game) {
+  constructor(game, UCBPARAM = 2) {
     this.game = game;
+    this.UCBPARAM = UCBPARAM; // 探索パラメータのデフォルト値
     this.nodes = new Map();
   }
 
@@ -18,33 +18,36 @@ export class MonteCarlo {
   }
 
   /** From given state, repeatedly run MCTS to build statistics */
-  runSearch(state, timeout = 3) {
+  runSearch(state, timeout = 3, turn) {
     this.makeNode(state);
 
     let drawCount = 0;
     let totalSimulations = 0;
 
-    // Date.now() returns the number of milliseconds elapsed since 1970
-    let end = Date.now() + timeout * 70;
+    if(turn == "human") return totalSimulations;
+    else{
+      // Date.now() returns the number of milliseconds elapsed since 1970
+      let end = Date.now() + timeout * 70;
 
-    while (Date.now() < end) {
-      //　choose child node
-      let node = this.select(state);
-      let winner = this.game.winner(node.state);
+      while (Date.now() < end) {
+        //　choose child node
+        let node = this.select(state);
+        let winner = this.game.winner(node.state);
 
-      // if node.isLeaf == true -> board is full && if winnerExist -> true
-      // つまり、ボードが埋まっていたら＆勝者が存在したらexpandしない
-      if (node.isLeaf() === false && winner === null) {
-        node = this.expand(node);
-        winner = this.simulate(node);
+        // if node.isLeaf == true -> board is full && if winnerExist -> true
+        // つまり、ボードが埋まっていたら＆勝者が存在したらexpandしない
+        if (node.isLeaf() === false && winner === null) {
+          node = this.expand(node);
+          winner = this.simulate(node);
+        }
+        this.backpropagate(node, winner)
+
+        if (winner === 0) drawCount++;
+        totalSimulations++;
       }
-      this.backpropagate(node, winner)
 
-      if (winner === 0) drawCount++;
-      totalSimulations++;
+      return totalSimulations;
     }
-
-    return totalSimulations;
   }
 
   /**
@@ -73,42 +76,48 @@ export class MonteCarlo {
 
   // visitRate -> シミュレーション回数の多さで最善の手を決める
   // winRate -> 勝率の高さで最善の手を決める
-  bestPlay(state, policy = "visitRate") {
+  bestPlay(state, policy = "visitRate", turn, rowId, colId) {
     this.makeNode(state);
 
-    // If not all children are expanded, not enough information
-    if (this.nodes.get(state.hash()).isFullyExpanded() === false)
+    let bestPlay;
+    if(turn == "human"){
+      bestPlay = new Play(rowId, colId);
+    }
+    else{
+      // If not all children are expanded, not enough information
+      if (this.nodes.get(state.hash()).isFullyExpanded() === false)
       throw new Error("Not enough information!");
 
-    let node = this.nodes.get(state.hash());
-    let allPlays = node.allPlays();
-    let bestPlay;
+      let node = this.nodes.get(state.hash());
+      let allPlays = node.allPlays();
 
-    // Most visits
-    if (policy === "visitRate") {
-      let max = -Infinity;
-      for (let play of allPlays) {
-        let childNode = node.childNode(play);
-        if (childNode.n_plays > max) {
-          bestPlay = play;
-          max = childNode.n_plays;
+      // Most visits
+      if (policy === "visitRate") {
+        let max = -Infinity;
+        for (let play of allPlays) {
+          let childNode = node.childNode(play);
+          if (childNode.n_plays > max) {
+            bestPlay = play;
+            max = childNode.n_plays;
+          }
+        }
+      }
+
+      // Highest winrate
+      else if (policy === "winRate") {
+        let max = -Infinity;
+        for (let play of allPlays) {
+          let childNode = node.childNode(play);
+          let ratio = childNode.n_wins / childNode.n_plays;
+          if (ratio > max) {
+            bestPlay = play;
+            max = ratio;
+          }
         }
       }
     }
-
-    // Highest winrate
-    else if (policy === "winRate") {
-      let max = -Infinity;
-      for (let play of allPlays) {
-        let childNode = node.childNode(play);
-        let ratio = childNode.n_wins / childNode.n_plays;
-        if (ratio > max) {
-          bestPlay = play;
-          max = ratio;
-        }
-      }
-    }
-    console.log("Ai chose row: " + bestPlay.row + " col: " + bestPlay.col + " (best play)");
+    
+    console.log("Player " + (state.player === 1 ? 1 : 2) + " chose row: " + bestPlay.row + " col: " + bestPlay.col + " (best play)");
     return bestPlay;
   }
 
@@ -125,7 +134,7 @@ export class MonteCarlo {
       let bestPlay;
       let bestUCB1 = -Infinity;
       for (let play of plays) {
-        let childUCB1 = node.childNode(play).getUCB1(UCBPARAM);
+        let childUCB1 = node.childNode(play).getUCB1(this.UCBPARAM);
         if (childUCB1 > bestUCB1) {
           bestPlay = play;
           bestUCB1 = childUCB1;

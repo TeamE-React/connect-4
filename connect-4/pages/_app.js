@@ -9,7 +9,7 @@ import reducer from "../reducers";
 import { Config } from "../config";
 
 const MyApp = ({ Component, pageProps }) => {
-  const initialState = { board: [], currentPlayer: [] };
+  const initialState = { board: [], currentPlayer: []};
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const [boardSize, setBoardSize] = useState(Config.board.size.default);

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 
 // styles
 import { Button } from "@material-ui/core";
@@ -8,11 +8,6 @@ import styles from "../../styles/Home.module.css";
 // Components
 import AppContext from "../../contexts/AppContext";
 import { Judge } from "../../model/judge";
-
-import { Game } from "../../model/aiHard/game";
-import { MonteCarlo } from "../../model/aiHard/monte-carlo";
-import { Play } from "../../model/aiHard/play";
-import { GameStart } from "../../model/aiHard";
 
 const BallSetters = ({ colIndex }) => {
   const {
@@ -33,21 +28,9 @@ const BallSetters = ({ colIndex }) => {
     currPlayerIndex,
     setCurrPlayerIndex,
     value,
-    setSimulations
   } = useContext(AppContext);
   const [isFirstClick, setIsFirstClick] = useState(true);
-  const [boardState, setBoardState] = useState(null);
-  const [mcts, setMCTS] = useState(null);
-  const [game, setGame] = useState(null);
-  const [winner, setWinner] = useState(null);
 
-  useEffect(() => { 
-    let game = new Game();
-    let mcts = new MonteCarlo(game);   
-    setGame(game);
-    setMCTS(mcts);
-    setBoardState(game.start());
-  }, []);
   //**************
   // Functions
   // *************
@@ -59,42 +42,17 @@ const BallSetters = ({ colIndex }) => {
     if (isFirstClick) {
       toggleTimer();
     }
-    // if (value !== "hard" && state.currentPlayer.name == "CPU") {
-    //   return;
-    // }
+    if (state.currentPlayer.name == "CPU") {
+      return;
+    }
     setIsDropping(true);
 
-    if (value == "hard") {
-      // console.log("This is playHistory " + typeof boardState.playHistory);
-      // console.log("This is board " + boardState.board);
-      // console.log("This is player " + boardState.player);
-      // console.log("This is mcts game " + mcts.game);
-      // console.log("This is mcts nodes " + mcts.nodes);
-      // console.log("This is mcts runSearch " + mcts.runSearch(boardState, 1));
-      // console.log("This is game winner " + game.winner(boardState));
-      setIsDropping(false);
-      
-      setBallHelper2(0, colIndex, 'red');
-      aiHard();
-    } else {
-      setBallHelper(0, colIndex, state.currentPlayer.color);
-    }
+    setBallHelper(0, colIndex, state.currentPlayer.color);
   };
 
-  const aiHard = () => {
-    mcts.runSearch(boardState, 1);
-
-    let play = mcts.bestPlay(boardState, "winRate");
-
-    const ball = getBall(play.row, play.col);
-    ball.color =  'blue';
-    let newState = game.updateState(boardState, play);
-    setBoardState(newState);
-  };
 
   const checkWinner = (rowId, colId) => {
     rowId--;
-    console.log("User chose row: " + rowId + " col: " + colId);
     const judgeObj = new Judge(state.board, rowId, colId);
 
     if (judgeObj.checkWinner()) {
@@ -120,10 +78,6 @@ const BallSetters = ({ colIndex }) => {
       aiMove();
       changeIsDropping();
     }
-    else if(value == 'hard'){
-      aiHard();
-      setIsDropping(false);
-    }
   };
 
   const aiMove = () => {
@@ -137,34 +91,6 @@ const BallSetters = ({ colIndex }) => {
     setTimeout(function () {
       setIsDropping(false);
     }, 2000);
-  };
-
-  const setBallHelper2 = (rowId, colId, playerColor) => {
-    const len = state.board.length;
-    const ballObj = getBall(rowId, colId);
-
-    // Base Case
-    if (rowId >= len || ballObj.color != null) {
-      mcts.runSearch(boardState, 1);
-      let play = new Play(rowId, colId);
-      let newState = game.updateState(boardState, play);
-      setBoardState(newState);
-      return;
-    }
-    
-    // Animation
-    if (rowId !== 0) {
-      const ballAbove = state.board[rowId - 1][colId];
-      ballAbove.color = null;
-    }
-
-    // COLOR THE CELL WITH PLAYER'S COLOR
-    const ball = getBall(rowId, colId);
-    ball.color = playerColor;
-
-    setTimeout(function () {
-      setBallHelper(rowId + 1, colId, playerColor);
-    }, 300);
   };
 
   // Recursive function

@@ -1,6 +1,6 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 
-import board from './boardReducer'
+import board from './boardReducer';
 import currentPlayer from './currentPlayerReducer';
 
-export default combineReducers({board, currentPlayer});
+export default combineReducers({ board, currentPlayer });

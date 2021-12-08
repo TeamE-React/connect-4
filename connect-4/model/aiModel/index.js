@@ -1,5 +1,5 @@
 import { Game } from './game';
-import { MonteCalro } from './monte-calro';
+import { MonteCarlo } from './monte-carlo';
 
 let game = new Game();
 let mcts = new MonteCarlo(game);

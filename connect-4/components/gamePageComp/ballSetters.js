@@ -1,17 +1,18 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from 'react';
 
 // styles
-import { Button } from "@material-ui/core";
-import { GoTriangleDown } from "react-icons/go";
-import styles from "../../styles/Home.module.css";
+import { Button } from '@material-ui/core';
+import { GoTriangleDown } from 'react-icons/go';
+import styles from '../../styles/Home.module.css';
 
 // Components
-import AppContext from "../../contexts/AppContext";
-import { Judge } from "../../model/judge";
+import AppContext from '../../contexts/AppContext';
+import { Judge } from '../../model/judge';
 
-import { Game } from "../../model/aiHard/game";
-import { MonteCarlo } from "../../model/aiHard/monte-carlo";
-import { Play } from "../../model/aiHard/play";
+import { Game } from '../../model/aiHard/game';
+import { MonteCarlo } from '../../model/aiHard/monte-carlo';
+import { Play } from '../../model/aiHard/play';
+import currentPlayer from '../../reducers/currentPlayerReducer';
 
 const BallSetters = ({ colIndex }) => {
   const {
@@ -32,6 +33,10 @@ const BallSetters = ({ colIndex }) => {
     currPlayerIndex,
     setCurrPlayerIndex,
     value,
+    newGame,
+    mcts,
+    gameState,
+    setGameState,
   } = useContext(AppContext);
   const [isFirstClick, setIsFirstClick] = useState(true);
 
@@ -46,49 +51,11 @@ const BallSetters = ({ colIndex }) => {
     if (isFirstClick) {
       toggleTimer();
     }
-    if (value !== "hard" && state.currentPlayer.name == "CPU") {
+    if (value !== 'hard' && state.currentPlayer.name == 'CPU') {
       return;
     }
     setIsDropping(true);
-
-    if (value == "hard") {
-      aiHard();
-    } else {
-      setBallHelper(0, colIndex, state.currentPlayer.color);
-    }
-  };
-
-  const aiHard = () => {
-    let game = new Game();
-    let mcts = new MonteCarlo(game);
-
-    let state = game.start();
-    let winner = game.winner(state);
-
-    while (winner === null) {
-      // console.log();
-      // console.log("player: " + (state.player === 1 ? 1 : 2));
-      // console.log(
-      //   state.board.map((row) => row.map((cell) => (cell === -1 ? 2 : cell)))
-      // );
-
-      mcts.runSearch(state, 1);
-
-      let play = mcts.bestPlay(state, "winRate");
-
-      const ball = getBall(play.row, play.col);
-      ball.color = (state.player == 1) ? 'red' : 'blue';
-
-      state = game.updateState(state, play);
-      
-      winner = game.winner(state);
-    }
-
-    console.log();
-    console.log("winner: " + (winner === 1 ? "USER" : "AI"));
-    console.log(
-      state.board.map((row) => row.map((cell) => (cell === -1 ? 2 : cell)))
-    );
+    setBallHelper(0, colIndex, state.currentPlayer.color);
   };
 
   const checkWinner = (rowId, colId) => {
@@ -98,7 +65,7 @@ const BallSetters = ({ colIndex }) => {
 
     if (judgeObj.checkWinner()) {
       console.log(
-        "winner is: " + state.currentPlayer.name + "! (Open Modal Window)"
+        'winner is: ' + state.currentPlayer.name + '! (Open Modal Window)'
       );
       setWinnerExist(true);
       setIsDropping(false);
@@ -109,14 +76,25 @@ const BallSetters = ({ colIndex }) => {
     turnChange();
 
     let ballObj = getBall(rowId, colId);
-    console.log("ballObject color is " + ballObj.color);
+    // console.log('ballObject color is ' + ballObj.color);
     if (
       !judgeObj.checkWinner() &&
-      ballObj.color == "red" &&
+      ballObj.color !== 'blue' &&
       isAiMode &&
-      value == "easy"
+      value == 'easy'
     ) {
+      // console.log('CPU Mode');
       aiMove();
+      changeIsDropping();
+    } else if (
+      !judgeObj.checkWinner() &&
+      ballObj.color !== 'blue' &&
+      isAiMode &&
+      value == 'hard'
+    ) {
+      // console.log('AI Mode');
+      let playersPlay = new Play(rowId, colId);
+      aiHard(playersPlay);
       changeIsDropping();
     }
   };
@@ -124,9 +102,36 @@ const BallSetters = ({ colIndex }) => {
   const aiMove = () => {
     setTimeout(function () {
       const col = Math.floor(Math.random() * state.board.length);
-      setBallHelper(0, col, "blue");
+      setBallHelper(0, col, 'blue');
     }, 1800);
   };
+
+  const aiHard = (playersPlay) => {
+    // プレイヤーの手をstateに反映する
+    let newState = newGame.updateState(gameState, playersPlay);
+
+    console.log(newState.playHistory);
+    console.log(newState.board);
+    console.log(newState.player);
+
+    mcts.runSearch(newState, 1);
+    let play = mcts.bestPlay(newState, 'winRate');
+    newState = newGame.updateState(newState, play);
+
+    console.log(newState.playHistory);
+    console.log(newState.board);
+    console.log(newState.player);
+
+    setGameState(newState);
+
+    setTimeout(function () {
+      setBallHelper(0, play.col, 'blue');
+    }, 1800);
+  };
+
+  useEffect(() => {
+    console.log('in useEffect' + gameState);
+  }, []);
 
   const changeIsDropping = () => {
     setTimeout(function () {
@@ -134,16 +139,16 @@ const BallSetters = ({ colIndex }) => {
     }, 2000);
   };
 
-  const setBallHelper2 = (rowId, colId) => {
-    const ballObj = getBall(rowId, colId);
+  // const setBallHelper2 = (rowId, colId) => {
+  //   const ballObj = getBall(rowId, colId);
 
-    // Base Case
-    if (rowId >= 6 || ballObj.color != null) {
-      return new Play(rowId - 1, colId);
-    }
-    
-    setBallHelper2(rowId + 1, colId);
-  };
+  //   // Base Case
+  //   if (rowId >= 6 || ballObj.color != null) {
+  //     return new Play(rowId - 1, colId);
+  //   }
+
+  //   setBallHelper2(rowId + 1, colId);
+  // };
 
   // Recursive function
   const setBallHelper = (rowId, colId, playerColor) => {
@@ -217,13 +222,13 @@ const BallSetters = ({ colIndex }) => {
       setCurrPlayerIndex(currPlayerIndex - playersList.length);
     }
 
-    dispatch({ type: "SET_CURR_PLAYER", playersList, currPlayerIndex });
+    dispatch({ type: 'SET_CURR_PLAYER', playersList, currPlayerIndex });
   };
 
   const toggleTimer = () => {
     const pad = (val) => {
-      let valString = val + "";
-      if (valString.length < 2) return "0" + valString;
+      let valString = val + '';
+      if (valString.length < 2) return '0' + valString;
       else return valString;
     };
 
@@ -248,7 +253,7 @@ const BallSetters = ({ colIndex }) => {
       color="secondary"
       size="large"
       className={styles.btn}
-      style={{ fontSize: "20px", margin: "16px" }}
+      style={{ fontSize: '20px', margin: '16px' }}
       onClick={setBall}
     >
       <GoTriangleDown />

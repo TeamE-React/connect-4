@@ -1,4 +1,4 @@
-import { Node } from "./node";
+import { Node } from './node';
 
 const UCBPARAM = 2; // 探索パラメータのデフォルト値
 
@@ -25,10 +25,10 @@ export class MonteCarlo {
     let totalSimulations = 0;
 
     // Date.now() returns the number of milliseconds elapsed since 1970
-    let end = Date.now() + timeout * 100;
+    let end = Date.now() + timeout * 3000;
 
     while (Date.now() < end) {
-      //　choose child node
+      // choose child node
       let node = this.select(state);
       let winner = this.game.winner(node.state);
 
@@ -38,7 +38,7 @@ export class MonteCarlo {
         node = this.expand(node);
         winner = this.simulate(node);
       }
-      this.backpropagate(node, winner)
+      this.backpropagate(node, winner);
 
       if (winner === 0) drawCount++;
       totalSimulations++;
@@ -75,26 +75,26 @@ export class MonteCarlo {
     return ret;
   }
 
-  userPlay(state){
+  userPlay(state) {
     this.makeNode(state);
     return;
   }
 
   // visitRate -> シミュレーション回数の多さで最善の手を決める
   // winRate -> 勝率の高さで最善の手を決める
-  bestPlay(state, policy = "visitRate") {
+  bestPlay(state, policy = 'visitRate') {
     this.makeNode(state);
 
     // If not all children are expanded, not enough information
     if (this.nodes.get(state.hash()).isFullyExpanded() === false)
-      throw new Error("Not enough information!");
+      throw new Error('Not enough information!');
 
     let node = this.nodes.get(state.hash());
     let allPlays = node.allPlays();
     let bestPlay;
 
     // Most visits
-    if (policy === "visitRate") {
+    if (policy === 'visitRate') {
       let max = -Infinity;
       for (let play of allPlays) {
         let childNode = node.childNode(play);
@@ -106,7 +106,7 @@ export class MonteCarlo {
     }
 
     // Highest winrate
-    else if (policy === "winRate") {
+    else if (policy === 'winRate') {
       let max = -Infinity;
       for (let play of allPlays) {
         let childNode = node.childNode(play);
@@ -117,7 +117,7 @@ export class MonteCarlo {
         }
       }
     }
-    console.log("Best play is " + bestPlay.row + bestPlay.col, typeof bestPlay);
+    console.log('Best play is ' + bestPlay.row + bestPlay.col, typeof bestPlay);
     return bestPlay;
   }
 
@@ -128,7 +128,7 @@ export class MonteCarlo {
     // node = { play: play, node: null }
     let node = this.nodes.get(state.hash());
 
-    //　葉ノードまで繰り返し、走査していく
+    // 葉ノードまで繰り返し、走査していく
     while (node.isFullyExpanded() && !node.isLeaf()) {
       let plays = node.allPlays();
       let bestPlay;
@@ -181,9 +181,9 @@ export class MonteCarlo {
   }
 
   /*
-  * フェーズ４
-  * 親ノードの統計に変更を反映していく
-  */
+   * フェーズ４
+   * 親ノードの統計に変更を反映していく
+   */
   backpropagate(node, winner) {
     while (node !== null) {
       node.n_plays += 1;

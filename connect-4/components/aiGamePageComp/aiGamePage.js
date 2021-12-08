@@ -14,6 +14,8 @@ import AICreateBoard from './AICreateBoard';
 import AppContext from '../../contexts/AppContext';
 import WinnerWindow from '../winnerWindow';
 import DrawWindow from '../drawWindow';
+import { Game } from '../../model/aiHard/game';
+import { MonteCarlo } from '../../model/aiHard/monte-carlo';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,6 +42,12 @@ const AIGamePage = () => {
     setWinnerExist,
     setShowWindow,
     setIsDraw,
+    newGame,
+    setNewGame,
+    gameState,
+    setGameState,
+    mcts,
+    setMcts,
   } = useContext(AppContext);
   const classes = useStyles();
 
@@ -51,6 +59,10 @@ const AIGamePage = () => {
     setTotalSeconds((totalSeconds = 0));
     setMinutes('00');
     setSeconds('00');
+
+    setNewGame((newGame = new Game()));
+    setMcts((mcts = new MonteCarlo(newGame)));
+    setGameState((gameState = newGame.start()));
 
     const pad = (val) => {
       let valString = val + '';
@@ -69,7 +81,7 @@ const AIGamePage = () => {
   };
 
   return (
-    <div className={classes.root, styles.ai_mode_image}>
+    <div className={(classes.root, styles.ai_mode_image)}>
       <Grid container justifyContent="center">
         <Grid item xs={12}>
           <PlayersTurn />

@@ -7,6 +7,8 @@ import { Modal, Box, Button } from '@material-ui/core';
 // Components
 import AppContext from '../contexts/AppContext';
 import WinnerSVG from './svgFiles/winnerSVG';
+import { Game } from '../model/aiHard/game';
+import { MonteCarlo } from '../model/aiHard/monte-carlo';
 
 const style = {
   position: 'absolute',
@@ -33,6 +35,12 @@ const WinnerWindow = () => {
     setWinnerExist,
     setIsDraw,
     playersList,
+    newGame,
+    setNewGame,
+    gameState,
+    setGameState,
+    mcts,
+    setMcts,
   } = useContext(AppContext);
 
   const handleClickRetry = (e) => {
@@ -44,6 +52,10 @@ const WinnerWindow = () => {
     setTotalSeconds((totalSeconds = 0));
     setMinutes('00');
     setSeconds('00');
+
+    setNewGame((newGame = new Game()));
+    setMcts((mcts = new MonteCarlo(newGame)));
+    setGameState((gameState = newGame.start()));
 
     const pad = (val) => {
       let valString = val + '';

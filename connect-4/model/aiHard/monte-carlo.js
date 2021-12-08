@@ -25,7 +25,7 @@ export class MonteCarlo {
     let totalSimulations = 0;
 
     // Date.now() returns the number of milliseconds elapsed since 1970
-    let end = Date.now() + timeout * 3000;
+    let end = Date.now() + timeout * 1000;
 
     while (Date.now() < end) {
       // choose child node
@@ -44,11 +44,7 @@ export class MonteCarlo {
       totalSimulations++;
     }
 
-    return {
-      runtime: timeout,
-      simulations: totalSimulations,
-      draws: drawCount,
-    };
+    return totalSimulations;
   }
 
   /**
@@ -117,7 +113,8 @@ export class MonteCarlo {
         }
       }
     }
-    console.log('Best play is ' + bestPlay.row + bestPlay.col, typeof bestPlay);
+    // console.log("Player is now " + (state.player === 1) ? 1 : 2);
+    // console.log("Best play is " + bestPlay.row + " (row) and " + bestPlay.col + " (col)");
     return bestPlay;
   }
 

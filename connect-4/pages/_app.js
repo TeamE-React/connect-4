@@ -33,6 +33,7 @@ const MyApp = ({ Component, pageProps }) => {
   // Others
   const [isDropping, setIsDropping] = useState(false);
   const [errors, setErrors] = useState([]);
+  const [simulationCount, setSimulationCount] = useState(0);
 
   return (
     <AppContext.Provider
@@ -72,6 +73,8 @@ const MyApp = ({ Component, pageProps }) => {
         setGameState,
         mcts,
         setMcts,
+        simulationCount,
+        setSimulationCount,
       }}
     >
       <Component {...pageProps} />

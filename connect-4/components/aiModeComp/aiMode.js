@@ -38,13 +38,6 @@ const aiMode = () => {
   const gameStart = (e) => {
     e.preventDefault();
     if (validationCheck()) {
-      // if (value == 'hard') {
-      //   router.push('/aiGamePage');
-      //   setPlayersList([...playersList, new Player('AI', 'blue')]);
-      // } else {
-      //   router.push('/gamePage');
-      //   setPlayersList([...playersList, new Player('CPU', 'blue')]);
-      // }
       router.push('/gamePage');
       if (value == 'hard') {
         setIsHard(true);

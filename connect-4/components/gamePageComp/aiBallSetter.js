@@ -96,7 +96,7 @@ const AiBallSetters = ({ colIndex }) => {
   }
 
   const runMCS = () => {
-    let temp = [];
+    let tempBoard = state.board.map((row) => row.slice());
     let move;
     let positionRow;
     let result;

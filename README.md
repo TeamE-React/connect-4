@@ -1,10 +1,12 @@
-# Connect 4
+### Connect 4
 
 [日本語版 README はこちら](https://github.com/TeamE-React/connect-4/blob/main/README-ja.md)
 
-## Description
+## Demo
 
-![Screen Shot 2021-12-03 at 23 37 46](https://user-images.githubusercontent.com/66197642/144702122-7a08068a-4d84-4951-a0ae-25f3db30ee88.png)
+![output4](https://user-images.githubusercontent.com/66197642/145369246-8c00ffa9-d208-4bd7-b5e8-638a211ee43b.gif)
+
+## Description
 
 Connect 4 is a turn-based game where two players take turns dropping colored balls from the top into a column. The ball will fall straight down towards the next available space within the column. The aim of each player is to be the first to form a vertical, horizontal, or diagonal line of four of one's own balls.
   

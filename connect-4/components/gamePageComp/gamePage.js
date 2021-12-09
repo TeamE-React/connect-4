@@ -96,7 +96,7 @@ const GamePage = () => {
         <Grid item xs={3}>
           <PlayersInfo2 />
           {isHard && 
-            <p>
+            <p style={{ display: "flex", justifyContent: "center"}}>
             <span style={{ color: 'gray' }}>Total Simulations:  </span>
               {simulationCount}
             </p>

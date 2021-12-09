@@ -1,4 +1,4 @@
-### Connect 4
+# Connect 4
 
 [日本語版 README はこちら](https://github.com/TeamE-React/connect-4/blob/main/README-ja.md)
 

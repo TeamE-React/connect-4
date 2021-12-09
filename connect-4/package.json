@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "homepage": "https://teame-react.github.io/connect-4/",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "npm run build && gh-pages -d build"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
@@ -25,6 +27,7 @@
   "devDependencies": {
     "babel-plugin-inline-react-svg": "^2.0.1",
     "eslint": "7.32.0",
-    "eslint-config-next": "12.0.1"
+    "eslint-config-next": "12.0.1",
+    "gh-pages": "^3.2.3"
   }
 }

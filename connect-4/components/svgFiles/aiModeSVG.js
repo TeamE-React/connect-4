@@ -1,7 +1,7 @@
-import React from "react";
-import styles from "../../styles/Home.module.css";
+import React from 'react';
+import styles from '../../styles/Home.module.css';
 
-export default function PlayerModeSVG() {
+export default function AIModeSVG() {
   return (
     <div className={styles.margin_y}>
       <div className={styles.svg_container}>
@@ -22,7 +22,7 @@ export default function PlayerModeSVG() {
             strokeWidth="0.6rem"
             strokeLinejoin="round"
           >
-            Player Mode
+            AI Mode
           </text>
           <text
             x="50%"
@@ -34,7 +34,7 @@ export default function PlayerModeSVG() {
             strokeWidth="0.3rem"
             strokeLinejoin="round"
           >
-            Player Mode
+            AI Mode
           </text>
           <text
             fill="url(#gradient100)"
@@ -44,7 +44,7 @@ export default function PlayerModeSVG() {
             textAnchor="middle"
             dominantBaseline="central"
           >
-            Player Mode
+            AI Mode
           </text>
           <defs>
             <linearGradient id="gradient100" x1="0%" y1="0%" x2="0%" y2="100%">

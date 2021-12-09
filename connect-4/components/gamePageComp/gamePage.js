@@ -4,6 +4,7 @@ import React, { useContext } from 'react';
 import { Grid, Button, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { RiTimerLine } from 'react-icons/ri';
+import styles from '../../styles/Home.module.css';
 
 // Components
 import PlayersTurn from './playersTurn';
@@ -13,6 +14,7 @@ import CreateBoard from './createBoard';
 import AppContext from '../../contexts/AppContext';
 import WinnerWindow from '../winnerWindow';
 import DrawWindow from '../drawWindow';
+import { StylesContext } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -73,11 +75,12 @@ const GamePage = () => {
         <Grid item xs={12}>
           <PlayersTurn />
         </Grid>
-        <Grid item xs={2}></Grid>
-        <Grid item xs={3}>
-          <PlayersInfo />
+        <Grid item xs={4}>
+          <Box display="flex" justifyContent="end">
+            <PlayersInfo />
+          </Box>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={4}>
           <Box display="flex" justifyContent="center">
             <RiTimerLine style={{ marginRight: '0.5rem' }} />
             {minutes}:{seconds}
@@ -93,21 +96,28 @@ const GamePage = () => {
             </Button>
           </Box>
         </Grid>
-        <Grid item xs={3}>
-          <PlayersInfo2 />
-          {isHard && 
-            <p style={{ display: "flex", justifyContent: "center"}}>
-            <span style={{ color: 'gray' }}>Total Simulations:  </span>
-              {simulationCount}
-            </p>
-          }
+        <Grid item xs={4}>
+          <Box display="flex" justifyContent="start">
+            <PlayersInfo2 />
+          </Box>
         </Grid>
-        <Grid item xs={2}></Grid>
         <Grid item xs={12}>
           <Box display="flex" justifyContent="center">
-            <p>
-              <span style={{ color: 'gray' }}>Click buttons to play</span>
-            </p>
+            {isHard && (
+              <Box display="flex" justifyContent="start" flexWrap="wrap">
+                <p>
+                  <span style={{ color: 'gray' }}>
+                    AI Total Simulations:&nbsp;
+                  </span>
+                </p>
+                <p>{simulationCount}</p>
+              </Box>
+            )}
+          </Box>
+        </Grid>
+        <Grid item xs={12}>
+          <Box display="flex" justifyContent="center">
+            <p>Click buttons to play</p>
           </Box>
         </Grid>
         <CreateBoard />

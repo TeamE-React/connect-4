@@ -12,9 +12,10 @@ Connect 4 is a turn-based game where two players take turns dropping colored bal
   
 The purpose of this project is mainly to implement the algorithm and test its performance in a simple game.
 
-## Algorithm
+## Algorithm for Game AI
 
-
+We implemented an agent using a Monte Carlo Tree Search (MCTS) algorithm.
+The idea behind this algorithm is to build a search tree of possible move sequences and simulates each one multiple times to determine the expected outcome.  (Instead of exploring all the possible games, only the most promising routes are chosen).
 
 ## Features
 

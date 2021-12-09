@@ -13,14 +13,14 @@ import PlayerSettings from "./playerSettings";
 import AppContext from "../../contexts/AppContext";
 
 const playerMode = () => {
-  const { dispatch, boardSize, playersList, errors, setErrors, currPlayerIndex } = useContext(AppContext);
+  const { dispatch, boardSize, playersList, errors, setErrors, currPlayerIndex, isAi } = useContext(AppContext);
   const router = useRouter();
 
   const gameStart = (e) => {
     e.preventDefault();
     if(validationCheck()){
       router.push('/gamePage');
-      dispatch({type: 'BUILD_BOARD', boardSize});
+      dispatch({type: 'BUILD_BOARD', boardSize, isAi: false});
       dispatch({type: 'SET_CURR_PLAYER', playersList, currPlayerIndex});
     }
   }

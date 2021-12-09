@@ -41,21 +41,23 @@ const WinnerWindow = () => {
     setGameState,
     mcts,
     setMcts,
+    isHard
   } = useContext(AppContext);
 
   const handleClickRetry = (e) => {
     e.preventDefault();
     setWinnerExist(false);
     setIsDraw(false);
-    dispatch({ type: 'SET_CURR_PLAYER', playersList, currPlayerIndex: 0 });
     dispatch({ type: 'BUILD_BOARD', boardSize });
     setTotalSeconds((totalSeconds = 0));
     setMinutes('00');
     setSeconds('00');
 
-    setNewGame((newGame = new Game()));
-    setMcts((mcts = new MonteCarlo(newGame)));
-    setGameState((gameState = newGame.start()));
+    if(isHard) {
+      setNewGame((newGame = new Game()));
+      setMcts((mcts = new MonteCarlo(newGame)));
+      setGameState((gameState = newGame.start()));
+    }
 
     const pad = (val) => {
       let valString = val + '';

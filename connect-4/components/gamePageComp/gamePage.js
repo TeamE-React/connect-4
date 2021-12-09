@@ -95,10 +95,12 @@ const GamePage = () => {
         </Grid>
         <Grid item xs={3}>
           <PlayersInfo2 />
-          <p>
+          {isHard && 
+            <p>
             <span style={{ color: 'gray' }}>Total Simulations:  </span>
-            {simulationCount}
-          </p>
+              {simulationCount}
+            </p>
+          }
         </Grid>
         <Grid item xs={2}></Grid>
         <Grid item xs={12}>

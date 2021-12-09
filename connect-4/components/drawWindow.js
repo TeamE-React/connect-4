@@ -1,19 +1,19 @@
-import React, { useContext } from "react";
-import Link from "next/link";
+import React, { useContext } from 'react';
+import Link from 'next/link';
 
 // Styles
-import { Modal, Box, Button } from "@material-ui/core";
+import { Modal, Box, Button } from '@material-ui/core';
 
 // Components
-import AppContext from "../contexts/AppContext";
+import AppContext from '../contexts/AppContext';
 
 const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
   height: 300,
-  bgcolor: "rgba(255, 255, 255, 0.7)",
+  bgcolor: 'rgba(255, 255, 255, 0.7)',
   boxShadow: 24,
   borderRadius: '20px',
   p: 4,
@@ -38,15 +38,14 @@ const DrawWindow = () => {
     e.preventDefault();
     setWinnerExist(false);
     setIsDraw(false);
-    dispatch({ type: 'SET_CURR_PLAYER', playersList, currPlayerIndex: 0 });
-    dispatch({ type: "BUILD_BOARD", boardSize });
+    dispatch({ type: 'BUILD_BOARD', boardSize });
     setTotalSeconds((totalSeconds = 0));
-    setMinutes("00");
-    setSeconds("00");
+    setMinutes('00');
+    setSeconds('00');
 
     const pad = (val) => {
-      let valString = val + "";
-      if (valString.length < 2) return "0" + valString;
+      let valString = val + '';
+      if (valString.length < 2) return '0' + valString;
       else return valString;
     };
 
@@ -72,7 +71,7 @@ const DrawWindow = () => {
               <Button
                 variant="contained"
                 color="primary"
-                style={{ fontSize: "1rem", margin: "1rem", width: "8rem" }}
+                style={{ fontSize: '1rem', margin: '1rem', width: '8rem' }}
               >
                 Back to Top
               </Button>
@@ -81,7 +80,7 @@ const DrawWindow = () => {
               variant="contained"
               color="primary"
               onClick={handleClickRetry}
-              style={{ fontSize: "1rem", margin: "1rem", width: "8rem" }}
+              style={{ fontSize: '1rem', margin: '1rem', width: '8rem' }}
             >
               Retry
             </Button>

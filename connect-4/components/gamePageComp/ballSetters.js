@@ -1,13 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState } from 'react';
 
 // styles
-import { Button } from "@material-ui/core";
-import { GoTriangleDown } from "react-icons/go";
-import styles from "../../styles/Home.module.css";
+import { Button } from '@material-ui/core';
+import { GoTriangleDown } from 'react-icons/go';
+import styles from '../../styles/Home.module.css';
 
 // Components
-import AppContext from "../../contexts/AppContext";
-import { Judge } from "../../model/judge";
+import AppContext from '../../contexts/AppContext';
+import { Judge } from '../../model/judge';
 
 const BallSetters = ({ colIndex }) => {
   const {
@@ -42,7 +42,8 @@ const BallSetters = ({ colIndex }) => {
     if (isFirstClick) {
       toggleTimer();
     }
-    if (state.currentPlayer.name == "CPU") {
+    console.log(state.currentPlayer.name);
+    if (state.currentPlayer.name == 'CPU') {
       return;
     }
     setIsDropping(true);
@@ -50,14 +51,13 @@ const BallSetters = ({ colIndex }) => {
     setBallHelper(0, colIndex, state.currentPlayer.color);
   };
 
-
   const checkWinner = (rowId, colId) => {
     rowId--;
     const judgeObj = new Judge(state.board, rowId, colId);
 
     if (judgeObj.checkWinner()) {
       console.log(
-        "winner is: " + state.currentPlayer.name + "! (Open Modal Window)"
+        'winner is: ' + state.currentPlayer.name + '! (Open Modal Window)'
       );
       setWinnerExist(true);
       setIsDropping(false);
@@ -71,9 +71,9 @@ const BallSetters = ({ colIndex }) => {
     // console.log("ballObject color is " + ballObj.color);
     if (
       !judgeObj.checkWinner() &&
-      ballObj.color == "red" &&
+      ballObj.color !== 'blue' &&
       isAiMode &&
-      value == "easy"
+      value == 'easy'
     ) {
       aiMove();
       changeIsDropping();
@@ -83,7 +83,7 @@ const BallSetters = ({ colIndex }) => {
   const aiMove = () => {
     setTimeout(function () {
       const col = Math.floor(Math.random() * state.board.length);
-      setBallHelper(0, col, "blue");
+      setBallHelper(0, col, 'blue');
     }, 1800);
   };
 
@@ -165,13 +165,13 @@ const BallSetters = ({ colIndex }) => {
       setCurrPlayerIndex(currPlayerIndex - playersList.length);
     }
 
-    dispatch({ type: "SET_CURR_PLAYER", playersList, currPlayerIndex });
+    dispatch({ type: 'SET_CURR_PLAYER', playersList, currPlayerIndex });
   };
 
   const toggleTimer = () => {
     const pad = (val) => {
-      let valString = val + "";
-      if (valString.length < 2) return "0" + valString;
+      let valString = val + '';
+      if (valString.length < 2) return '0' + valString;
       else return valString;
     };
 
@@ -196,7 +196,7 @@ const BallSetters = ({ colIndex }) => {
       color="secondary"
       size="large"
       className={styles.btn}
-      style={{ fontSize: "20px", margin: "16px" }}
+      style={{ fontSize: '20px', margin: '16px' }}
       onClick={setBall}
     >
       <GoTriangleDown />

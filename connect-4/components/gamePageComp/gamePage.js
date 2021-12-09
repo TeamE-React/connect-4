@@ -4,7 +4,6 @@ import React, { useContext } from 'react';
 import { Grid, Button, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { RiTimerLine } from 'react-icons/ri';
-import styles from '../../styles/Home.module.css';
 
 // Components
 import PlayersTurn from './playersTurn';
@@ -14,7 +13,6 @@ import CreateBoard from './createBoard';
 import AppContext from '../../contexts/AppContext';
 import WinnerWindow from '../winnerWindow';
 import DrawWindow from '../drawWindow';
-import { StylesContext } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {

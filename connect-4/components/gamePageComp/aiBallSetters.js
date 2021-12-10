@@ -85,7 +85,6 @@ const BallSetters = ({ colIndex }) => {
     // プレイヤーの手をstateに反映する
     let newState = newGame.updateState(gameState, playersPlay);
 
-    console.log(newState.board);
     console.log(newState.player);
 
     let count = mcts.runSearch(newState, 1);
@@ -93,7 +92,6 @@ const BallSetters = ({ colIndex }) => {
     let play = mcts.bestPlay(newState, 'winRate');
     newState = newGame.updateState(newState, play);
 
-    console.log(newState.board);
     console.log(newState.player);
 
     setGameState(newState);

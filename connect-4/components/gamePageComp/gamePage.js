@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 // Styles
 import { Grid, Button, Box } from '@material-ui/core';
@@ -13,6 +13,8 @@ import CreateBoard from './createBoard';
 import AppContext from '../../contexts/AppContext';
 import WinnerWindow from '../winnerWindow';
 import DrawWindow from '../drawWindow';
+import { Game } from '../../model/aiHard/game';
+import { MonteCarlo } from '../../model/aiHard/monte-carlo';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 const GamePage = () => {
   const {
+    state,
     dispatch,
     boardSize,
     minutes,
@@ -35,11 +38,20 @@ const GamePage = () => {
     setSeconds,
     totalSeconds,
     setTotalSeconds,
-    interval,
     setWinnerExist,
     setIsDraw,
     simulationCount,
+    interval,
+    newGame,
+    setNewGame,
+    gameState,
+    setGameState,
+    mcts,
+    setMcts,
     isHard,
+    playersList,
+    currPlayerIndex,
+    setCurrPlayerIndex,
   } = useContext(AppContext);
   const classes = useStyles();
 
@@ -47,9 +59,16 @@ const GamePage = () => {
     setWinnerExist(false);
     setIsDraw(false);
     dispatch({ type: 'BUILD_BOARD', boardSize });
+    setCurrPlayerIndex(0);
     setTotalSeconds((totalSeconds = 0));
     setMinutes('00');
     setSeconds('00');
+
+    if (isHard) {
+      setNewGame((newGame = new Game()));
+      setMcts((mcts = new MonteCarlo(newGame)));
+      setGameState((gameState = newGame.start()));
+    }
 
     const pad = (val) => {
       let valString = val + '';
@@ -66,6 +85,10 @@ const GamePage = () => {
     clearInterval(interval.current);
     interval.current = setInterval(incrementTime, 1000);
   };
+
+  useEffect(() => {
+    dispatch({ type: 'SET_CURR_PLAYER', playersList, currPlayerIndex });
+  }, [currPlayerIndex, state]);
 
   return (
     <div className={classes.root}>

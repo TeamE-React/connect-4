@@ -52,7 +52,7 @@ const BallSetters = ({ colIndex }) => {
       return;
     }
     setIsDropping(true);
-
+    console.log(state.currentPlayer.color);
     setBallHelper(0, colIndex, state.currentPlayer.color);
   };
 
@@ -73,7 +73,7 @@ const BallSetters = ({ colIndex }) => {
     switchPlayer();
 
     let ballObj = getBall(rowId, colId);
-    // console.log("ballObject color is " + ballObj.color);
+
     if (
       !judgeObj.checkWinner() &&
       ballObj.color !== 'blue' &&

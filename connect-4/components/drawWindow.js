@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Link from 'next/link';
 
 // Styles
@@ -6,6 +6,8 @@ import { Modal, Box, Button } from '@material-ui/core';
 
 // Components
 import AppContext from '../contexts/AppContext';
+import { Game } from '../model/aiHard/game';
+import { MonteCarlo } from '../model/aiHard/monte-carlo';
 
 const style = {
   position: 'absolute',
@@ -21,6 +23,7 @@ const style = {
 
 const DrawWindow = () => {
   const {
+    state,
     setWinnerExist,
     isDraw,
     setIsDraw,
@@ -31,7 +34,16 @@ const DrawWindow = () => {
     totalSeconds,
     setTotalSeconds,
     interval,
+    newGame,
+    setNewGame,
+    gameState,
+    setGameState,
+    mcts,
+    setMcts,
+    isHard,
     playersList,
+    currPlayerIndex,
+    setCurrPlayerIndex,
   } = useContext(AppContext);
 
   const handleClickRetry = (e) => {
@@ -39,9 +51,16 @@ const DrawWindow = () => {
     setWinnerExist(false);
     setIsDraw(false);
     dispatch({ type: 'BUILD_BOARD', boardSize });
+    setCurrPlayerIndex(0);
     setTotalSeconds((totalSeconds = 0));
     setMinutes('00');
     setSeconds('00');
+
+    if (isHard) {
+      setNewGame((newGame = new Game()));
+      setMcts((mcts = new MonteCarlo(newGame)));
+      setGameState((gameState = newGame.start()));
+    }
 
     const pad = (val) => {
       let valString = val + '';
@@ -58,6 +77,10 @@ const DrawWindow = () => {
     clearInterval(interval.current);
     interval.current = setInterval(incrementTime, 1000);
   };
+
+  useEffect(() => {
+    dispatch({ type: 'SET_CURR_PLAYER', playersList, currPlayerIndex });
+  }, [currPlayerIndex, state]);
 
   return (
     <>

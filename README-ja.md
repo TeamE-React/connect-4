@@ -26,5 +26,6 @@
 
 ## Built With
 
-* [React.js](https://reactjs.org/)
-* [TailwindCSS](https://tailwindui.com/)
+* [Next.js](https://nextjs.org/)
+* [Material UI](https://mui.com/)
+

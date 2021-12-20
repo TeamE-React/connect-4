@@ -94,7 +94,7 @@ const GamePage = () => {
           <PlayersTurn />
         </Grid>
         <Grid item xs={4}>
-          <Box display="flex" justifyContent="end">
+          <Box display="flex" justifyContent="flex-end">
             <PlayersInfo />
           </Box>
         </Grid>

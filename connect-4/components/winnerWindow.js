@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Link from 'next/link';
 
 // Styles
@@ -24,6 +24,7 @@ const style = {
 
 const WinnerWindow = () => {
   const {
+    state,
     dispatch,
     boardSize,
     setMinutes,
@@ -34,14 +35,16 @@ const WinnerWindow = () => {
     winnerExist,
     setWinnerExist,
     setIsDraw,
-    playersList,
     newGame,
     setNewGame,
     gameState,
     setGameState,
     mcts,
     setMcts,
-    isHard
+    isHard,
+    playersList,
+    currPlayerIndex,
+    setCurrPlayerIndex,
   } = useContext(AppContext);
 
   const handleClickRetry = (e) => {
@@ -49,11 +52,12 @@ const WinnerWindow = () => {
     setWinnerExist(false);
     setIsDraw(false);
     dispatch({ type: 'BUILD_BOARD', boardSize });
+    setCurrPlayerIndex(0);
     setTotalSeconds((totalSeconds = 0));
     setMinutes('00');
     setSeconds('00');
 
-    if(isHard) {
+    if (isHard) {
       setNewGame((newGame = new Game()));
       setMcts((mcts = new MonteCarlo(newGame)));
       setGameState((gameState = newGame.start()));

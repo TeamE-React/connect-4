@@ -1,17 +1,17 @@
-import React, {useEffect, useContext} from "react";
-import Head from "next/head";
+import React, { useEffect, useContext } from 'react';
+import Head from 'next/head';
 
 // Styling
-import styles from "../styles/Home.module.css";
-import { ThemeProvider } from "@material-ui/core";
-import theme from "../theme/theme";
+import styles from '../styles/Home.module.css';
+import { ThemeProvider } from '@material-ui/core';
+import theme from '../theme/theme';
 
 // Components
-import Header from "../components/header";
-import { Config } from "../config";
-import SettingSVG from "../components/svgFiles/settingSVG";
-import PlayerModeButton from "../components/buttons/playerModeButton";
-import AiModeButton from "../components/buttons/aiModeButton";
+import Header from '../components/header';
+import { Config } from '../config';
+import SettingSVG from '../components/svgFiles/settingSVG';
+import PlayerModeButton from '../components/buttons/playerModeButton';
+import AiModeButton from '../components/buttons/aiModeButton';
 import AppContext from '../contexts/AppContext';
 
 export default function settingPage() {
@@ -26,6 +26,8 @@ export default function settingPage() {
     setIsDraw,
     setIsDropping,
     setCurrPlayerIndex,
+    setIsHard,
+    setIsAiMode,
   } = useContext(AppContext);
 
   const setNewGame = () => {
@@ -34,6 +36,8 @@ export default function settingPage() {
     setBoardSize(Config.board.size.default);
     setPlayersList([]);
     setCurrPlayerIndex(0);
+    setIsHard(false);
+    setIsAiMode(false);
 
     setTotalSeconds(0);
     setMinutes('00');

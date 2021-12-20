@@ -1,19 +1,19 @@
-import React, { useContext, useState, useEffect } from "react";
-import { Ball } from "../../model";
+import React, { useContext, useState, useEffect } from 'react';
+import { Ball } from '../../model';
 
 // Components
-import AppContext from "../../contexts/AppContext";
-import BallSetters from "./ballSetters";
-import AiBallSetters from "./aiBallSetters";
-import Board from "../gamePageComp/board";
-import ShiningBalls from "./shiningBalls";
+import AppContext from '../../contexts/AppContext';
+import BallSetters from './ballSetters';
+import AiBallSetters from './aiBallSetters';
+import Board from '../gamePageComp/board';
+import ShiningBalls from './shiningBalls';
 
 const CreateBoard = () => {
-  const { state, isDropping, isHard} = useContext(AppContext);
+  const { state, isDropping, isHard } = useContext(AppContext);
 
   const GetBallSetters = (props) => {
     const isHard = props.level;
-    if(isHard){
+    if (isHard) {
       return (
         <AiBallSetters
           key={props.colIndex}
@@ -21,8 +21,7 @@ const CreateBoard = () => {
           disabled={isDropping}
         />
       );
-    }
-    else{
+    } else {
       return (
         <BallSetters
           key={props.colIndex}
@@ -31,12 +30,12 @@ const CreateBoard = () => {
         />
       );
     }
-  }
+  };
 
   return (
     <div>
       {state.board.map((col, colIndex) => {
-        return <GetBallSetters level={isHard} colIndex={colIndex} />
+        return <GetBallSetters level={isHard} colIndex={colIndex} />;
       })}
       <Board />
       <ShiningBalls />

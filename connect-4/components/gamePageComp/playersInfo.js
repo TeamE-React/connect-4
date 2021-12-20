@@ -1,10 +1,10 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from 'react';
 
 // Styling
-import styles from "../../styles/Home.module.css";
+import styles from '../../styles/Home.module.css';
 
 // Components
-import AppContext from "../../contexts/AppContext";
+import AppContext from '../../contexts/AppContext';
 
 const PlayersInfo = () => {
   const { playersList } = useContext(AppContext);
@@ -21,10 +21,13 @@ const PlayersInfo = () => {
   }, []);
 
   return (
-    <div className={styles.players_info} style={{ marginLeft: "1rem" }}>
+    <div className={styles.players_container} style={{ marginLeft: '1rem' }}>
       {oddPlayer.map((player) => {
         return (
-          <div dangerouslySetInnerHTML={createMarkup(player, playersList)} />
+          <div
+            className={styles.players_info}
+            dangerouslySetInnerHTML={createMarkup(player, playersList)}
+          />
         );
       })}
     </div>
@@ -34,10 +37,11 @@ const PlayersInfo = () => {
 const createMarkup = (player, playersList) => {
   return {
     __html: `
+              <p>
+                Player ${playersList.indexOf(player) + 1}:&nbsp;
+              </p>
+              <p style="margin: 0.5rem">${player.name}</P>
               <div>
-                <span style="width: 70px">
-                  Player ${playersList.indexOf(player) + 1}: ${player.name}
-                </span>
                 <Image
                   src="/images/ball-${player.color}.min.svg"
                   width="20px" height="20px"

@@ -1,13 +1,17 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 // styles
-import { Button } from '@material-ui/core';
+import { Button, IconButton } from '@material-ui/core';
 import { GoTriangleDown } from 'react-icons/go';
 import styles from '../../styles/Home.module.css';
 
 // Components
 import AppContext from '../../contexts/AppContext';
 import { Judge } from '../../model/judge';
+
+// 画面幅がこの値に満たないときはIconButtonを表示する
+const WIDTH_THRESHOLD_M = 800;
+const WIDTH_THRESHOLD_S = 414;
 
 const BallSetters = ({ colIndex }) => {
   const {
@@ -30,6 +34,7 @@ const BallSetters = ({ colIndex }) => {
     value,
   } = useContext(AppContext);
   const [isFirstClick, setIsFirstClick] = useState(true);
+  const [width, setWidth] = useState(window.innerWidth);
 
   //**************
   // Functions
@@ -42,12 +47,11 @@ const BallSetters = ({ colIndex }) => {
     if (isFirstClick) {
       toggleTimer();
     }
-    console.log(state.currentPlayer.name);
-    if (state.currentPlayer.name == 'CPU') {
+    if (isAiMode && state.currentPlayer.name == 'CPU') {
       return;
     }
     setIsDropping(true);
-
+    console.log(state.currentPlayer.color);
     setBallHelper(0, colIndex, state.currentPlayer.color);
   };
 
@@ -68,7 +72,7 @@ const BallSetters = ({ colIndex }) => {
     switchPlayer();
 
     let ballObj = getBall(rowId, colId);
-    // console.log("ballObject color is " + ballObj.color);
+
     if (
       !judgeObj.checkWinner() &&
       ballObj.color !== 'blue' &&
@@ -83,14 +87,15 @@ const BallSetters = ({ colIndex }) => {
   const aiMove = () => {
     setTimeout(function () {
       const col = Math.floor(Math.random() * state.board.length);
-      setBallHelper(0, col, 'blue');
-    }, 1800);
+      if (!isColumnFull(col)) setBallHelper(0, col, 'blue');
+      else aiMove();
+    }, 1000);
   };
 
   const changeIsDropping = () => {
     setTimeout(function () {
       setIsDropping(false);
-    }, 2000);
+    }, 1200);
   };
 
   // Recursive function
@@ -98,7 +103,7 @@ const BallSetters = ({ colIndex }) => {
     const len = state.board.length;
     const ballObj = getBall(rowId, colId);
 
-    if (isColumnFull(colId) && rowId == 0) {
+    if (isColumnFull(colId) && rowId == 0 && !isAiMode) {
       setIsDropping(false);
       return;
     }
@@ -130,7 +135,7 @@ const BallSetters = ({ colIndex }) => {
 
     setTimeout(function () {
       setBallHelper(rowId + 1, colId, playerColor);
-    }, 300);
+    }, 200);
   };
 
   const getBall = (rowId, colId) => {
@@ -186,22 +191,65 @@ const BallSetters = ({ colIndex }) => {
 
     setIsFirstClick(false);
   };
+
+  // ウインドウ幅の変更を検知する
+  const updateWidth = (event) => {
+    setWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener(`resize`, updateWidth, {
+      capture: false,
+      passive: true,
+    });
+
+    return () => window.removeEventListener(`resize`, updateWidth);
+  });
+
   // **************
   // Functions End
   // **************
 
-  return (
-    <Button
-      variant="contained"
-      color="secondary"
-      size="large"
-      className={styles.btn}
-      style={{ fontSize: '20px', margin: '16px' }}
-      onClick={setBall}
-    >
-      <GoTriangleDown />
-    </Button>
-  );
+  const DrawBallSetter = () => {
+    if (width > WIDTH_THRESHOLD_M) {
+      return (
+        <Button
+          variant="contained"
+          color="secondary"
+          size="large"
+          className={styles.btn}
+          style={{ fontSize: '1rem', margin: '1rem' }}
+          onClick={setBall}
+        >
+          <GoTriangleDown />
+        </Button>
+      );
+    } else if (width <= WIDTH_THRESHOLD_S) {
+      return (
+        <IconButton
+          color="secondary"
+          size="small"
+          style={{ fontSize: '1.42rem', margin: '0.1rem' }}
+          onClick={setBall}
+        >
+          <GoTriangleDown fontSize="inherit" />
+        </IconButton>
+      );
+    } else {
+      return (
+        <IconButton
+          color="secondary"
+          size="small"
+          style={{ fontSize: '2.42rem', margin: '0.3rem' }}
+          onClick={setBall}
+        >
+          <GoTriangleDown fontSize="inherit" />
+        </IconButton>
+      );
+    }
+  };
+
+  return <DrawBallSetter />;
 };
 
 export default BallSetters;

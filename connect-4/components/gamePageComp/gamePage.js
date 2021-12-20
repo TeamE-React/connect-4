@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 // Styles
 import { Grid, Button, Box } from '@material-ui/core';
@@ -13,6 +13,8 @@ import CreateBoard from './createBoard';
 import AppContext from '../../contexts/AppContext';
 import WinnerWindow from '../winnerWindow';
 import DrawWindow from '../drawWindow';
+import { Game } from '../../model/aiHard/game';
+import { MonteCarlo } from '../../model/aiHard/monte-carlo';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 const GamePage = () => {
   const {
+    state,
     dispatch,
     boardSize,
     minutes,
@@ -35,11 +38,20 @@ const GamePage = () => {
     setSeconds,
     totalSeconds,
     setTotalSeconds,
-    interval,
     setWinnerExist,
     setIsDraw,
     simulationCount,
+    interval,
+    newGame,
+    setNewGame,
+    gameState,
+    setGameState,
+    mcts,
+    setMcts,
     isHard,
+    playersList,
+    currPlayerIndex,
+    setCurrPlayerIndex,
   } = useContext(AppContext);
   const classes = useStyles();
 
@@ -47,9 +59,16 @@ const GamePage = () => {
     setWinnerExist(false);
     setIsDraw(false);
     dispatch({ type: 'BUILD_BOARD', boardSize });
+    setCurrPlayerIndex(0);
     setTotalSeconds((totalSeconds = 0));
     setMinutes('00');
     setSeconds('00');
+
+    if (isHard) {
+      setNewGame((newGame = new Game()));
+      setMcts((mcts = new MonteCarlo(newGame)));
+      setGameState((gameState = newGame.start()));
+    }
 
     const pad = (val) => {
       let valString = val + '';
@@ -67,17 +86,22 @@ const GamePage = () => {
     interval.current = setInterval(incrementTime, 1000);
   };
 
+  useEffect(() => {
+    dispatch({ type: 'SET_CURR_PLAYER', playersList, currPlayerIndex });
+  }, [currPlayerIndex, state]);
+
   return (
     <div className={classes.root}>
       <Grid container justifyContent="center">
         <Grid item xs={12}>
           <PlayersTurn />
         </Grid>
-        <Grid item xs={2}></Grid>
-        <Grid item xs={3}>
-          <PlayersInfo />
+        <Grid item xs={4}>
+          <Box display="flex" justifyContent="end">
+            <PlayersInfo />
+          </Box>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={4}>
           <Box display="flex" justifyContent="center">
             <RiTimerLine style={{ marginRight: '0.5rem' }} />
             {minutes}:{seconds}
@@ -93,21 +117,28 @@ const GamePage = () => {
             </Button>
           </Box>
         </Grid>
-        <Grid item xs={3}>
-          <PlayersInfo2 />
-          {isHard && 
-            <p style={{ display: "flex", justifyContent: "center"}}>
-            <span style={{ color: 'gray' }}>Total Simulations:  </span>
-              {simulationCount}
-            </p>
-          }
+        <Grid item xs={4}>
+          <Box display="flex" justifyContent="start">
+            <PlayersInfo2 />
+          </Box>
         </Grid>
-        <Grid item xs={2}></Grid>
         <Grid item xs={12}>
           <Box display="flex" justifyContent="center">
-            <p>
-              <span style={{ color: 'gray' }}>Click buttons to play</span>
-            </p>
+            {isHard && (
+              <Box display="flex" justifyContent="start" flexWrap="wrap">
+                <p>
+                  <span style={{ color: 'gray' }}>
+                    AI Total Simulations:&nbsp;
+                  </span>
+                </p>
+                <p>{simulationCount}</p>
+              </Box>
+            )}
+          </Box>
+        </Grid>
+        <Grid item xs={12}>
+          <Box display="flex" justifyContent="center">
+            <p>Click buttons to play</p>
           </Box>
         </Grid>
         <CreateBoard />

@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 
 // styles
-import { Button } from '@material-ui/core';
+import { Button, IconButton } from '@material-ui/core';
 import { GoTriangleDown } from 'react-icons/go';
 import styles from '../../styles/Home.module.css';
 
@@ -9,6 +9,10 @@ import styles from '../../styles/Home.module.css';
 import AppContext from '../../contexts/AppContext';
 import { Judge } from '../../model/judge';
 import { Play } from '../../model/aiHard/play';
+
+// 画面幅がこの値に満たないときはIconButtonを表示する
+const WIDTH_THRESHOLD_M = 800;
+const WIDTH_THRESHOLD_S = 414;
 
 const BallSetters = ({ colIndex }) => {
   const {
@@ -35,6 +39,7 @@ const BallSetters = ({ colIndex }) => {
     setSimulationCount,
   } = useContext(AppContext);
   const [isFirstClick, setIsFirstClick] = useState(true);
+  const [width, setWidth] = useState(window.innerWidth);
 
   //**************
   // Functions
@@ -80,7 +85,6 @@ const BallSetters = ({ colIndex }) => {
     // プレイヤーの手をstateに反映する
     let newState = newGame.updateState(gameState, playersPlay);
 
-    console.log(newState.board);
     console.log(newState.player);
 
     let count = mcts.runSearch(newState, 1);
@@ -88,7 +92,6 @@ const BallSetters = ({ colIndex }) => {
     let play = mcts.bestPlay(newState, 'winRate');
     newState = newGame.updateState(newState, play);
 
-    console.log(newState.board);
     console.log(newState.player);
 
     setGameState(newState);
@@ -197,22 +200,65 @@ const BallSetters = ({ colIndex }) => {
 
     setIsFirstClick(false);
   };
+
+  // ウインドウ幅の変更を検知する
+  const updateWidth = (event) => {
+    setWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener(`resize`, updateWidth, {
+      capture: false,
+      passive: true,
+    });
+
+    return () => window.removeEventListener(`resize`, updateWidth);
+  });
+
   // **************
   // Functions End
   // **************
 
-  return (
-    <Button
-      variant="contained"
-      color="secondary"
-      size="large"
-      className={styles.btn}
-      style={{ fontSize: '20px', margin: '16px' }}
-      onClick={setBall}
-    >
-      <GoTriangleDown />
-    </Button>
-  );
+  const DrawBallSetter = () => {
+    if (width > WIDTH_THRESHOLD_M) {
+      return (
+        <Button
+          variant="contained"
+          color="secondary"
+          size="large"
+          className={styles.btn}
+          style={{ fontSize: '1rem', margin: '1rem' }}
+          onClick={setBall}
+        >
+          <GoTriangleDown />
+        </Button>
+      );
+    } else if (width <= WIDTH_THRESHOLD_S) {
+      return (
+        <IconButton
+          color="secondary"
+          size="small"
+          style={{ fontSize: '1.42rem', margin: '0.1rem' }}
+          onClick={setBall}
+        >
+          <GoTriangleDown fontSize="inherit" />
+        </IconButton>
+      );
+    } else {
+      return (
+        <IconButton
+          color="secondary"
+          size="small"
+          style={{ fontSize: '2.42rem', margin: '0.3rem' }}
+          onClick={setBall}
+        >
+          <GoTriangleDown fontSize="inherit" />
+        </IconButton>
+      );
+    }
+  };
+
+  return <DrawBallSetter />;
 };
 
 export default BallSetters;

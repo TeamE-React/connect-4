@@ -78,9 +78,6 @@ const DrawWindow = () => {
     interval.current = setInterval(incrementTime, 1000);
   };
 
-  useEffect(() => {
-    dispatch({ type: 'SET_CURR_PLAYER', playersList, currPlayerIndex });
-  }, [currPlayerIndex, state]);
 
   return (
     <>

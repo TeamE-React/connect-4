@@ -47,8 +47,7 @@ const BallSetters = ({ colIndex }) => {
     if (isFirstClick) {
       toggleTimer();
     }
-    console.log(state.currentPlayer.name);
-    if (state.currentPlayer.name == 'CPU') {
+    if (isAiMode && state.currentPlayer.name == 'CPU') {
       return;
     }
     setIsDropping(true);
@@ -88,14 +87,15 @@ const BallSetters = ({ colIndex }) => {
   const aiMove = () => {
     setTimeout(function () {
       const col = Math.floor(Math.random() * state.board.length);
-      setBallHelper(0, col, 'blue');
-    }, 1800);
+      if (!isColumnFull(col)) setBallHelper(0, col, 'blue');
+      else aiMove();
+    }, 1000);
   };
 
   const changeIsDropping = () => {
     setTimeout(function () {
       setIsDropping(false);
-    }, 2000);
+    }, 1200);
   };
 
   // Recursive function
@@ -103,7 +103,7 @@ const BallSetters = ({ colIndex }) => {
     const len = state.board.length;
     const ballObj = getBall(rowId, colId);
 
-    if (isColumnFull(colId) && rowId == 0) {
+    if (isColumnFull(colId) && rowId == 0 && !isAiMode) {
       setIsDropping(false);
       return;
     }
@@ -135,7 +135,7 @@ const BallSetters = ({ colIndex }) => {
 
     setTimeout(function () {
       setBallHelper(rowId + 1, colId, playerColor);
-    }, 300);
+    }, 200);
   };
 
   const getBall = (rowId, colId) => {

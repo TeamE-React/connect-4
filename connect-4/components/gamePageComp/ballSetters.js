@@ -8,7 +8,7 @@ import styles from '../../styles/Home.module.css';
 // Components
 import AppContext from '../../contexts/AppContext';
 import { Judge } from '../../model/judge';
-import {SET_CURR_PLAYER} from '../../actions'
+import { SET_CURR_PLAYER } from '../../actions';
 
 // 画面幅がこの値に満たないときはIconButtonを表示する
 const WIDTH_THRESHOLD_M = 800;
@@ -52,7 +52,6 @@ const BallSetters = ({ colIndex }) => {
       return;
     }
     setIsDropping(true);
-    console.log(state.currentPlayer.color);
     setBallHelper(0, colIndex, state.currentPlayer.color);
   };
 

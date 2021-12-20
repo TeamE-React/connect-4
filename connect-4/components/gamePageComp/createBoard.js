@@ -1,5 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { Ball } from '../../model';
+import React, { useContext } from 'react';
 
 // Components
 import AppContext from '../../contexts/AppContext';

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import Link from 'next/link';
 
 // Styles
@@ -8,6 +8,8 @@ import { Modal, Box, Button } from '@material-ui/core';
 import AppContext from '../contexts/AppContext';
 import { Game } from '../model/aiHard/game';
 import { MonteCarlo } from '../model/aiHard/monte-carlo';
+import { BUILD_BOARD } from '../actions';
+import { SET_CURR_PLAYER } from '../actions';
 
 const style = {
   position: 'absolute',
@@ -23,7 +25,6 @@ const style = {
 
 const DrawWindow = () => {
   const {
-    state,
     setWinnerExist,
     isDraw,
     setIsDraw,
@@ -42,7 +43,6 @@ const DrawWindow = () => {
     setMcts,
     isHard,
     playersList,
-    currPlayerIndex,
     setCurrPlayerIndex,
   } = useContext(AppContext);
 
@@ -50,8 +50,9 @@ const DrawWindow = () => {
     e.preventDefault();
     setWinnerExist(false);
     setIsDraw(false);
-    dispatch({ type: 'BUILD_BOARD', boardSize });
+    dispatch({ type: BUILD_BOARD, boardSize });
     setCurrPlayerIndex(0);
+    dispatch({ type: SET_CURR_PLAYER, playersList, currPlayerIndex: 0 });
     setTotalSeconds((totalSeconds = 0));
     setMinutes('00');
     setSeconds('00');
@@ -77,7 +78,6 @@ const DrawWindow = () => {
     clearInterval(interval.current);
     interval.current = setInterval(incrementTime, 1000);
   };
-
 
   return (
     <>

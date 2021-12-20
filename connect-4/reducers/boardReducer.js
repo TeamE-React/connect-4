@@ -1,8 +1,9 @@
 import { Ball } from '../model';
+import { BUILD_BOARD } from '../actions';
 
 const board = (state = [], action) => {
   switch (action.type) {
-    case 'BUILD_BOARD':
+    case BUILD_BOARD:
       const array = [];
       const len = action.boardSize;
       for (let i = 0; i < len; i++) {

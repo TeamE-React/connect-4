@@ -1,20 +1,26 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from 'react';
 
 // Styling
-import styles from "../../styles/Home.module.css";
-import { makeStyles } from "@material-ui/core/styles";
-import { TextField, InputLabel, MenuItem, FormControl, Select } from "@material-ui/core";
+import styles from '../../styles/Home.module.css';
+import { makeStyles } from '@material-ui/core/styles';
+import {
+  TextField,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+} from '@material-ui/core';
 
 // Components
-import AppContext from "../../contexts/AppContext";
-import { Config } from "../../config";
-import { Player } from "../../model";
+import AppContext from '../../contexts/AppContext';
+import { Config } from '../../config';
+import { Player } from '../../model';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    "& .MuiTextField-root": {
+    '& .MuiTextField-root': {
       margin: theme.spacing(1),
-      width: "14ch",
+      width: '14ch',
     },
   },
   formControl1: {
@@ -32,10 +38,12 @@ const useStyles = makeStyles((theme) => ({
 
 const PlayerSettings = () => {
   // ボールカラーのリスト作成
-  const colorList = ["red", "yellow", "green", "pink", "cyan"];
+  const colorList = ['red', 'yellow', 'green', 'pink', 'cyan'];
   const classes = useStyles();
-  const {playersList, setPlayersList} = useContext(AppContext);
-  const [numberOfPlayers, setNumberOfPlayers] = useState(Config.players.number.min);
+  const { playersList, setPlayersList } = useContext(AppContext);
+  const [numberOfPlayers, setNumberOfPlayers] = useState(
+    Config.players.number.min
+  );
 
   const handleNumberOfPlayers = (e) => {
     e.preventDefault();

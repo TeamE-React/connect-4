@@ -28,14 +28,13 @@ export class Node {
    * @return {Node} The child node corresponding to the play given.
    */
   childNode(play) {
-    let child = this.children.get(play.hash())
+    let child = this.children.get(play.hash());
     if (child === undefined) {
-      throw new Error('No such play!')
+      throw new Error('No such play!');
+    } else if (child.node === null) {
+      throw new Error('Child is not expanded!');
     }
-    else if (child.node === null) {
-      throw new Error("Child is not expanded!")
-    }
-    return child.node
+    return child.node;
   }
 
   /**
@@ -46,38 +45,36 @@ export class Node {
    * @param {State} childState - The child state corresponding to the given play.
    * @param {Play[]} unexpandedPlays - The given child's unexpanded child plays; typically all of them.
    * @return {MonteCarloNode} The new child node.
-   */　
-  expand2(play, childState, unexpandedPlays) {
-    if (!this.children.has(play.hash())) throw new Error("No such play!")
-    let childNode = new Node(this, play, childState, unexpandedPlays)
-    this.children.set(play.hash(), { play: play, node: childNode })
-    return childNode
+   */ expand2(play, childState, unexpandedPlays) {
+    if (!this.children.has(play.hash())) throw new Error('No such play!');
+    let childNode = new Node(this, play, childState, unexpandedPlays);
+    this.children.set(play.hash(), { play: play, node: childNode });
+    return childNode;
   }
 
   /**
    * 次の手として正当なMoveすべて
-   * @return {Play[]} 
+   * @return {Play[]}
    */
   allPlays() {
-    let ret = []
+    let ret = [];
     for (let child of this.children.values()) {
-      ret.push(child.play)
+      ret.push(child.play);
     }
-    return ret
+    return ret;
   }
 
   /**
    * 未展開の手をリストとして返す
-   * @return {Play[]} 
+   * @return {Play[]}
    */
   unexpandedPlays() {
-    let ret = []
+    let ret = [];
     for (let child of this.children.values()) {
-      if (child.node === null) ret.push(child.play)
+      if (child.node === null) ret.push(child.play);
     }
-    return ret
+    return ret;
   }
-
 
   /**
    * ノードが全て開拓されているかどうか

@@ -1,4 +1,4 @@
-import { Player } from "./model/index";
+import { Player } from './model/index';
 
 export function getArrayOfNumber(min, max) {
   const array = [];
@@ -11,7 +11,7 @@ export function getPlayersList(n) {
   const playersList = [];
 
   for (let i = 0; i < n; i++) {
-    playersList.push(new Player(i, "Player" + (i + 1), ""));
+    playersList.push(new Player(i, 'Player' + (i + 1), ''));
   }
   return playersList;
 }

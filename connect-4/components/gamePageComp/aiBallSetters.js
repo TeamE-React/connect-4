@@ -9,6 +9,7 @@ import styles from '../../styles/Home.module.css';
 import AppContext from '../../contexts/AppContext';
 import { Judge } from '../../model/judge';
 import { Play } from '../../model/aiHard/play';
+import {SET_CURR_PLAYER} from '../../actions'
 
 // 画面幅がこの値に満たないときはIconButtonを表示する
 const WIDTH_THRESHOLD_M = 800;
@@ -179,7 +180,7 @@ const BallSetters = ({ colIndex }) => {
       setCurrPlayerIndex(currPlayerIndex - playersList.length);
     }
 
-    dispatch({ type: 'SET_CURR_PLAYER', playersList, currPlayerIndex });
+    dispatch({ type: SET_CURR_PLAYER, playersList, currPlayerIndex });
   };
 
   const toggleTimer = () => {

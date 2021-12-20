@@ -8,12 +8,13 @@ import { Validation } from '../../model/validation';
 
 // Components
 import AIModeSVG from '../svgFiles/aiModeSVG';
-import BoardSizeInput from '../boardSizeInput';
 import AiSettings from './aiSettings';
 import AppContext from '../../contexts/AppContext';
 import { Player } from '../../model';
 import { Game } from '../../model/aiHard/game';
 import { MonteCarlo } from '../../model/aiHard/monte-carlo';
+import { SET_CURR_PLAYER } from '../../actions';
+import { BUILD_BOARD } from '../../actions';
 
 const aiMode = () => {
   const {
@@ -42,16 +43,16 @@ const aiMode = () => {
       if (value == 'hard') {
         setIsHard(true);
         setPlayersList([...playersList, new Player('AI', 'blue')]);
-        dispatch({ type: 'BUILD_BOARD', boardSize: 7, isHard: true });
+        dispatch({ type: BUILD_BOARD, boardSize: 7, isHard: true });
         setNewGame((newGame = new Game()));
         setMcts((mcts = new MonteCarlo(newGame)));
         setGameState((gameState = newGame.start()));
       } else {
         setPlayersList([...playersList, new Player('CPU', 'blue')]);
-        dispatch({ type: 'BUILD_BOARD', boardSize: 7, isHard: false });
+        dispatch({ type: BUILD_BOARD, boardSize: 7, isHard: false });
       }
       setIsAiMode(true);
-      dispatch({ type: 'SET_CURR_PLAYER', playersList, currPlayerIndex });
+      dispatch({ type: SET_CURR_PLAYER, playersList, currPlayerIndex });
     }
   };
 

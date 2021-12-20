@@ -1,14 +1,14 @@
-import React from "react";
-import Head from "next/head";
+import React from 'react';
+import Head from 'next/head';
 
 // Styling
-import styles from "../styles/Home.module.css";
-import theme from "../theme/theme";
-import { ThemeProvider } from "@material-ui/core";
+import styles from '../styles/Home.module.css';
+import theme from '../theme/theme';
+import { ThemeProvider } from '@material-ui/core';
 
 // Components
-import Header from "../components/header";
-import PlayerMode from "../components/playerModeComp/playerMode";
+import Header from '../components/header';
+import PlayerMode from '../components/playerModeComp/playerMode';
 
 const PlayerModePage = () => {
   return (
@@ -29,6 +29,6 @@ const PlayerModePage = () => {
       </div>
     </ThemeProvider>
   );
-}
+};
 
 export default PlayerModePage;

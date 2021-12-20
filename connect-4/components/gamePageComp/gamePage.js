@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 
 // Styles
 import { Grid, Button, Box } from '@material-ui/core';
@@ -15,6 +15,8 @@ import WinnerWindow from '../winnerWindow';
 import DrawWindow from '../drawWindow';
 import { Game } from '../../model/aiHard/game';
 import { MonteCarlo } from '../../model/aiHard/monte-carlo';
+import { BUILD_BOARD } from '../../actions';
+import { SET_CURR_PLAYER } from '../../actions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
 
 const GamePage = () => {
   const {
-    state,
     dispatch,
     boardSize,
     minutes,
@@ -50,7 +51,6 @@ const GamePage = () => {
     setMcts,
     isHard,
     playersList,
-    currPlayerIndex,
     setCurrPlayerIndex,
   } = useContext(AppContext);
   const classes = useStyles();
@@ -58,8 +58,9 @@ const GamePage = () => {
   const reset = () => {
     setWinnerExist(false);
     setIsDraw(false);
-    dispatch({ type: 'BUILD_BOARD', boardSize });
+    dispatch({ type: BUILD_BOARD, boardSize });
     setCurrPlayerIndex(0);
+    dispatch({ type: SET_CURR_PLAYER, playersList, currPlayerIndex: 0 });
     setTotalSeconds((totalSeconds = 0));
     setMinutes('00');
     setSeconds('00');
@@ -85,10 +86,6 @@ const GamePage = () => {
     clearInterval(interval.current);
     interval.current = setInterval(incrementTime, 1000);
   };
-
-  useEffect(() => {
-    dispatch({ type: 'SET_CURR_PLAYER', playersList, currPlayerIndex });
-  }, [currPlayerIndex, state]);
 
   return (
     <div className={classes.root}>

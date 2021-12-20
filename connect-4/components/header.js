@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import Link from "next/link";
+import React, { useState } from 'react';
+import Link from 'next/link';
 
-import { makeStyles, createStyles } from "@material-ui/core/styles";
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 import {
   AppBar,
@@ -14,28 +14,28 @@ import {
   ListItemText,
   Drawer,
   Divider,
-} from "@material-ui/core";
+} from '@material-ui/core';
 
 // Material-UIアイコン取得
-import SettingsIcon from "@material-ui/icons/Settings";
-import HomeIcon from "@material-ui/icons/Home";
-import MenuIcon from "@material-ui/icons/Menu";
+import SettingsIcon from '@material-ui/icons/Settings';
+import HomeIcon from '@material-ui/icons/Home';
+import MenuIcon from '@material-ui/icons/Menu';
 
 // スタイルを適用する
 const useStyles = makeStyles(() =>
   createStyles({
     headerLogo: {
-      color: "inherit",
-      margin: "20px",
+      color: 'inherit',
+      margin: '20px',
     },
     headerTitleStyle: {
-      justifyContent: "start",
-      color: "inherit",
-      margin: "20px",
+      justifyContent: 'start',
+      color: 'inherit',
+      margin: '20px',
     },
     drawerList: {
       width: 200,
-      height: "100%",
+      height: '100%',
     },
   })
 );
@@ -86,13 +86,13 @@ function Header() {
             <ListItem button onClick={closeDrawerNav}>
               <ListItemIcon>{<HomeIcon />}</ListItemIcon>
               <Link href={`/`}>
-                <ListItemText primary={"Home"} />
+                <ListItemText primary={'Home'} />
               </Link>
             </ListItem>
             <ListItem button onClick={closeDrawerNav}>
               <ListItemIcon>{<SettingsIcon />}</ListItemIcon>
               <Link href={`/settingPage`}>
-                <ListItemText primary={"Setting"} />
+                <ListItemText primary={'Setting'} />
               </Link>
             </ListItem>
           </List>

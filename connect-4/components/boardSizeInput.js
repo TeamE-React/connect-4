@@ -1,14 +1,14 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect } from 'react';
 
 // Styling
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Slider from "@material-ui/core/Slider";
-import styles from "../styles/Home.module.css";
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Slider from '@material-ui/core/Slider';
+import styles from '../styles/Home.module.css';
 
 // Components
-import AppContext from "../contexts/AppContext";
-import { Config } from "../config";
+import AppContext from '../contexts/AppContext';
+import { Config } from '../config';
 
 const useStyles = makeStyles({
   root: {

@@ -31,17 +31,18 @@ const useStyles = makeStyles((theme) => ({
 
 const GamePage = () => {
   const {
-    dispatch,
-    boardSize,
     minutes,
     seconds,
+    simulationCount,
+
+    dispatch,
+    boardSize,
     setMinutes,
     setSeconds,
     totalSeconds,
     setTotalSeconds,
     setWinnerExist,
     setIsDraw,
-    simulationCount,
     interval,
     newGame,
     setNewGame,

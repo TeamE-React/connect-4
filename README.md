@@ -20,7 +20,7 @@ The idea behind this algorithm is to build a search tree of possible move sequen
 
 ## Built With
 
-* [Next.js](https://nextjs.org/)
+* [React](https://reactjs.org/)
 * [Material UI](https://mui.com/)
 
 

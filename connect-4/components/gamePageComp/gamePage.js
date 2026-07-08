@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 
 // Styles
-import { Grid, Button, Box } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Grid, Button, Box } from '@mui/material';
+import { makeStyles } from 'tss-react/mui';
 import { RiTimerLine } from 'react-icons/ri';
 
 // Components
@@ -18,7 +18,7 @@ import { MonteCarlo } from '../../model/aiHard/monte-carlo';
 import { BUILD_BOARD } from '../../actions';
 import { SET_CURR_PLAYER } from '../../actions';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -53,7 +53,7 @@ const GamePage = () => {
     playersList,
     setCurrPlayerIndex,
   } = useContext(AppContext);
-  const classes = useStyles();
+  const { classes } = useStyles();
 
   const reset = () => {
     setWinnerExist(false);

@@ -2,21 +2,21 @@ import React, { useEffect, useState, useContext } from 'react';
 
 // Styling
 import styles from '../../styles/Home.module.css';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from 'tss-react/mui';
 import {
   TextField,
   InputLabel,
   MenuItem,
   FormControl,
   Select,
-} from '@material-ui/core';
+} from '@mui/material';
 
 // Components
 import AppContext from '../../contexts/AppContext';
 import { Config } from '../../config';
 import { Player } from '../../model';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
   root: {
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 const PlayerSettings = () => {
   // ボールカラーのリスト作成
   const colorList = ['red', 'yellow', 'green', 'pink', 'cyan'];
-  const classes = useStyles();
+  const { classes } = useStyles();
   const { playersList, setPlayersList } = useContext(AppContext);
   const [numberOfPlayers, setNumberOfPlayers] = useState(
     Config.players.number.min
@@ -98,8 +98,7 @@ const PlayerSettings = () => {
             id="number-of-players-select"
             value={numberOfPlayers}
             label="Number of Players"
-            onClick={handleNumberOfPlayers}
-            label="numberOfPlayers"
+            onChange={handleNumberOfPlayers}
           >
             <MenuItem value={2}>2</MenuItem>
             <MenuItem value={3}>3</MenuItem>
@@ -131,7 +130,7 @@ const PlayerSettings = () => {
               labelId="player-color-select-label"
               label="Player's Color"
               defaultValue={player.color}
-              onClick={handlePlayerColor}
+              onChange={handlePlayerColor}
               name={index.toString()}
             >
               {colorList.map((color, index) => (

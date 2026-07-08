@@ -59,7 +59,7 @@
       rgba(255, 255, 255, 1) 20%,
       rgba(255, 255, 255, 0) 90%
     ),
-    url(/images/title-image.png);
+    url(/connect-4/images/title-image.png);
   background-repeat: repeat-x;
   background-position: bottom;
   background-size: 100%;

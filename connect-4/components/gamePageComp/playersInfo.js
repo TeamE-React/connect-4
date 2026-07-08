@@ -5,6 +5,7 @@ import styles from '../../styles/Home.module.css';
 
 // Components
 import AppContext from '../../contexts/AppContext';
+import { BASE_PATH } from '../../config';
 
 const PlayersInfo = () => {
   const { playersList } = useContext(AppContext);
@@ -43,7 +44,7 @@ const createMarkup = (player, playersList) => {
               <p style="margin: 0.5rem">${player.name}</P>
               <div>
                 <Image
-                  src="/images/ball-${player.color}.min.svg"
+                  src="${BASE_PATH}/images/ball-${player.color}.min.svg"
                   width="20px" height="20px"
                 />
               </div>

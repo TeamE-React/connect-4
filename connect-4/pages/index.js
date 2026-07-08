@@ -5,13 +5,13 @@ import { useContext, useEffect } from 'react';
 
 // Styling
 import styles from '../styles/Home.module.css';
-import { ThemeProvider, Button } from '@material-ui/core';
+import { ThemeProvider, StyledEngineProvider, Button } from '@mui/material';
 import theme from '../theme/theme';
 
 // Component
 import Header from '../components/header';
 import AppContext from '../contexts/AppContext';
-import { Config } from '../config';
+import { Config, BASE_PATH } from '../config';
 
 const Home = () => {
   const {
@@ -50,45 +50,48 @@ const Home = () => {
   }, []);
 
   return (
-    <ThemeProvider theme={theme}>
-      <div className={styles.body_div}>
-        <div className={styles.top_image}>
-          <Head>
-            <title>Connect 4</title>
-            <meta charset="UTF-8" />
-            <meta
-              name="viewport"
-              content="width=device-width, initial-scale=1.0"
-            />
-            <meta name="description" content="Team Project" />
-            <link rel="icon" href="/favicon.ico" />
-          </Head>
-          <Header />
-          <div className={styles.title_image}>
-            <Image
-              priority
-              src="/images/title.min.svg"
-              width={200}
-              height={50}
-              layout={'responsive'}
-            />
-          </div>
-          <div className={styles.btn_div}>
-            <Link href={`/settingPage`}>
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                className={styles.btn}
-                style={{ fontSize: '20px' }}
-              >
-                Game Start
-              </Button>
-            </Link>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <div className={styles.body_div}>
+          <div className={styles.top_image}>
+            <Head>
+              <title>Connect 4</title>
+              <meta charset="UTF-8" />
+              <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1.0"
+              />
+              <meta name="description" content="Team Project" />
+              <link rel="icon" href={`${BASE_PATH}/favicon.ico`} />
+            </Head>
+            <Header />
+            <div className={styles.title_image}>
+              <Image
+                priority
+                src={`${BASE_PATH}/images/title.min.svg`}
+                alt="Connect 4"
+                width={200}
+                height={50}
+                style={{ width: '100%', height: 'auto' }}
+              />
+            </div>
+            <div className={styles.btn_div}>
+              <Link href={`/settingPage`}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  className={styles.btn}
+                  style={{ fontSize: '20px' }}
+                >
+                  Game Start
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
-    </ThemeProvider>
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
 };
 

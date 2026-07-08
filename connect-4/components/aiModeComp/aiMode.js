@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 // Styling
 import styles from '../../styles/Home.module.css';
-import { Button, Box } from '@material-ui/core';
+import { Button, Box } from '@mui/material';
 import { Validation } from '../../model/validation';
 
 // Components

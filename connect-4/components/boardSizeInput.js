@@ -1,23 +1,22 @@
 import React, { useContext, useEffect } from 'react';
 
-// Styling
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
+import { makeStyles } from 'tss-react/mui';
+import Typography from '@mui/material/Typography';
+import Slider from '@mui/material/Slider';
 import styles from '../styles/Home.module.css';
 
 // Components
 import AppContext from '../contexts/AppContext';
 import { Config } from '../config';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles()({
   root: {
     width: 300,
   },
 });
 
 export default function BoardSizeInput() {
-  const classes = useStyles();
+  const { classes } = useStyles();
   const { setBoardSize } = useContext(AppContext);
 
   const handleChange = (event, value) => {

@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 
 // Styling
 import styles from '../../styles/Home.module.css';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from 'tss-react/mui';
 import {
   TextField,
   InputLabel,
@@ -14,13 +14,13 @@ import {
   FormControlLabel,
   FormLabel,
   Box,
-} from '@material-ui/core';
+} from '@mui/material';
 
 // Components
 import AppContext from '../../contexts/AppContext';
 import { Player } from '../../model';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles()((theme) => ({
   root: {
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 const AiSettings = () => {
   // ボールカラーのリスト作成
   const colorList = ['red', 'yellow', 'green', 'pink', 'cyan'];
-  const classes = useStyles();
+  const { classes } = useStyles();
   const { playersList, setPlayersList, value, setValue } =
     useContext(AppContext);
 
@@ -103,7 +103,7 @@ const AiSettings = () => {
                   labelId="player-color-select-label"
                   label="Player's Color"
                   defaultValue={player.color}
-                  onClick={handlePlayerColor}
+                  onChange={handlePlayerColor}
                   name={index.toString()}
                 >
                   {colorList.map((color, index) => (

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Link from 'next/link';
 
 // Styles
-import { Modal, Box, Button } from '@material-ui/core';
+import { Modal, Box, Button } from '@mui/material';
 
 // Components
 import AppContext from '../contexts/AppContext';

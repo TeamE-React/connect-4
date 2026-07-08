@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 
 // styles
-import { Button, IconButton } from '@material-ui/core';
+import { Button, IconButton } from '@mui/material';
 import { GoTriangleDown } from 'react-icons/go';
 import styles from '../../styles/Home.module.css';
 

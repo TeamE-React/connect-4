@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 // Styling
 import styles from '../../styles/Home.module.css';
-import { Button, Box } from '@material-ui/core';
+import { Button, Box } from '@mui/material';
 import { GiVintageRobot } from 'react-icons/gi';
 
 export default function AiModeButton() {

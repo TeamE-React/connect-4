@@ -1,4 +1,4 @@
-import { createTheme } from "@material-ui/core/styles";
+import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
@@ -15,7 +15,7 @@ const theme = createTheme({
     button: {
       textTransform: "none",
     },
-    fontFamily: ["Varela Round", "sans-serif"],
+    fontFamily: "Varela Round, sans-serif",
     fontSize: 12,
     h6: {
       ["@media screen and (min-width: 415px)"]: {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles } from 'tss-react/mui';
 
 import {
   AppBar,
@@ -14,38 +14,36 @@ import {
   ListItemText,
   Drawer,
   Divider,
-} from '@material-ui/core';
+} from '@mui/material';
 
 // Material-UIアイコン取得
-import SettingsIcon from '@material-ui/icons/Settings';
-import HomeIcon from '@material-ui/icons/Home';
-import MenuIcon from '@material-ui/icons/Menu';
+import SettingsIcon from '@mui/icons-material/Settings';
+import HomeIcon from '@mui/icons-material/Home';
+import MenuIcon from '@mui/icons-material/Menu';
 
 // スタイルを適用する
-const useStyles = makeStyles(() =>
-  createStyles({
-    headerLogo: {
-      color: 'inherit',
-      margin: '20px',
-    },
-    headerTitleStyle: {
-      justifyContent: 'start',
-      color: 'inherit',
-      margin: '20px',
-    },
-    drawerList: {
-      width: 200,
-      height: '100%',
-    },
-  })
-);
+const useStyles = makeStyles()({
+  headerLogo: {
+    color: 'inherit',
+    margin: '20px',
+  },
+  headerTitleStyle: {
+    justifyContent: 'start',
+    color: 'inherit',
+    margin: '20px',
+  },
+  drawerList: {
+    width: 200,
+    height: '100%',
+  },
+});
 
 function Header() {
   // Drawerの状態
   const [isOpen, setOpen] = useState(false);
 
   // CSSを適用する。
-  const classes = useStyles();
+  const { classes } = useStyles();
 
   // Drawerの状態を変更する関数。
   const toggleDrawerNav = () => {
@@ -61,7 +59,7 @@ function Header() {
       {/* 上部のバー */}
       <AppBar position="static" aria-label="Global Navi">
         <Toolbar>
-          <IconButton onClick={toggleDrawerNav} aria-label="SideMenu">
+          <IconButton onClick={toggleDrawerNav} aria-label="SideMenu" size="large">
             <MenuIcon />
           </IconButton>
           <Typography className={classes.headerLogo} variant="h5">

@@ -1,10 +1,14 @@
+const basePath = '/connect-4';
+
 module.exports = {
   reactStrictMode: true,
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ["@svgr/webpack"]
-    });
-    return config;
-  }
-}
+  output: 'export',
+  trailingSlash: true,
+  basePath,
+  images: {
+    unoptimized: true,
+  },
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
+};
